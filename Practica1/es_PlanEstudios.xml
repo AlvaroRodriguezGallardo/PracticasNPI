@@ -79,10 +79,37 @@
                 <prompt>datos</prompt>
                 </exit>
             </else>
-                De acuerdo, volvamos al principio
+                <prompt> De acuerdo, volvamos al principio. </prompt>
                 <clear namelist ="plan_estudios"/>
                 <clear namelist ="confirmar_datos"/>
                 <goto next="#confirmar_datos"> 
+            </if>
+        </filled>  
+
+    </form>
+
+    <form id="volver_a_empezar">
+
+        <field name="volver_a_empezar_field" type="boolean">
+            <prompt> 
+                Desea consultar otro plan de estudios?
+            </prompt>
+
+
+        <filled>
+            <if cond="volver_a_empezar_field">
+
+                <prompt>De acuerdo, volvamos al principio</prompt>
+
+                <clear namelist ="plan_estudios"/>
+                <clear namelist ="volver_a_empezar"/>
+                <goto next="#plan_estudios"> 
+
+            </else>
+                
+                <prompt> De acuerdo. Tenga un buen dia! </prompt>
+                </exit>
+
             </if>
         </filled>  
 
