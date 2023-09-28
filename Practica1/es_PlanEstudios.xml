@@ -9,7 +9,7 @@
     <field name="grado">
         <grammar src="es_Carrera.jsgf"/>
         <prompt>
-            Que grado desea consultar, Informatica, Telecomunicaciones o Doble Grado de Informatica Y Matematicas?
+            Que grado desea consultar, Informatica, Telecomunicaciones?
         </prompt>
         <filled>
            De acuerdo, se va a consultar el grado <value expr="grado"/>
