@@ -1,90 +1,89 @@
-<vxml version = "2.1" xmlns="http://www.w3.org/2001/06/vxml">
+<vxml version = "2.1" xmlns="http://www.w3.org/2001/06/vxml" xml:lang="es-es">
 
     <form id="plan_estudios">
 
-    <block>
-        <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica Superior de Ingenierias Informatica y de Telecomunicacion. </prompt>
-    </block>
-
-    <field name="grado">
-        <grammar src="es_Carrera.jsgf"/>
-        <prompt>
-            Que grado desea consultar, Informatica, Telecomunicaciones?
-        </prompt>
-        <filled>
-           De acuerdo, se va a consultar el grado <value expr="grado"/>
-        </filled>
-    </field>
-
-    <field name="curso">
-        <grammar src="es_Curso.jsgf"/>
-        <prompt>
-            Que curso desea consultar?
-        </prompt>
-        <filled>
-           De acuerdo, se va a consultar el curso <value expr="curso"/>
-           <if cond="curso == 'primero' or curso == 'primer' or curso == 'segundo'">
-                <assign name="mencion" expr="'No'" />
-           </if>
-
-        </filled>
-    </field>
-
-    <field name="mencion">
-        <grammar src="es_Menciones.jsgf"/>
-        <prompt>
-            Que mencion desea consultar?
-        </prompt>
-        <filled>
-           De acuerdo, se va a consultar la mencion <value expr="mencion"/>
-        </filled>
-    </field>
-
-    <field name="cuatrimestre">
-        <grammar src="es_Cuatrimestre.jsgf"/>
-        <prompt>
-            Que cuatrimestre desea consultar?
-        </prompt>
-        <filled>
-           De acuerdo, se va a consultar el cuatrimestre <value expr="cuatrimestre"/>
-        </filled>
-    </field>
-
-
-    <filled>
-
         <block>
-            <if cond="mencion == 'No'">
-                <prompt>Quiere saber las asignaturas del grado en <value expr="grado">, de <value expr="curso"> del <value expr="cuatrimestre"> cuatrimestre?</prompt>
-            </else>
-                <prompt>Quiere saber las asignaturas del grado en <value expr="grado"> con mencion <value expr="mencion">, de <value expr="curso"> del <value expr "cuatrimestre"> cuatrimestre?</prompt>
-            </if>
+            <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica Superior de Ingenierias Informatica y de Telecomunicacion. </prompt>
         </block>
 
-        <goto next="#confirmar_datos"> 
+        <field name="grado">
+            <grammar src="es_Carrera.jsgf"/>
+            <prompt>
+                Que grado desea consultar, Informatica o Telecomunicaciones?
+            </prompt>
+            <filled>
+                De acuerdo, se va a consultar el grado <value expr="grado"/>
+            </filled>
+        </field>
 
-    </filled>
+        <field name="curso">
+            <grammar src="es_Curso.jsgf"/>
+            <prompt>
+                Que curso desea consultar?
+            </prompt>
+            <filled>
+            De acuerdo, se va a consultar el curso <value expr="curso"/>
+            <if cond="curso == 'primero' or curso == 'primer' or curso == 'segundo'">
+                    <assign name="mencion" expr="'No'" />
+            </if>
+
+            </filled>
+        </field>
+
+        <field name="mencion">
+            <grammar src="es_Menciones.jsgf"/>
+            <prompt>
+                Que mencion desea consultar?
+            </prompt>
+            <filled>
+            De acuerdo, se va a consultar la mencion <value expr="mencion"/>
+            </filled>
+        </field>
+
+        <field name="cuatrimestre">
+            <grammar src="es_Cuatrimestre.jsgf"/>
+            <prompt>
+                Que cuatrimestre desea consultar?
+            </prompt>
+            <filled>
+            De acuerdo, se va a consultar el cuatrimestre <value expr="cuatrimestre"/>
+            </filled>
+        </field>
 
 
-    </field>
+        <filled>
+
+            <block>
+                <if cond="mencion == 'No'">
+                    <prompt>Quiere saber las asignaturas del grado en <value expr="grado"/>, de <value expr="curso"/> del <value expr="cuatrimestre"/> cuatrimestre?</prompt>
+                <else/>
+                    <prompt>Quiere saber las asignaturas del grado en <value expr="grado"/> con mencion <value expr="mencion"/>, de <value expr="curso"/> del <value expr="cuatrimestre"/> cuatrimestre?</prompt>
+                </if>
+            </block>
+
+            <goto next="#confirmar_datos"/> 
+
+        </filled>
 
     </form>
 
-    <form id="confirmar_datos">
+        <form id="confirmar_datos">
 
-        <field name="confirmar_datos_field" type="boolean">
-        
-        <filled>
-            <if cond="confirmar_datos_field">
-                <prompt>datos</prompt>
-                </exit>
-            </else>
-                <prompt> De acuerdo, volvamos al principio. </prompt>
-                <clear namelist ="plan_estudios"/>
-                <clear namelist ="confirmar_datos"/>
-                <goto next="#confirmar_datos"> 
-            </if>
-        </filled>  
+            <field name="confirmar_datos_field" type="boolean">
+            
+                <filled>
+                    <if cond="confirmar_datos_field">
+                        <prompt>datos</prompt>
+                        <exit/>
+                    <else/>
+                        <prompt> De acuerdo, volvamos al principio. </prompt>
+                        <clear namelist ="plan_estudios"/>
+                        <clear namelist ="confirmar_datos"/>
+                        <goto next="#confirmar_datos"/> 
+                    </if>
+                </filled>  
+
+            </field>
 
     </form>
 
@@ -96,23 +95,23 @@
             </prompt>
 
 
-        <filled>
-            <if cond="volver_a_empezar_field">
+            <filled>
+                <if cond="volver_a_empezar_field">
 
-                <prompt>De acuerdo, volvamos al principio</prompt>
+                    <prompt>De acuerdo, volvamos al principio</prompt>
 
-                <clear namelist ="plan_estudios"/>
-                <clear namelist ="volver_a_empezar"/>
-                <goto next="#plan_estudios"> 
+                    <clear namelist ="plan_estudios"/>
+                    <clear namelist ="volver_a_empezar"/>
+                    <goto next="#plan_estudios"/> 
 
-            </else>
-                
-                <prompt> De acuerdo. Tenga un buen dia! </prompt>
-                </exit>
+                <else/>
+                    
+                    <prompt> De acuerdo. Tenga un buen dia! </prompt>
+                    <exit/>
 
-            </if>
-        </filled>  
-
+                </if>
+            </filled>  
+        </field>
     </form>
 
-    </vxml>
+</vxml>
