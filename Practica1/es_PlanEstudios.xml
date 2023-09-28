@@ -7,7 +7,7 @@
     </block>
 
     <field name="grado">
-        <grammar src="es_grado.jsgf"/>
+        <grammar src="es_Carrera.jsgf"/>
         <prompt>
             Que grado desea consultar, Informatica, Telecomunicaciones o Doble Grado de Informatica Y Matematicas?
         </prompt>
@@ -17,7 +17,7 @@
     </field>
 
     <field name="curso">
-        <grammar src="es_cursos.jsgf"/>
+        <grammar src="es_Curso.jsgf"/>
         <prompt>
             Que curso desea consultar?
         </prompt>
@@ -31,7 +31,7 @@
     </field>
 
     <field name="mencion">
-        <grammar src="es_menciones.jsgf"/>
+        <grammar src="es_Menciones.jsgf"/>
         <prompt>
             Que mencion desea consultar?
         </prompt>
@@ -41,7 +41,7 @@
     </field>
 
     <field name="cuatrimestre">
-        <grammar src="es_cuatrimestre.jsgf"/>
+        <grammar src="es_Cuatrimestre.jsgf"/>
         <prompt>
             Que cuatrimestre desea consultar?
         </prompt>
