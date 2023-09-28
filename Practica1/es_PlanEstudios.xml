@@ -3,7 +3,7 @@
     <form id="plan_estudios">
 
     <block>
-        <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Técnica Superior de Ingenierías Informatica y de Telecomunicacion. </prompt>
+        <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica Superior de Ingenierias Informatica y de Telecomunicacion. </prompt>
     </block>
 
     <field name="grado">
