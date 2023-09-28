@@ -51,8 +51,8 @@
     </field>
 
 
+    <filled>
 
-    <field name="confirmar_datos" type="boolean">
         <block>
             <if cond="mencion == 'No'">
                 <prompt>Quiere saber las asignaturas del grado en <value expr="grado">, de <value expr="curso"> del <value expr="cuatrimestre"> cuatrimestre?</prompt>
@@ -60,17 +60,31 @@
                 <prompt>Quiere saber las asignaturas del grado en <value expr="grado"> con mencion <value expr="mencion">, de <value expr="curso"> del <value expr "cuatrimestre"> cuatrimestre?</prompt>
             </if>
         </block>
+
+        <goto next="#confirmar_datos"> 
+
+    </filled>
+
+
+    </field>
+
+    </form>
+
+    <form id="confirmar_datos">
+
+        <field name="confirmar_datos_field" type="boolean">
+        
         <filled>
-            <if cond="confirmar_datos">
+            <if cond="confirmar_datos_field">
                 <prompt>datos</prompt>
                 </exit>
             </else>
                 De acuerdo, volvamos al principio
                 <clear namelist ="plan_estudios"/>
+                <clear namelist ="confirmar_datos"/>
+                <goto next="#confirmar_datos"> 
             </if>
         </filled>  
-
-    </field>
 
     </form>
 
