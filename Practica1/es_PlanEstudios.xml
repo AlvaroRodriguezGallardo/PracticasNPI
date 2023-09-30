@@ -67,23 +67,23 @@
 
     </form>
 
-        <form id="confirmar_datos">
+    <form id="confirmar_datos">
 
-            <field name="confirmar_datos_field" type="boolean">
-            
-                <filled>
-                    <if cond="confirmar_datos_field">
-                        <prompt>datos</prompt>
-                        <exit/>
-                    <else/>
-                        <prompt> De acuerdo, volvamos al principio. </prompt>
-                        <clear namelist ="plan_estudios"/>
-                        <clear namelist ="confirmar_datos"/>
-                        <goto next="#confirmar_datos"/> 
-                    </if>
-                </filled>  
+        <field name="confirmar_datos_field" type="boolean">
+        
+            <filled>
+                <if cond="confirmar_datos_field">
+                    <prompt>datos</prompt>
+                    <exit/>
+                <else/>
+                    <prompt> De acuerdo, volvamos al principio. </prompt>
+                    <clear namelist ="plan_estudios"/>
+                    <clear namelist ="confirmar_datos"/>
+                    <goto next="#confirmar_datos"/> 
+                </if>
+            </filled>  
 
-            </field>
+        </field>
 
     </form>
 
