@@ -1,3 +1,5 @@
+#JSGF V1.0;
+
 grammar fr_Menciones;
 
 public <fr_Menciones> calcul et systèmes intelligents | csi | ingénierie du software | is | ingénierie du calcul | ic | systèmes de l'information | si | tecnologies de l'information | ti | systèmes des télécommunication | st | télémathique | systèmes électroniques | se
