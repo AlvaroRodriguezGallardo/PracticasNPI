@@ -2,4 +2,4 @@
 
 grammar es_Curso;
 
-public <curso> = primero | segundo | tercero | cuarto | primer | tercer;
+public <es_Curso> = primero | segundo | tercero | cuarto | primer | tercer;
