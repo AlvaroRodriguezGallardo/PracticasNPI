@@ -3,7 +3,7 @@
     <form id="plan_estudios">
 
         <block>
-            <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica Superior de Ingenierias Informatica y de Telecomunicacion. IF IF</prompt>
+            <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica Superior de Ingenierias Informatica y de Telecomunicacion.</prompt>
         </block>
 
         <field name="grado">
@@ -58,14 +58,11 @@
 
 
         <filled>
-
-            <block>
-                <if cond="mencion == 'No'">
-                    <prompt>Quiere saber las asignaturas del grado en <value expr="grado"/>, de <value expr="curso"/> del <value expr="cuatrimestre"/> cuatrimestre?</prompt>
-                <else/>
-                    <prompt>Quiere saber las asignaturas del grado en <value expr="grado"/> con mencion <value expr="mencion"/>, de <value expr="curso"/> del <value expr="cuatrimestre"/> cuatrimestre?</prompt>
-                </if>
-            </block>
+            <if cond="mencion == 'No'">
+                <prompt>Quiere saber las asignaturas del grado en <value expr="grado"/>, de <value expr="curso"/> del <value expr="cuatrimestre"/> cuatrimestre?</prompt>
+            <else/>
+                <prompt>Quiere saber las asignaturas del grado en <value expr="grado"/> con mencion <value expr="mencion"/>, de <value expr="curso"/> del <value expr="cuatrimestre"/> cuatrimestre?</prompt>
+            </if>
 
             <goto next="#confirmar_datos"/> 
 
@@ -80,12 +77,12 @@
             <filled>
                 <if cond="confirmar_datos_field">
                     <prompt>datos</prompt>
-                    <exit/>
+                    <goto next="#volver_a_empezar"/>
                 <else/>
                     <prompt> De acuerdo, volvamos al principio. </prompt>
                     <clear namelist ="plan_estudios"/>
                     <clear namelist ="confirmar_datos"/>
-                    <goto next="#confirmar_datos"/> 
+                    <goto next="#plan_estudios"/> 
                 </if>
             </filled>  
 
@@ -98,9 +95,9 @@
             <prompt>
                 ¿Desea consultar otro plan de estudios? Responda "sí" o "no".
             </prompt>
-            <grammar src="builtin:yesno/yesno.grxml"/>
+            <!--<grammar src="builtin:yesno/yesno.grxml"/>-->
             <filled>
-                <if cond="volver_a_empezar_field == true">
+                <if cond="volver_a_empezar_field">
                 <!-- Si el usuario responde "sí", reiniciar la consulta -->
                     <prompt>De acuerdo, volvamos al principio.</prompt>
                     <clear namelist="plan_estudios"/>
