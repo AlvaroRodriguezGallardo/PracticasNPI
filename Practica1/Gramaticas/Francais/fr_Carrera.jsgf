@@ -1,3 +1,5 @@
+#JSGF V1.0;
+
 grammar fr_Carrera;
 
 public <fr_Carrera> = ingénierie informatique | génie informatique | télécommunication
