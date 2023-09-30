@@ -1,3 +1,5 @@
-grammar es_Curso;
+#JSGF V1.0;
 
-public <es_Curso> primero | segundo | tercero | cuarto | primer | tercer
+grammar curso;
+
+public <curso> = primero | segundo | tercero | cuarto | primer | tercer;
