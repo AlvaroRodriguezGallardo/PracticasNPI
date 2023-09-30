@@ -1,5 +1,5 @@
 #JSGF V1.0;
 
-grammar curso;
+grammar es_Curso;
 
 public <curso> = primero | segundo | tercero | cuarto | primer | tercer;
