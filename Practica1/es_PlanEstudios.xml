@@ -94,30 +94,26 @@
     </form>
 
     <form id="volver_a_empezar">
-
         <field name="volver_a_empezar_field" type="boolean">
-            <prompt> 
-                Desea consultar otro plan de estudios?
+            <prompt>
+                ¿Desea consultar otro plan de estudios? Responda "sí" o "no".
             </prompt>
-
-
+            <grammar src="builtin:yesno/yesno.grxml"/>
             <filled>
-                <if cond="volver_a_empezar_field">
-
-                    <prompt>De acuerdo, volvamos al principio</prompt>
-
-                    <clear namelist ="plan_estudios"/>
-                    <clear namelist ="volver_a_empezar"/>
-                    <goto next="#plan_estudios"/> 
-
+                <if cond="volver_a_empezar_field == true">
+                <!-- Si el usuario responde "sí", reiniciar la consulta -->
+                    <prompt>De acuerdo, volvamos al principio.</prompt>
+                    <clear namelist="plan_estudios"/>
+                    <clear namelist="volver_a_empezar"/>
+                    <goto next="#plan_estudios"/>
                 <else/>
-                    
-                    <prompt> De acuerdo. Tenga un buen dia! </prompt>
+                <!-- Si el usuario responde "no", finalizar la interacción -->
+                    <prompt>De acuerdo. ¡Que tenga un buen día!</prompt>
                     <exit/>
-
                 </if>
-            </filled>  
+            </filled>
         </field>
     </form>
+
 
 </vxml>
