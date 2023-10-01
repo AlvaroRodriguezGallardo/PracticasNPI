@@ -1,70 +1,73 @@
-<vxml version = "2.1" xmlns="http://www.w3.org/2001/06/vxml" xml:lang="es-es">
+<vxml version="2.1" xmlns="http://www.w3.org/2001/06/vxml" xml:lang="es-es">
 
     <form id="plan_estudios">
 
         <block>
-            <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica Superior de Ingenierias Informatica y de Telecomunicacion.</prompt>
+            <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica
+                Superior de Ingenierias Informatica y de Telecomunicacion.</prompt>
         </block>
 
         <field name="grado">
-            <grammar src="es_Carrera.jsgf"/>
+            <grammar src="es_Carrera.jsgf" />
             <prompt>
                 Que grado desea consultar, Informatica o Telecomunicaciones?
             </prompt>
-            <filled>
-                De acuerdo, se va a consultar el grado <value expr="grado"/>
+            <filled> De acuerdo, se va a consultar el grado <value expr="grado" />
             </filled>
         </field>
 
         <field name="curso">
-            <grammar src="es_Curso.jsgf"/>
+            <grammar src="es_Curso.jsgf" />
             <prompt>
                 Que curso desea consultar?
             </prompt>
-            <filled>
-            De acuerdo, se va a consultar el curso <value expr="curso"/>
-            <if cond="curso == 'primero'">
+            <filled> De acuerdo, se va a consultar el curso <value expr="curso" />
+            <if
+                    cond="curso == 'primero'">
                     <assign name="mencion" expr="'No'" />
-            </if>
-            <if cond="curso == 'primer'">
+                </if>
+            <if
+                    cond="curso == 'primer'">
                     <assign name="mencion" expr="'No'" />
-            </if>
-            <if cond="curso == 'segundo'">
+                </if>
+            <if
+                    cond="curso == 'segundo'">
                     <assign name="mencion" expr="'No'" />
-            </if>
+                </if>
 
             </filled>
         </field>
 
         <field name="mencion">
-            <grammar src="es_Menciones.jsgf"/>
+            <grammar src="es_Menciones.jsgf" />
             <prompt>
                 Que mencion desea consultar?
             </prompt>
-            <filled>
-            De acuerdo, se va a consultar la mencion <value expr="mencion"/>
+            <filled> De acuerdo, se va a consultar la mencion <value expr="mencion" />
             </filled>
         </field>
 
         <field name="cuatrimestre">
-            <grammar src="es_Cuatrimestre.jsgf"/>
+            <grammar src="es_Cuatrimestre.jsgf" />
             <prompt>
                 Que cuatrimestre desea consultar?
             </prompt>
-            <filled>
-            De acuerdo, se va a consultar el cuatrimestre <value expr="cuatrimestre"/>
+            <filled> De acuerdo, se va a consultar el cuatrimestre <value expr="cuatrimestre" />
             </filled>
         </field>
 
 
         <filled>
             <if cond="mencion == 'No'">
-                <prompt>Quiere saber las asignaturas del grado en <value expr="grado"/>, de <value expr="curso"/> del <value expr="cuatrimestre"/> cuatrimestre?</prompt>
-            <else/>
-                <prompt>Quiere saber las asignaturas del grado en <value expr="grado"/> con mencion <value expr="mencion"/>, de <value expr="curso"/> del <value expr="cuatrimestre"/> cuatrimestre?</prompt>
+                <prompt>Quiere saber las asignaturas del grado en <value expr="grado" />, de <value
+                        expr="curso" /> del <value expr="cuatrimestre" /> cuatrimestre?</prompt>
+                <else />
+                <prompt>Quiere saber las asignaturas del grado en <value expr="grado" /> con mencion <value
+                        expr="mencion" />, de <value expr="curso" /> del <value expr="cuatrimestre" />
+                    cuatrimestre?</prompt>
             </if>
 
-            <goto next="#confirmar_datos"/> 
+            <goto next="#confirmar_datos" />
 
         </filled>
 
@@ -73,445 +76,251 @@
     <form id="confirmar_datos">
 
         <field name="confirmar_datos_field" type="boolean">
-        
+
             <filled>
                 <if cond="confirmar_datos_field">
                     <prompt>datos</prompt>
-                    <goto next="#mostrar_asignaturas"/>
-                <else/>
+                    <goto next="#mostrar_asignaturas" />
+                    <else />
                     <prompt> De acuerdo, volvamos al principio. </prompt>
-                    <clear namelist ="plan_estudios"/>
-                    <clear namelist ="confirmar_datos"/>
-                    <goto next="#plan_estudios"/> 
+                    <clear namelist="plan_estudios" />
+                    <clear namelist="confirmar_datos" />
+                    <goto next="#plan_estudios" />
                 </if>
-            </filled>  
+            </filled>
 
         </field>
 
     </form>
 
-    <!--########################### Información sobre las asignaturas de Informática ###########################-->
-    <data name="asignaturas_informatica">
-        <!-- Ingeniería Informática - Primer curso -->
-        <item mención="No" curso="primer" cuatrimestre="primer">
-            <nombre>Cálculo (Troncal, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="primer" cuatrimestre="primer">
-            <nombre>Fundamentos Físicos y Tecnológicos (Troncal, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="primer" cuatrimestre="primer">
-            <nombre>Fundamentos de Programación (Troncal, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="primer" cuatrimestre="primer">
-            <nombre>Fundamentos del Software (Troncal, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="primer" cuatrimestre="primer">
-            <nombre>Álgebra Lineal y Estructuras Matemáticas (Troncal, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="primer" cuatrimestre="segundo">
-            <nombre>Estadística (Troncal, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="primer" cuatrimestre="segundo">
-            <nombre>Ingeniería, Empresa y Sociedad (Troncal, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="primer" cuatrimestre="segundo">
-            <nombre>Lógica y Métodos Discretos (Troncal, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="primer" cuatrimestre="segundo">
-            <nombre>Metodología de la Programación (Troncal, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="primer" cuatrimestre="segundo">
-            <nombre>Tecnología y Organización de Computadores (Troncal, 6 créditos)</nombre>
-        </item>
-
-        <!-- Ingeniería Informática - Segundo curso -->
-        <item mención="No" curso="segundo" cuatrimestre="primer">
-            <nombre>Estructura de Computadores (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="segundo" cuatrimestre="primer">
-            <nombre>Estructura de Datos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="segundo" cuatrimestre="primer">
-            <nombre>Programación y Diseño Orientado a Objetos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="segundo" cuatrimestre="primer">
-            <nombre>Sistemas Concurrentes y Distribuidos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="segundo" cuatrimestre="primer">
-            <nombre>Sistemas Operativos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="segundo" cuatrimestre="segundo">
-            <nombre>Algorítmica (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="segundo" cuatrimestre="segundo">
-            <nombre>Arquitectura de Computadores (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="segundo" cuatrimestre="segundo">
-            <nombre>Fundamentos de Bases de Datos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="segundo" cuatrimestre="segundo">
-            <nombre>Fundamentos de Ingeniería del Software (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="segundo" cuatrimestre="segundo">
-            <nombre>Inteligencia Artificial (Obligatoria, 6 créditos)</nombre>
-        </item>
-
-        <!-- Ingeniería Informática - Tercer curso -->
-        <item mención="No" curso="tercero" cuatrimestre="primer">
-            <nombre>Diseño y Desarrollo de Sistemas de Información (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="tercero" cuatrimestre="primer">
-            <nombre>Fundamentos de Redes (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="tercero" cuatrimestre="primer">
-            <nombre>Informática Gráfica (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="tercero" cuatrimestre="primer">
-            <nombre>Ingeniería de Servidores (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="No" curso="tercero" cuatrimestre="primer">
-            <nombre>Modelos de Computación (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <!-- Mención: Computación y Sistemas Inteligentes -->
-        <item mención="Computación y Sistemas Inteligentes" curso="tercero" cuatrimestre="segundo">
-            <nombre>Aprendizaje Automático (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="tercero" cuatrimestre="segundo">
-            <nombre>Ingeniería del Conocimiento (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="tercero" cuatrimestre="segundo">
-            <nombre>Metaheurísticas (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="tercero" cuatrimestre="segundo">
-            <nombre>Modelos Avanzados de Computación (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="tercero" cuatrimestre="segundo">
-            <nombre>Técnicas de los Sistemas Inteligentes (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <!-- Mención: Ingeniería de Computadores -->
-        <item mención="Ingeniería de Computadores" curso="tercero" cuatrimestre="segundo">
-            <nombre>Arquitectura de Sistemas (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="tercero" cuatrimestre="segundo">
-            <nombre>Arquitectura y Computación de Altas Prestaciones (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="tercero" cuatrimestre="segundo">
-            <nombre>Desarrollo de Hardware Digital (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="tercero" cuatrimestre="segundo">
-            <nombre>Diseño de Sistemas Electrónicos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="tercero" cuatrimestre="segundo">
-            <nombre>Sistemas con Microprocesadores (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <!-- Mención: Tecnologías de la Información -->
-        <item mención="Tecnologías de la Información" curso="tercero" cuatrimestre="segundo">
-            <nombre>Computación Ubicua e Inteligencia Ambiental (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="tercero" cuatrimestre="segundo">
-            <nombre>Servidores Web de Altas Prestaciones (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="tercero" cuatrimestre="segundo">
-            <nombre>Sistemas Multimedia (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="tercero" cuatrimestre="segundo">
-            <nombre>Tecnologías Web (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="tercero" cuatrimestre="segundo">
-            <nombre>Transmisión de Datos y Redes de Computadores (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <!-- Mención: Ingeniería del Software -->
-        <item mención="Ingeniería del Software" curso="tercero" cuatrimestre="segundo">
-            <nombre>Desarrollo de Sistemas Distribuidos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="tercero" cuatrimestre="segundo">
-            <nombre>Desarrollo de Software (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="tercero" cuatrimestre="segundo">
-            <nombre>Diseño de Interfaces de Usuario (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="tercero" cuatrimestre="segundo">
-            <nombre>Sistemas Gráficos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="tercero" cuatrimestre="segundo">
-            <nombre>Sistemas de Información Basados en Web (Obligatoria, 6 créditos)</nombre>
-        </item>
-
-        <!-- Ingeniería Informática - Cuarto curso -->
-        <!-- Mención: Computación y Sistemas Inteligentes -->
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="primer">
-            <nombre>Nuevos Paradigmas de Interacción (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="primer">
-            <nombre>Procesadores de Lenguajes (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="primer">
-            <nombre>Simulación de Sistemas (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="primer">
-            <nombre>Teoría de la Información y la Codificación (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="primer">
-            <nombre>Visión por Computador (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Criptografía y Computación (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Programación Lúdica (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Robótica Industrial (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Creación de Empresas y Gestión Emprendedora (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Derecho Informático (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Ética, Informática y Sociedad de la Información (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Prácticas de Empresa (Optativa, 12 créditos)</nombre>
-        </item>
-        <item mención="Computación y Sistemas Inteligentes" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Trabajo Fin de Grado (Obligatoria, 12 créditos)</nombre>
-        </item>
-        <!-- Mención: Ingeniería del Software -->
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="primer">
-            <nombre>Desarrollo Basado en Agentes (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="primer">
-            <nombre>Metodologías de Desarrollo Ágil (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="primer">
-            <nombre>Dirección y Gestión de Proyectos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="primer">
-            <nombre>Programación Gráfica de Videojuegos (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="primer">
-            <nombre>Seguridad en Sistemas Operativos (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="primer">
-            <nombre>Lógica y Programación (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Animación por Ordenador (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Creación de Empresas y Gestión Emprendedora (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Derecho Informático (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Nuevas Tecnologías de la Programación (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Programación Paralela (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Ética Informática y Sociedad de la Información (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Prácticas de Empresa (Optativa, 12 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería del Software" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Proyecto Fin de Grado (Obligatoria, 12 créditos)</nombre>
-        </item>
-    
-        <!-- Mención: Ingeniería de Computadores -->
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="primer">
-            <nombre>Arquitectura de Sistemas (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="primer">
-            <nombre>Arquitectura y Computación de Altas Prestaciones (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="primer">
-            <nombre>Desarrollo de Hardware Digital (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="primer">
-            <nombre>Diseño de Sistemas Electrónicos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="primer">
-            <nombre>Sistemas con Microprocesadores (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Centros de Procesamiento de Datos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Sistemas Empotrados (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Tecnologías de Red (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Informática Industrial (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Tecnologías Emergentes (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Circuitos Integrados e Impresos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Mantenimiento de Equipos Informáticos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Creación de Empresas y Gestión Emprendedora (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Derecho Informático (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Ética Informática y Sociedad de la Información (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Prácticas de Empresa (Optativa, 12 créditos)</nombre>
-        </item>
-        <item mención="Ingeniería de Computadores" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Trabajo Fin de Grado (Obligatoria, 12 créditos)</nombre>
-        </item>
-    
-        <!-- Mención: Sistemas de Información -->
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Bases de Datos Distribuidas (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Inteligencia de Negocio (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Recuperación de Información (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Gestión de Recursos Digitales (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Redes y Sistemas Complejos (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Sistemas de Información Geográficos (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Periféricos y Dispositivos de Interfaz Humana (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Sistemas Cooperativos y Gestión de Contenidos (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Creación de Empresas y Gestión Emprendedora (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Derecho Informático (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Ética Informática y Sociedad de la Información (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Prácticas de Empresa (Optativa, 12 créditos)</nombre>
-        </item>
-        <item mención="Sistemas de Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Trabajo Fin de Grado (Obligatoria, 12 créditos)</nombre>
-        </item>
-    
-        <!-- Mención: Tecnologías de la Información -->
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Computación Ubicua e Inteligencia Ambiental (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Servidores Web de Altas Prestaciones (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Sistemas Multimedia (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Tecnologías Web (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="primer">
-            <nombre>Transmisión de Datos y Redes de Computadores (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Desarrollo de Aplicaciones para Internet (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Infraestructura Virtual (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Seguridad y Protección de Sistemas Informáticos (Obligatoria, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Compresión y Recuperación de Información (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Tratamiento de Imágenes Digitales (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Procesamiento Digital de Señales (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Programación de Dispositivos Móviles (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Redes Multiservicio (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Creación de Empresas y Gestión Emprendedora (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Derecho Informático (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Ética Informática y Sociedad de la Información (Optativa, 6 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Prácticas de Empresa (Optativa, 12 créditos)</nombre>
-        </item>
-        <item mención="Tecnologías de la Información" curso="cuarto" cuatrimestre="segundo">
-            <nombre>Trabajo Fin de Grado (Obligatoria, 12 créditos)</nombre>
-        </item>
-    </data>
-    <!--########################### Fin Información sobre las asignaturas de Informática ###########################-->
-
     <form id="mostrar_asignaturas">
-        <prompt>
-            Las asignaturas del grado de <value expr="grado"/> del <value expr="curso"/> del <value expr="cuatrimestre"/> son:
-        </prompt>
-        <if grado ='ingenieria informatica'>
-            <block>
-                <!-- Filtra las asignaturas según las selecciones del usuario. -->
-                <foreach item="asignatura" array="asignaturas_informatica">
-                    <if cond="(asignatura.mención == mencion and asignatura.curso == curso and asignatura.cuatrimestre == cuatrimestre)">
-                        <prompt>
-                            Asignatura: <value expr="asignatura.nombre"/>
-                        </prompt>
-                    </if>
-                </foreach>
-            </block>
-            <goto next="#volver_a_empezar"/>
+        <prompt> Las asignaturas del grado de <value expr="grado" /> del <value expr="curso" /> del <value
+                expr="cuatrimestre" /> son: </prompt>
+        <if grado='ingenieria informatica'>
+            <!-- Ingenieria Informatica - Primer curso -->
+            <if cond="curso == 'primer' and cuatrimestre == 'primer' and mencion == 'No'">
+                <prompt>
+                    Calculo
+                    Fundamentos Fisicos y Tecnologicos
+                    Fundamentos de Programacion
+                    Fundamentos del Software
+                    Algebra Lineal y Estructuras Matematicas
+                </prompt>
+            </if>
+            <if cond="curso == 'primer' and cuatrimestre == 'segundo' and mencion == 'No'">
+                <prompt>
+                    Estadistica
+                    Ingenieria, Empresa y Sociedad
+                    Logica y Metodos Discretos
+                    Metodologia de la Programacion
+                    Tecnologia y Organizacion de Computadores
+                </prompt>
+            </if>
+
+            <!-- Ingenieria Informatica - Segundo curso -->
+            <if cond="curso == 'segundo' and cuatrimestre == 'primer' and mencion == 'No'">
+                <prompt>
+                    Estructura de Computadores
+                    Estructura de Datos
+                    Programacion y Diseño Orientado a Objetos
+                    Sistemas Concurrentes y Distribuidos
+                    Sistemas Operativos
+                </prompt>
+            </if>
+            <if cond="curso == 'segundo' and cuatrimestre == 'segundo' and mencion == 'No'">
+                <prompt>
+                    Algoritmica
+                    Arquitectura de Computadores
+                    Fundamentos de Bases de Datos
+                    Fundamentos de Ingenieria del Software
+                    Inteligencia Artificial
+                </prompt>
+            </if>
+
+            <!-- Ingenieria Informatica - Tercer curso -->
+            <if cond="curso == 'tercero' and cuatrimestre == 'primer' and mencion == 'No'">
+                <prompt>
+                    Diseño y Desarrollo de Sistemas de Informacion
+                    Fundamentos de Redes
+                    Informatica Grafica
+                    Ingenieria de Servidores
+                    Modelos de Computacion
+                </prompt>
+            </if>
+            <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'csi'">
+                <prompt>
+                    Aprendizaje Automatico
+                    Ingenieria del Conocimiento
+                    Metaheuristicas
+                    Modelos Avanzados de Computacion
+                    Tecnicas de los Sistemas Inteligentes
+                </prompt>
+            </if>
+            <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'si'">
+                <prompt>
+                    Administracion de Bases de Datos
+                    Ingenieria de Sistemas de Informacion
+                    Programacion Web
+                    Sistemas Multidimensionales
+                    Sistemas de Informacion de Empresas
+                </prompt>
+            </if>
+            <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'ic'">
+                <prompt>
+                    Arquitectura de Sistemas
+                    Arquitectura y Computacion de Altas Prestaciones
+                    Desarrollo de Hardware Digital
+                    Diseño de Sistemas Electronicos
+                    Sistemas con Microprocesadores
+                </prompt>
+            </if>
+            <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'ti'">
+                <prompt>
+                    Computacion Ubicua e Inteligencia Ambiental
+                    Servidores Web de Altas Prestaciones
+                    Sistemas Multimedia
+                    Tecnologias Web
+                    Transmision de Datos y Redes de Computadores
+                </prompt>
+            </if>
+            <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'is'">
+                <prompt>
+                    Desarrollo de Sistemas Distribuidos
+                    Desarrollo de Software
+                    Diseño de Interfaces de Usuario
+                    Sistemas Graficos
+                    Sistemas de Informacion Basados en Web
+                </prompt>
+            </if>
+
+            <!-- Ingenieria Informatica - Cuarto curso -->
+            <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'csi'">
+                <prompt>
+                    Nuevos Paradigmas de Interaccion
+                    Procesadores de Lenguajes
+                    Simulacion de Sistemas
+                    Teoria de la Informacion y la Codificacion
+                    Vision por Computador
+                </prompt>
+            </if>
+            <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'csi'">
+                <prompt>
+                    Criptografia y Computacion
+                    Programacion Ludica
+                    Robotica Industrial
+                    Creacion de Empresas y Gestion Emprendedora
+                    Derecho Informatico
+                    Etica, Informatica y Sociedad de la Informacion
+                    Practicas de Empresa
+                    Trabajo Fin de Grado
+                </prompt>
+            </if>
+            <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'si'">
+                <prompt>
+                    Bases de Datos Distribuidas
+                    Inteligencia de Negocio
+                    Recuperacion de Informacion
+                    Gestion de Recursos Digitales
+                    Redes y Sistemas Complejos
+                    Sistemas de Informacion Geograficos
+                </prompt>
+            </if>
+            <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'si'">
+                <prompt>
+                    Perifericos y Dispositivos de Interfaz Humana
+                    Sistemas Cooperativos y Gestion de Contenidos
+                    Creacion de Empresas y Gestion Emprendedora
+                    Derecho Informatico
+                    Etica Informatica y Sociedad de la Informacion
+                    Practicas de Empresa
+                    Trabajo Fin de Grado
+                </prompt>
+            </if>
+            <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'ic'">
+                <prompt>
+                    Centros de Procesamiento de Datos
+                    Sistemas Empotrados
+                    Tecnologias de Red
+                    Informatica Industrial
+                    Tecnologias Emergentes
+                </prompt>
+            </if>
+            <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'ic'">
+                <prompt>
+                    Circuitos Integrados e Impresos
+                    Mantenimiento de Equipos Informaticos
+                    Creacion de Empresas y Gestion Emprendedora
+                    Derecho Informatico
+                    Etica Informatica y Sociedad de la Informacion
+                    Practicas de Empresa
+                    Trabajo Fin de Grado
+                </prompt>
+            </if>
+            <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'ti'">
+                <prompt>
+                    Desarrollo de Aplicaciones para Internet
+                    Infraestructura Virtual
+                    Seguridad y Proteccion de Sistemas Informaticos
+                    Compresion y Recuperacion de Informacion
+                    Tratamiento de Imagenes Digitales
+                </prompt>
+            </if>
+            <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'ti'">
+                <prompt>
+                    Procesamiento Digital de Señales
+                    Programacion de Dispositivos Moviles
+                    Redes Multiservicio
+                    Creacion de Empresas y Gestion Emprendedora
+                    Derecho Informatico
+                    Etica Informatica y Sociedad de la Informacion
+                    Practicas de Empresa
+                    Trabajo Fin de Grado
+                </prompt>
+            </if>
+            <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'is'">
+                <prompt>
+                    Desarrollo Basado en Agentes
+                    Metodologias de Desarrollo agil
+                    Direccion y Gestion de Proyectos
+                    Programacion Grafica de Videojuegos
+                    Seguridad en Sistemas Operativos
+                    Logica y Programacion
+                </prompt>
+            </if>
+            <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'is'">
+                <prompt>
+                    Animacion por Ordenador
+                    Creacion de Empresas y Gestion Emprendedora
+                    Derecho Informatico
+                    Nuevas Tecnologias de la Programacion
+                    Programacion Paralela
+                    Etica Informatica y Sociedad de la Informacion
+                    Practicas de Empresa
+                    Proyecto Fin de Grado
+                </prompt>
+            </if>
+            <goto next="#volver_a_empezar" />
         </if>
     </form>
-
-
 
     <form id="volver_a_empezar">
         <field name="volver_a_empezar_field" type="boolean">
             <prompt>
-                ¿Desea consultar otro plan de estudios? Responda "sí" o "no".
+                ¿Desea consultar otro plan de estudios? Responda "si" o "no".
             </prompt>
-            <!--<grammar src="builtin:yesno/yesno.grxml"/>-->
+            <!--<grammar
+            src="builtin:yesno/yesno.grxml"/>-->
             <filled>
                 <if cond="volver_a_empezar_field">
-                <!-- Si el usuario responde "sí", reiniciar la consulta -->
+                    <!-- Si el usuario responde "si", reiniciar la consulta -->
                     <prompt>De acuerdo, volvamos al principio.</prompt>
-                    <clear namelist="plan_estudios"/>
-                    <clear namelist="volver_a_empezar"/>
-                    <goto next="#plan_estudios"/>
-                <else/>
-                <!-- Si el usuario responde "no", finalizar la interacción -->
-                    <prompt>De acuerdo. ¡Que tenga un buen día!</prompt>
-                    <exit/>
+                    <clear namelist="plan_estudios" />
+                    <clear namelist="volver_a_empezar" />
+                    <goto next="#plan_estudios" />
+                    <else />
+                    <!-- Si el usuario responde "no", finalizar la interaccion -->
+                    <prompt>De acuerdo. ¡Que tenga un buen dia!</prompt>
+                    <exit />
                 </if>
             </filled>
         </field>
