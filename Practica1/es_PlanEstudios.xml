@@ -56,32 +56,227 @@
             </filled>
         </field>
 
+        <field name="confirmar_datos" type="boolean">
 
-        <filled>
-            <if cond="mencion == 'No'">
-                <prompt>Quiere saber las asignaturas del grado en <value expr="grado" />, de <value
-                        expr="curso" /> del <value expr="cuatrimestre" /> cuatrimestre?</prompt>
-                <else />
-                <prompt>Quiere saber las asignaturas del grado en <value expr="grado" /> con mencion <value
-                        expr="mencion" />, de <value expr="curso" /> del <value expr="cuatrimestre" />
-                    cuatrimestre?</prompt>
-            </if>
-
-            <goto next="#confirmar_datos" />
-
-        </filled>
-
-    </form>
-
-    <form id="confirmar_datos">
-
-        <field name="confirmar_datos_field" type="boolean">
+            <prompt cond="mencion == 'No'">Quiere saber las asignaturas del grado en <value expr="grado" />, de <value
+                    expr="curso" /> del <value expr="cuatrimestre" /> cuatrimestre?</prompt>
+            <prompt  cond="mencion != 'No'">Quiere saber las asignaturas del grado en <value expr="grado" /> con mencion <value
+                    expr="mencion" />, de <value expr="curso" /> del <value expr="cuatrimestre" />
+                cuatrimestre?</prompt>
 
             <filled>
-                <if cond="confirmar_datos_field">
-                    <prompt>datos</prompt>
-                    <goto next="#mostrar_asignaturas" />
+                <if cond="confirmar_datos">
+                    <prompt> EEE </prompt>
+                    <if cond="grado=='ingenieria informatica'">
+                    <!-- Ingenieria Informatica - Primer curso -->
+                    <if cond="curso == 'primer' and cuatrimestre == 'primer' and mencion == 'No'">
+                        <prompt>
+                            Calculo
+                            Fundamentos Fisicos y Tecnologicos
+                            Fundamentos de Programacion
+                            Fundamentos del Software
+                            Algebra Lineal y Estructuras Matematicas
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'primer' and cuatrimestre == 'segundo' and mencion == 'No'">
+                        <prompt>
+                            Estadistica
+                            Ingenieria, Empresa y Sociedad
+                            Logica y Metodos Discretos
+                            Metodologia de la Programacion
+                            Tecnologia y Organizacion de Computadores
+                        </prompt>
+                    </if>
+
+                    <!-- Ingenieria Informatica - Segundo curso -->
+                    <if cond="curso == 'segundo' and cuatrimestre == 'primer' and mencion == 'No'">
+                        <prompt>
+                            Estructura de Computadores
+                            Estructura de Datos
+                            Programacion y Diseño Orientado a Objetos
+                            Sistemas Concurrentes y Distribuidos
+                            Sistemas Operativos
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'segundo' and cuatrimestre == 'segundo' and mencion == 'No'">
+                        <prompt>
+                            Algoritmica
+                            Arquitectura de Computadores
+                            Fundamentos de Bases de Datos
+                            Fundamentos de Ingenieria del Software
+                            Inteligencia Artificial
+                        </prompt>
+                    </if>
+
+                    <!-- Ingenieria Informatica - Tercer curso -->
+                    <if cond="curso == 'tercero' and cuatrimestre == 'primer' and mencion == 'No'">
+                        <prompt>
+                            Diseño y Desarrollo de Sistemas de Informacion
+                            Fundamentos de Redes
+                            Informatica Grafica
+                            Ingenieria de Servidores
+                            Modelos de Computacion
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'csi'">
+                        <prompt>
+                            Aprendizaje Automatico
+                            Ingenieria del Conocimiento
+                            Metaheuristicas
+                            Modelos Avanzados de Computacion
+                            Tecnicas de los Sistemas Inteligentes
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'si'">
+                        <prompt>
+                            Administracion de Bases de Datos
+                            Ingenieria de Sistemas de Informacion
+                            Programacion Web
+                            Sistemas Multidimensionales
+                            Sistemas de Informacion de Empresas
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'ic'">
+                        <prompt>
+                            Arquitectura de Sistemas
+                            Arquitectura y Computacion de Altas Prestaciones
+                            Desarrollo de Hardware Digital
+                            Diseño de Sistemas Electronicos
+                            Sistemas con Microprocesadores
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'ti'">
+                        <prompt>
+                            Computacion Ubicua e Inteligencia Ambiental
+                            Servidores Web de Altas Prestaciones
+                            Sistemas Multimedia
+                            Tecnologias Web
+                            Transmision de Datos y Redes de Computadores
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'is'">
+                        <prompt>
+                            Desarrollo de Sistemas Distribuidos
+                            Desarrollo de Software
+                            Diseño de Interfaces de Usuario
+                            Sistemas Graficos
+                            Sistemas de Informacion Basados en Web
+                        </prompt>
+                    </if>
+
+                    <!-- Ingenieria Informatica - Cuarto curso -->
+                    <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'csi'">
+                        <prompt>
+                            Nuevos Paradigmas de Interaccion
+                            Procesadores de Lenguajes
+                            Simulacion de Sistemas
+                            Teoria de la Informacion y la Codificacion
+                            Vision por Computador
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'csi'">
+                        <prompt>
+                            Criptografia y Computacion
+                            Programacion Ludica
+                            Robotica Industrial
+                            Creacion de Empresas y Gestion Emprendedora
+                            Derecho Informatico
+                            Etica, Informatica y Sociedad de la Informacion
+                            Practicas de Empresa
+                            Trabajo Fin de Grado
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'si'">
+                        <prompt>
+                            Bases de Datos Distribuidas
+                            Inteligencia de Negocio
+                            Recuperacion de Informacion
+                            Gestion de Recursos Digitales
+                            Redes y Sistemas Complejos
+                            Sistemas de Informacion Geograficos
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'si'">
+                        <prompt>
+                            Perifericos y Dispositivos de Interfaz Humana
+                            Sistemas Cooperativos y Gestion de Contenidos
+                            Creacion de Empresas y Gestion Emprendedora
+                            Derecho Informatico
+                            Etica Informatica y Sociedad de la Informacion
+                            Practicas de Empresa
+                            Trabajo Fin de Grado
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'ic'">
+                        <prompt>
+                            Centros de Procesamiento de Datos
+                            Sistemas Empotrados
+                            Tecnologias de Red
+                            Informatica Industrial
+                            Tecnologias Emergentes
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'ic'">
+                        <prompt>
+                            Circuitos Integrados e Impresos
+                            Mantenimiento de Equipos Informaticos
+                            Creacion de Empresas y Gestion Emprendedora
+                            Derecho Informatico
+                            Etica Informatica y Sociedad de la Informacion
+                            Practicas de Empresa
+                            Trabajo Fin de Grado
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'ti'">
+                        <prompt>
+                            Desarrollo de Aplicaciones para Internet
+                            Infraestructura Virtual
+                            Seguridad y Proteccion de Sistemas Informaticos
+                            Compresion y Recuperacion de Informacion
+                            Tratamiento de Imagenes Digitales
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'ti'">
+                        <prompt>
+                            Procesamiento Digital de Señales
+                            Programacion de Dispositivos Moviles
+                            Redes Multiservicio
+                            Creacion de Empresas y Gestion Emprendedora
+                            Derecho Informatico
+                            Etica Informatica y Sociedad de la Informacion
+                            Practicas de Empresa
+                            Trabajo Fin de Grado
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'is'">
+                        <prompt>
+                            Desarrollo Basado en Agentes
+                            Metodologias de Desarrollo agil
+                            Direccion y Gestion de Proyectos
+                            Programacion Grafica de Videojuegos
+                            Seguridad en Sistemas Operativos
+                            Logica y Programacion
+                        </prompt>
+                    </if>
+                    <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'is'">
+                        <prompt>
+                            Animacion por Ordenador
+                            Creacion de Empresas y Gestion Emprendedora
+                            Derecho Informatico
+                            Nuevas Tecnologias de la Programacion
+                            Programacion Paralela
+                            Etica Informatica y Sociedad de la Informacion
+                            Practicas de Empresa
+                            Proyecto Fin de Grado
+                        </prompt>
+                    </if>
+
+                </if>
+
+
+                    <goto next="#volver_a_empezar" />
                     <else />
+
                     <prompt> De acuerdo, volvamos al principio. </prompt>
                     <clear namelist="plan_estudios" />
                     <clear namelist="confirmar_datos" />
@@ -91,217 +286,12 @@
 
         </field>
 
+        <filled>
+            
+        </filled>
+
     </form>
 
-    <form id="mostrar_asignaturas">
-        <prompt> Las asignaturas del grado de <value expr="grado" /> del <value expr="curso" /> del <value
-                expr="cuatrimestre" /> son: </prompt>
-        <if grado='ingenieria informatica'>
-            <!-- Ingenieria Informatica - Primer curso -->
-            <if cond="curso == 'primer' and cuatrimestre == 'primer' and mencion == 'No'">
-                <prompt>
-                    Calculo
-                    Fundamentos Fisicos y Tecnologicos
-                    Fundamentos de Programacion
-                    Fundamentos del Software
-                    Algebra Lineal y Estructuras Matematicas
-                </prompt>
-            </if>
-            <if cond="curso == 'primer' and cuatrimestre == 'segundo' and mencion == 'No'">
-                <prompt>
-                    Estadistica
-                    Ingenieria, Empresa y Sociedad
-                    Logica y Metodos Discretos
-                    Metodologia de la Programacion
-                    Tecnologia y Organizacion de Computadores
-                </prompt>
-            </if>
-
-            <!-- Ingenieria Informatica - Segundo curso -->
-            <if cond="curso == 'segundo' and cuatrimestre == 'primer' and mencion == 'No'">
-                <prompt>
-                    Estructura de Computadores
-                    Estructura de Datos
-                    Programacion y Diseño Orientado a Objetos
-                    Sistemas Concurrentes y Distribuidos
-                    Sistemas Operativos
-                </prompt>
-            </if>
-            <if cond="curso == 'segundo' and cuatrimestre == 'segundo' and mencion == 'No'">
-                <prompt>
-                    Algoritmica
-                    Arquitectura de Computadores
-                    Fundamentos de Bases de Datos
-                    Fundamentos de Ingenieria del Software
-                    Inteligencia Artificial
-                </prompt>
-            </if>
-
-            <!-- Ingenieria Informatica - Tercer curso -->
-            <if cond="curso == 'tercero' and cuatrimestre == 'primer' and mencion == 'No'">
-                <prompt>
-                    Diseño y Desarrollo de Sistemas de Informacion
-                    Fundamentos de Redes
-                    Informatica Grafica
-                    Ingenieria de Servidores
-                    Modelos de Computacion
-                </prompt>
-            </if>
-            <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'csi'">
-                <prompt>
-                    Aprendizaje Automatico
-                    Ingenieria del Conocimiento
-                    Metaheuristicas
-                    Modelos Avanzados de Computacion
-                    Tecnicas de los Sistemas Inteligentes
-                </prompt>
-            </if>
-            <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'si'">
-                <prompt>
-                    Administracion de Bases de Datos
-                    Ingenieria de Sistemas de Informacion
-                    Programacion Web
-                    Sistemas Multidimensionales
-                    Sistemas de Informacion de Empresas
-                </prompt>
-            </if>
-            <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'ic'">
-                <prompt>
-                    Arquitectura de Sistemas
-                    Arquitectura y Computacion de Altas Prestaciones
-                    Desarrollo de Hardware Digital
-                    Diseño de Sistemas Electronicos
-                    Sistemas con Microprocesadores
-                </prompt>
-            </if>
-            <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'ti'">
-                <prompt>
-                    Computacion Ubicua e Inteligencia Ambiental
-                    Servidores Web de Altas Prestaciones
-                    Sistemas Multimedia
-                    Tecnologias Web
-                    Transmision de Datos y Redes de Computadores
-                </prompt>
-            </if>
-            <if cond="curso == 'tercero' and cuatrimestre == 'segundo' and mencion == 'is'">
-                <prompt>
-                    Desarrollo de Sistemas Distribuidos
-                    Desarrollo de Software
-                    Diseño de Interfaces de Usuario
-                    Sistemas Graficos
-                    Sistemas de Informacion Basados en Web
-                </prompt>
-            </if>
-
-            <!-- Ingenieria Informatica - Cuarto curso -->
-            <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'csi'">
-                <prompt>
-                    Nuevos Paradigmas de Interaccion
-                    Procesadores de Lenguajes
-                    Simulacion de Sistemas
-                    Teoria de la Informacion y la Codificacion
-                    Vision por Computador
-                </prompt>
-            </if>
-            <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'csi'">
-                <prompt>
-                    Criptografia y Computacion
-                    Programacion Ludica
-                    Robotica Industrial
-                    Creacion de Empresas y Gestion Emprendedora
-                    Derecho Informatico
-                    Etica, Informatica y Sociedad de la Informacion
-                    Practicas de Empresa
-                    Trabajo Fin de Grado
-                </prompt>
-            </if>
-            <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'si'">
-                <prompt>
-                    Bases de Datos Distribuidas
-                    Inteligencia de Negocio
-                    Recuperacion de Informacion
-                    Gestion de Recursos Digitales
-                    Redes y Sistemas Complejos
-                    Sistemas de Informacion Geograficos
-                </prompt>
-            </if>
-            <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'si'">
-                <prompt>
-                    Perifericos y Dispositivos de Interfaz Humana
-                    Sistemas Cooperativos y Gestion de Contenidos
-                    Creacion de Empresas y Gestion Emprendedora
-                    Derecho Informatico
-                    Etica Informatica y Sociedad de la Informacion
-                    Practicas de Empresa
-                    Trabajo Fin de Grado
-                </prompt>
-            </if>
-            <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'ic'">
-                <prompt>
-                    Centros de Procesamiento de Datos
-                    Sistemas Empotrados
-                    Tecnologias de Red
-                    Informatica Industrial
-                    Tecnologias Emergentes
-                </prompt>
-            </if>
-            <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'ic'">
-                <prompt>
-                    Circuitos Integrados e Impresos
-                    Mantenimiento de Equipos Informaticos
-                    Creacion de Empresas y Gestion Emprendedora
-                    Derecho Informatico
-                    Etica Informatica y Sociedad de la Informacion
-                    Practicas de Empresa
-                    Trabajo Fin de Grado
-                </prompt>
-            </if>
-            <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'ti'">
-                <prompt>
-                    Desarrollo de Aplicaciones para Internet
-                    Infraestructura Virtual
-                    Seguridad y Proteccion de Sistemas Informaticos
-                    Compresion y Recuperacion de Informacion
-                    Tratamiento de Imagenes Digitales
-                </prompt>
-            </if>
-            <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'ti'">
-                <prompt>
-                    Procesamiento Digital de Señales
-                    Programacion de Dispositivos Moviles
-                    Redes Multiservicio
-                    Creacion de Empresas y Gestion Emprendedora
-                    Derecho Informatico
-                    Etica Informatica y Sociedad de la Informacion
-                    Practicas de Empresa
-                    Trabajo Fin de Grado
-                </prompt>
-            </if>
-            <if cond="curso == 'cuarto' and cuatrimestre == 'primer' and mencion == 'is'">
-                <prompt>
-                    Desarrollo Basado en Agentes
-                    Metodologias de Desarrollo agil
-                    Direccion y Gestion de Proyectos
-                    Programacion Grafica de Videojuegos
-                    Seguridad en Sistemas Operativos
-                    Logica y Programacion
-                </prompt>
-            </if>
-            <if cond="curso == 'cuarto' and cuatrimestre == 'segundo' and mencion == 'is'">
-                <prompt>
-                    Animacion por Ordenador
-                    Creacion de Empresas y Gestion Emprendedora
-                    Derecho Informatico
-                    Nuevas Tecnologias de la Programacion
-                    Programacion Paralela
-                    Etica Informatica y Sociedad de la Informacion
-                    Practicas de Empresa
-                    Proyecto Fin de Grado
-                </prompt>
-            </if>
-            <goto next="#volver_a_empezar" />
-        </if>
-    </form>
 
     <form id="volver_a_empezar">
         <field name="volver_a_empezar_field" type="boolean">
