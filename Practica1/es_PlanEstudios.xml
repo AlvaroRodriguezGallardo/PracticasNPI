@@ -4,7 +4,7 @@
 
         <block>
             <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica
-                Superior de Ingenierias Informatica y de Telecomunicacion.</prompt>
+                Superior de Ingenierias Informatica y de Telecomunicacion. Si en algún momento detecta alguna anomalia diga <emp>error</emp> o <emp>ayuda</emp>.</prompt>
         </block>
 
         <field name="grado">
@@ -487,5 +487,58 @@
         </field>
     </form>
 
+    <form id="error_form">
+        <field name="corregir_campo">
+            <grammar src="es_Errores.jsgf" />
+            <prompt>
+                Has pedido ayuda o ha habido un error. Por favor, diga el nombre del campo que desea corregir. Retomaremos la conversacion desde ahi
+            </prompt>
+            <filled>
+                <!-- Si el usuario dice "error" o "ayuda", pedir qué campo corregir -->
+                <if cond="(corregir_campo == 'grado')">
+                    <prompt>Se va a consultar de nuevo el campo grado.</prompt>
+                    <clear namelist="error_field" />
+                    <clear namelist="grado" />
+                    <clear namelist="curso" />
+                    <clear namelist="mencion" />
+                    <clear namelist="cuatrimestre" />
+                    <goto next="#grado" />
+                </if>
+                <if cond="(corregir_campo == 'curso')">
+                    <prompt>Se va a consultar de nuevo el campo curso.</prompt>
+                    <clear namelist="error_field" />
+                    <clear namelist="curso" />
+                    <clear namelist="mencion" />
+                    <clear namelist="cuatrimestre" />
+                    <goto next="#curso" />
+                </if>
+                <if cond="(corregir_campo == 'mencion')">
+                    <prompt>Se va a consultar de nuevo el campo mencion.</prompt>
+                    <clear namelist="error_field" />
+                    <clear namelist="mencion" />
+                    <clear namelist="cuatrimestre" />
+                    <goto next="#mencion" />
+                </if>
+                <if cond="(corregir_campo == 'cuatrimestre')">
+                    <prompt>Se va a consultar de nuevo el campo cuatrimestre.</prompt>
+                    <clear namelist="error_field" />
+                    <clear namelist="cuatrimestre" />
+                    <goto next="#cuatrimestre" />
+                </if>
+            </filled>
+        </field>
+    </form>
+
+
+    <catch event="error">
+        <script>
+            <goto next="#error_form" />
+        </script>
+    </catch>
+    <catch event="ayuda">
+        <script>
+            <goto next="#error_form" />
+        </script>
+    </catch>
 
 </vxml>
