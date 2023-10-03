@@ -2,4 +2,4 @@
 
 grammar es_Carrera;
 
-public <es_Carrera> = ingenieria informatica | ingenieria en telecomunicaciones | informatica | telecomunicaciones | teleco
+public <es_Carrera> = ingenieria informatica | ingenieria en telecomunicaciones | informatica | telecomunicaciones | teleco;
