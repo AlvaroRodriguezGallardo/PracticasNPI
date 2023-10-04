@@ -2,4 +2,4 @@
 
 grammar fr_Menciones;
 
-public <fr_Menciones> calcul et systèmes intelligents | csi | ingenierie du software | is | ingenierie du calcul | ic | systèmes de l'information | si | tecnologies de l'information | ti | systèmes des telecommunication | st | telemathique | systèmes electroniques | se
+public <fr_Menciones> = calcul et systèmes intelligents | csi | ingenierie du software | is | ingenierie du calcul | ic | systèmes de l'information | si | tecnologies de l'information | ti | systèmes des telecommunication | st | telemathique | systèmes electroniques | se
