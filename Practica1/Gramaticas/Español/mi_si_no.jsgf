@@ -2,4 +2,4 @@
 
 grammar mi_si_no;
 
-public <respuesta> = si | no;
+public <mi_si_no> = si | no;
