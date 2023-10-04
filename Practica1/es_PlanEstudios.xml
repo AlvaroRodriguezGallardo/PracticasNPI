@@ -137,6 +137,12 @@
                 <if cond="mencion=='tecnologias de la informacion'">
                 <assign name="mencion" expr="'ti'" />
                 </if>
+                <if cond="mencion=='sistemas de telecomunicacion">
+                <assign name="mencion" expr="st" />
+                </if>
+                <if cond="mencion=='sistemas electronicos'">
+                <assign name="mencion" expr="se" />
+                </if>
                 <if cond="cuatrimestre=='primero'">
                 <assign name="cuatrimestre" expr="'primer'" />
                 </if>
