@@ -106,58 +106,48 @@
                     expr="mencion" />, de <value expr="curso" /> del <value expr="cuatrimestre" />
                 cuatrimestre?</prompt>
 
-                <if 
-                    cond="grado=='informatica'">
-                    <assign name="grado" expr="'ingenieria informatica'" />
-                </if>
-                <if
-                    cond="grado=='telecomunicaciones'">
-                    <assign name="grado" expr="'ingenieria en telecomunicaciones'" />
-                </if>
-                <if
-                    cond="curso=='primer'">
-                    <assign name="curso" expr="'primero'" />
-                </if>
-                <if 
-                    cond="curso=='tercer'">
-                    <assign name="curso" expr="'tercero'" />
-                </if>
-                <if
-                    cond="mencion=='computacion y sistemas inteligentes'" />
-                    <assign name="mencion" expr="'csi" />
-                </if>
-                <if
-                    cond="mencion=='ingenieria del software'">
-                    <assign name="mencion" expr="'is'" />
-                </if>
-                <if
-                    cond="mencion=='ingenieria de computadores'">
-                    <assign name="mencion" expr="'ic'" />
-                </if>
-                <if
-                    cond="mencion=='sistemas de informacion'">
-                    <assign name="mencion" expr="'si'" />
-                </if>
-                <if
-                    cond="mencion=='tecnologias de la informacion'">
-                    <assign name="mencion" expr="'ti'" />
-                </if>
-                <if
-                    cond="cuatrimestre=='primero'">
-                    <assign name="cuatrimestre" expr="'primer'" />
-                </if>
-                <if
-                    cond="cuatrimestre=='uno'">
-                    <assign name="cuatrimestre" expr="'primer'" />
-                </if>
-                <if
-                    cond="cuatrimestre=='dos'">
-                    <assign name="cuatrimestre" expr="'segundo" />
-                </if> 
 
             <filled>
                 <if cond="confirmar_datos=='si'">
-                    <!-- <prompt> EEE </prompt> -->
+                
+                <if cond="grado=='informatica'">
+                <assign name="grado" expr="'ingenieria informatica'" />
+                </if>
+                <if cond="grado=='telecomunicaciones'">
+                <assign name="grado" expr="'ingenieria en telecomunicaciones'" />
+                </if>
+                <if cond="curso=='primero'">
+                <assign name="curso" expr="'primer'" />
+                </if>
+                <if cond="curso=='tercer'">
+                <assign name="curso" expr="'tercero'" />
+                </if>
+                <if cond="mencion=='computacion y sistemas inteligentes'">
+                <assign name="mencion" expr="'csi'" />
+                </if>
+                <if cond="mencion=='ingenieria del software'">
+                <assign name="mencion" expr="'is'" />
+                </if>
+                <if cond="mencion=='ingenieria de computadores'">
+                <assign name="mencion" expr="'ic'" />
+                </if>
+                <if cond="mencion=='sistemas de informacion'">
+                <assign name="mencion" expr="'si'" />
+                </if>
+                <if cond="mencion=='tecnologias de la informacion'">
+                <assign name="mencion" expr="'ti'" />
+                </if>
+                <if cond="cuatrimestre=='primero'">
+                <assign name="cuatrimestre" expr="'primer'" />
+                </if>
+                <if cond="cuatrimestre=='uno'">
+                <assign name="cuatrimestre" expr="'primer'" />
+                </if>
+                <if cond="cuatrimestre=='dos'">
+                <assign name="cuatrimestre" expr="'segundo'" />
+                </if>
+
+                     
                     <if cond="grado=='ingenieria informatica'">
                         <!-- Ingenieria Informatica - Primer curso -->
                         <if cond="curso == 'primer'">
