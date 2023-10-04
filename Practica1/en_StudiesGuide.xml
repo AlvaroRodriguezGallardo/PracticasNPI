@@ -11,7 +11,7 @@
         <field name="degree">
             <grammar src="en_Carrera.jsgf" />
             <prompt>
-                Which degree do you want to inquire about, Computer Science or Telecommunications?
+                Which degree do you want to inquire about, Computer Engineering or Telecommunications Engineering?
             </prompt>
             <filled> Alright, we are going to inquire about the degree <value expr="degree" />
             </filled>
@@ -88,6 +88,7 @@
         </field>
 
         <field name="confirm_data">
+        <grammar src="en_mi_si_no.jsgf" />
 
             <catch event="repeat">
                 <prompt> Sorry. Is the semester <value expr="semester"/> incorrect? Let's repeat it.</prompt>
@@ -107,7 +108,46 @@
             <filled>
                 <if cond="confirm_data==yes">
                     <!-- <prompt> EEE </prompt> -->
-                    <if cond="degree=='computer science'">
+                    <if cond="semester=='one'">
+                        <assign name="semester" value="'first'" />
+                    </if>
+                    <if cond="semester=='two'">
+                        <assign name="semester" value="'second'" />
+                    </if>
+                    <if cond="course=='one'">
+                        <assign name="course" value="'first'" />
+                    </if>
+                    <if cond="course=='two'">
+                        <assign name="course" value="'second'" />
+                    </if>
+                    <if cond="course=='three'">
+                        <assign name="course" value="'third'" />
+                    </if>
+                    <if cond="course=='four'">
+                        <assign name="course" value="'fourth'" />
+                    </if>
+                    <if cond="specialization=='computation and intelligent systems'">
+                        <assign name="specialization" value="'cis'" />
+                    </if>
+                    <if cond="specialization=='software engineering'">
+                        <assign name="specialization" value="'se'" />
+                    </if>
+                    <if cond="specialization=='computation engineering'">
+                        <assign name="specialization" value="'ce'" />
+                    </if>
+                    <if cond="specialization=='information systems'">
+                        <assign name="specialization" value="'is'" />
+                    </if>
+                    <if cond="specialization=='information technologies'">
+                        <assign name="specialization" value="'it'" />
+                    </if>
+                    <if cond="specialization=='electronic systems'">
+                        <assign name="specialization" value="'es'" />
+                    </if>
+                    <if cond="specialization=='telecommunication systems'">
+                        <assign name="specialization" value="'ts'" />
+                    </if>
+                    <if cond="degree=='computer engineering'">
                         <!-- Computer Science - First year -->
                         <if cond="course == 'first'">
                             <if cond="semester == 'first'">
@@ -174,7 +214,7 @@
                                 </if>
                             </if>
                             <if cond="semester == 'second'">
-                                <if cond="specialization == 'csi'">
+                                <if cond="specialization == 'cis'">
                                     <prompt>
                                         Machine Learning
                                         Knowledge Engineering
@@ -183,7 +223,7 @@
                                         Intelligent Systems Techniques
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'si'">
+                                <if cond="specialization == 'is'">
                                     <prompt>
                                         Database Administration
                                         Information Systems Engineering
@@ -192,7 +232,7 @@
                                         Business Information Systems
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'ic'">
+                                <if cond="specialization == 'ce'">
                                     <prompt>
                                         Systems Architecture
                                         High-Performance Computing and Architecture
@@ -201,7 +241,7 @@
                                         Microprocessor Systems
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'ti'">
+                                <if cond="specialization == 'it'">
                                     <prompt>
                                         Ubiquitous Computing and Ambient Intelligence
                                         High-Performance Web Servers
@@ -210,7 +250,7 @@
                                         Data Transmission and Computer Networks
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'is'">
+                                <if cond="specialization == 'se'">
                                     <prompt>
                                         Distributed Systems Development
                                         Software Development
@@ -224,7 +264,7 @@
                         <!-- Computer Science - Fourth year -->
                         <if cond="course == 'fourth'">
                             <if cond="semester == 'first'">
-                                <if cond="specialization == 'csi'">
+                                <if cond="specialization == 'cis'">
                                     <prompt>
                                         New Interaction Paradigms
                                         Language Processors
@@ -233,7 +273,7 @@
                                         Computer Vision
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'si'">
+                                <if cond="specialization == 'is'">
                                     <prompt>
                                         Distributed Databases
                                         Business Intelligence
@@ -243,7 +283,7 @@
                                         Geographic Information Systems
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'ic'">
+                                <if cond="specialization == 'ce'">
                                     <prompt>
                                         Data Centers
                                         Embedded Systems
@@ -252,7 +292,7 @@
                                         Emerging Technologies
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'ti'">
+                                <if cond="specialization == 'it'">
                                     <prompt>
                                         Internet Applications Development
                                         Virtual Infrastructure
@@ -261,7 +301,7 @@
                                         Digital Image Processing
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'is'">
+                                <if cond="specialization == 'se'">
                                     <prompt>
                                         Agent-Based Development
                                         Agile Development Methodologies
@@ -273,7 +313,7 @@
                                 </if>
                             </if>
                             <if cond="semester == 'second'">
-                                <if cond="specialization == 'csi'">
+                                <if cond="specialization == 'cis'">
                                     <prompt>
                                         Cryptography and Computing
                                         Game Programming
@@ -285,7 +325,7 @@
                                         Bachelor's Thesis
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'si'">
+                                <if cond="specialization == 'is'">
                                     <prompt>
                                         Human-Computer Interaction
                                         Cooperative Systems and Content Management
@@ -296,7 +336,7 @@
                                         Bachelor's Thesis
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'ic'">
+                                <if cond="specialization == 'ce'">
                                     <prompt>
                                         Integrated Circuits and Printed Circuit Boards
                                         Computer Equipment Maintenance
@@ -307,7 +347,7 @@
                                         Speech Technologies
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'ti'">
+                                <if cond="specialization == 'it'">
                                     <prompt>
                                         Digital Signal Processing
                                         Mobile Device Programming
@@ -319,7 +359,7 @@
                                         Bachelor's Thesis
                                     </prompt>
                                 </if>
-                                <if cond="specialization == 'is'">
+                                <if cond="specialization == 'se'">
                                     <prompt>
                                         Computer Animation
                                         Entrepreneurship and Entrepreneurial Management
@@ -402,7 +442,7 @@
                             </if>
                             
                             <if cond="semester=='second'">
-                                <if cond="specialization=='st'">
+                                <if cond="specialization=='ts'">
                                 <prompt>
                                     Antennas and Propagation
                                     Optical Media and Components for Communications
@@ -411,7 +451,7 @@
                                     Digital Signal Processing
                                 </prompt>
                                 </if>
-                                <if cond="specialization=='se'">
+                                <if cond="specialization=='es'">
                                 <prompt>
                                     Radiofrequency Electronic Circuits
                                     Electronic Circuit and Systems Design
@@ -434,7 +474,7 @@
                         <!-- Telecommunications Engineering - Fourth year -->
                         <if cond="course=='fourth'">
                             <if cond="semester=='first'">
-                                <if cond="specialization=='st'">
+                                <if cond="specialization=='ts'">
                                 <prompt>
                                     Wireless Communications
                                     Optical Communications
@@ -445,7 +485,7 @@
                                     Speech Technologies
                                 </prompt>
                                 </if>
-                                <if cond="specialization=='se'">
+                                <if cond="specialization=='es'">
                                 <prompt>
                                     Integrated Circuits for Communications
                                     Electronic Equipment
