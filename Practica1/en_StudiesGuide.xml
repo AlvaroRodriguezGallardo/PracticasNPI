@@ -1,4 +1,4 @@
-<vxml version="2.1" xmlns="http://www.w3.org/2001/06/vxml" xml:lang="en-en">
+<vxml version="2.1" xmlns="http://www.w3.org/2001/06/vxml">
 
     <form id="study_plan">
 
@@ -87,7 +87,7 @@
             </catch>
         </field>
 
-        <field name="confirm_data" type="boolean">
+        <field name="confirm_data">
 
             <catch event="repeat">
                 <prompt> Sorry. Is the semester <value expr="semester"/> incorrect? Let's repeat it.</prompt>
@@ -105,7 +105,7 @@
                 semester?</prompt>
 
             <filled>
-                <if cond="confirm_data">
+                <if cond="confirm_data==yes">
                     <!-- <prompt> EEE </prompt> -->
                     <if cond="degree=='computer science'">
                         <!-- Computer Science - First year -->
