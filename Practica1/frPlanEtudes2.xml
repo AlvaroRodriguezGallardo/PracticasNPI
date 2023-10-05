@@ -11,9 +11,9 @@
         <field name="grado">
             <grammar src="fr_Carriere.jsgf" />
             <prompt>
-                Quel diplôme souhaitez-vous consulter, Informatique ou Telecommunications ?
+                Quel diplome souhaitez-vous consulter, Informatique ou Telecommunications ?
             </prompt>
-            <filled> D'accord, nous allons consulter le diplôme <value expr="grado" />
+            <filled> D'accord, nous allons consulter le diplome <value expr="grado" />
             </filled>
         </field>
 
@@ -39,7 +39,7 @@
             </filled>
 
             <catch event="repetir">
-                <prompt> Desole. <value expr="grado"/> est le diplôme incorrect ? Repetons-le. </prompt>
+                <prompt> Desole. <value expr="grado"/> est le diplome incorrect ? Repetons-le. </prompt>
                 <clear namelist="grado"/>
                 <goto nextitem="grado"/>
             </catch>
@@ -92,10 +92,10 @@
                 <goto nextitem="trimestre"/>
             </catch>
 
-            <prompt cond="mention == 'Non'">Souhaitez-vous connaître les matieres du diplôme en <value
+            <prompt cond="mention == 'Non'">Souhaitez-vous connaitre les matieres du diplome en <value
                 expr="grado" />, du <value
                 expr="cours" /> du <value expr="trimestre" /> trimestre ?</prompt>
-            <prompt cond="mention != 'Non'">Souhaitez-vous connaître les matieres du diplôme en <value
+            <prompt cond="mention != 'Non'">Souhaitez-vous connaitre les matieres du diplome en <value
                 expr="grado" /> avec mention <value
                 expr="mention" />, du <value expr="cours" /> du <value expr="trimestre" />
                 trimestre ?</prompt>
@@ -488,7 +488,7 @@
                                 <prompt>
                                     Circuits Integres pour Communications
                                     equipements electroniques
-                                    Systemes de Contrôle
+                                    Systemes de Controle
                                     Fondements de la Photonique
                                     Laboratoire de Telematique
                                     Technologie des Circuits Imprimes
@@ -531,12 +531,12 @@
                 </if>
                 <catch event="noinput">
                 <prompt>
-                    Je n'ai pas entendu de reponse. Pouvez-vous repeter s'il vous plaît ?
+                    Je n'ai pas entendu de reponse. Pouvez-vous repeter s'il vous plait ?
                 </prompt>
                 </catch>
                 <catch event="nomatch">
                 <prompt>
-                    Desole, je n'ai pas compris. Pouvez-vous repeter s'il vous plaît ?
+                    Desole, je n'ai pas compris. Pouvez-vous repeter s'il vous plait ?
                 </prompt>
                 </catch>
             </filled>
