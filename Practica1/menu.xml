@@ -3,11 +3,11 @@
     <menu>
     <prompt xml:lang="es-es">¿En qué idioma desea continuar? </prompt>
     <prompt xml:lang="en-us"> In which language would you like to continue?</prompt>
-    <choice next="es_PlanEstudios.vxml">
+    <choice next="es_PlanEstudios.xml">
     Espanol </choice>
-    <choice next="enStudiesGuide.vxml">
+    <choice next="en_StudiesGuide.xml">
     English </choice>
-    <choice next="fr_PlanEtudes.vxml">
+    <choice next="fr_PlanEtudes.xml">
     Frances </choice>
     </menu>
 </vxml>
