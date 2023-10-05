@@ -17,26 +17,22 @@
             <filled> De acuerdo, se va a consultar el grado <value expr="grado" />
             </filled>
         </field>
-        <catch event="repetir">
-            <prompt>Perdón, ¿el grado <value expr="grado" /> es incorrecto? Repitámoslo.</prompt>
-            <clear namelist="grado" />
-            <goto nextitem="grado" />
-        </catch>
+
         <field name="curso">
             <grammar src="es_Curso.jsgf" />
             <prompt>
                 ¿Qué curso desea consultar?
             </prompt>
             <filled> De acuerdo, se va a consultar el curso <value expr="curso" />
-        <if
+                <if
                     cond="curso == 'primero' || curso == 'primer' || curso == 'segundo'">
                     <assign name="mencion" expr="'No'" />
                 </if>
             </filled>
             <catch event="repetir">
-                <prompt>Perdón, ¿el curso <value expr="curso" /> es incorrecto? Repitámoslo.</prompt>
-                <clear namelist="curso mencion" />
-                <goto nextitem="curso" />
+                <prompt>Perdón, ¿el grado <value expr="grado" /> es incorrecto? Repitámoslo.</prompt>
+                <clear namelist="grado" />
+                <goto nextitem="grado" />
             </catch>
         </field>
         <field name="mencion">
