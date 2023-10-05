@@ -2,4 +2,4 @@
 
 grammar en_Carrera;
 
-public <en_Carrera> = computer engineering | telecommunications engineering
+public <en_Carrera> = computer engineering | telecommunications engineering;
