@@ -2,8 +2,6 @@
 
     <form id="plan_estudios">
 
-        <link event="repetir"> <grammar src="es_Repetir.jsgf" /> </link>
-
         <block>
             <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica
                 Superior de Ingenierias Informatica y de Telecomunicacion.</prompt>
@@ -17,6 +15,10 @@
             <filled> De acuerdo, se va a consultar el grado <value expr="grado" />
             </filled>
         </field>
+
+        <link event="repetir">
+            <grammar src="es_Repetir.jsgf" />
+        </link>
 
         <field name="curso">
             <grammar src="es_Curso.jsgf" />
@@ -40,9 +42,9 @@
             </filled>
 
             <catch event="repetir">
-                <prompt> Perdon. <value expr="grado"/> es el grado incorrecto? Repitamoslo.</prompt>
-                <clear namelist="grado"/>
-                <goto nextitem="grado"/>
+                <prompt> Perdon. <value expr="grado" /> es el grado incorrecto? Repitamoslo.</prompt>
+                <clear namelist="grado" />
+                <goto nextitem="grado" />
 
             </catch>
         </field>
@@ -56,9 +58,9 @@
             </filled>
 
             <catch event="repetir">
-                <prompt> Perdon. El curso <value expr="curso"/> es incorrecto? Repitamoslo.</prompt>
-                <clear namelist="curso"/>
-                <goto nextitem="curso"/>
+                <prompt> Perdon. El curso <value expr="curso" /> es incorrecto? Repitamoslo.</prompt>
+                <clear namelist="curso" />
+                <goto nextitem="curso" />
 
             </catch>
         </field>
@@ -74,31 +76,32 @@
             <catch event="repetir">
 
                 <if cond="mencion == 'No'">
-                    <prompt> Perdon. El curso <value expr="curso"/> es incorrecto? Repitamoslo.</prompt>
-                    <clear namelist="curso"/>
-                    <clear namelist="mencion"/>
-                    <goto nextitem="curso"/>
+                    <prompt> Perdon. El curso <value expr="curso" /> es incorrecto? Repitamoslo.</prompt>
+                    <clear namelist="curso" />
+                    <clear namelist="mencion" />
+                    <goto nextitem="curso" />
 
-                <else/>
-                    <prompt> Perdon. <value expr="mencion"/> es la mencion incorrecta? Repitamosla.</prompt>
-                    <clear namelist="mencion"/>
-                    <goto nextitem="mencion"/>
+                    <else />
+                    <prompt> Perdon. <value expr="mencion" /> es la mencion incorrecta? Repitamosla.</prompt>
+                    <clear namelist="mencion" />
+                    <goto nextitem="mencion" />
                 </if>
 
             </catch>
         </field>
 
         <field name="confirmar_datos">
-        <grammar src="mi_si_no.jsgf" />
+            <grammar src="mi_si_no.jsgf" />
 
             <catch event="repetir">
-                <prompt> Perdon. El cuatrimestre <value expr="cuatrimestre"/> es incorrecto? Repitamoslo.</prompt>
-                <clear namelist="cuatrimestre"/>
-                <goto nextitem="cuatrimestre"/>
+                <prompt> Perdon. El cuatrimestre <value expr="cuatrimestre" /> es incorrecto?
+                    Repitamoslo.</prompt>
+                <clear namelist="cuatrimestre" />
+                <goto nextitem="cuatrimestre" />
 
             </catch>
 
-            <prompt cond="mencion == 'No'">Quiere saber las asignaturas del grado en <value
+            <prompt cond="mencion == 'No'"> Quiere saber las asignaturas del grado en <value
                     expr="grado" />, de <value
                     expr="curso" /> del <value expr="cuatrimestre" /> cuatrimestre?</prompt>
             <prompt cond="mencion != 'No'">Quiere saber las asignaturas del grado en <value
@@ -109,51 +112,51 @@
 
             <filled>
                 <if cond="confirmar_datos=='si'">
-                
-                <if cond="grado=='informatica'">
-                <assign name="grado" expr="'ingenieria informatica'" />
-                </if>
-                <if cond="grado=='telecomunicaciones'">
-                <assign name="grado" expr="'ingenieria en telecomunicaciones'" />
-                </if>
-                <if cond="curso=='primero'">
-                <assign name="curso" expr="'primer'" />
-                </if>
-                <if cond="curso=='tercer'">
-                <assign name="curso" expr="'tercero'" />
-                </if>
-                <if cond="mencion=='computacion y sistemas inteligentes'">
-                <assign name="mencion" expr="'csi'" />
-                </if>
-                <if cond="mencion=='ingenieria del software'">
-                <assign name="mencion" expr="'is'" />
-                </if>
-                <if cond="mencion=='ingenieria de computadores'">
-                <assign name="mencion" expr="'ic'" />
-                </if>
-                <if cond="mencion=='sistemas de informacion'">
-                <assign name="mencion" expr="'si'" />
-                </if>
-                <if cond="mencion=='tecnologias de la informacion'">
-                <assign name="mencion" expr="'ti'" />
-                </if>
-                <if cond="mencion=='sistemas de telecomunicacion'">
-                <assign name="mencion" expr="st" />
-                </if>
-                <if cond="mencion=='sistemas electronicos'">
-                <assign name="mencion" expr="se" />
-                </if>
-                <if cond="cuatrimestre=='primero'">
-                <assign name="cuatrimestre" expr="'primer'" />
-                </if>
-                <if cond="cuatrimestre=='uno'">
-                <assign name="cuatrimestre" expr="'primer'" />
-                </if>
-                <if cond="cuatrimestre=='dos'">
-                <assign name="cuatrimestre" expr="'segundo'" />
-                </if>
 
-                     
+                    <if cond="grado=='informatica'">
+                        <assign name="grado" expr="'ingenieria informatica'" />
+                    </if>
+                    <if cond="grado=='telecomunicaciones'">
+                        <assign name="grado" expr="'ingenieria en telecomunicaciones'" />
+                    </if>
+                    <if cond="curso=='primero'">
+                        <assign name="curso" expr="'primer'" />
+                    </if>
+                    <if cond="curso=='tercer'">
+                        <assign name="curso" expr="'tercero'" />
+                    </if>
+                    <if cond="mencion=='computacion y sistemas inteligentes'">
+                        <assign name="mencion" expr="'csi'" />
+                    </if>
+                    <if cond="mencion=='ingenieria del software'">
+                        <assign name="mencion" expr="'is'" />
+                    </if>
+                    <if cond="mencion=='ingenieria de computadores'">
+                        <assign name="mencion" expr="'ic'" />
+                    </if>
+                    <if cond="mencion=='sistemas de informacion'">
+                        <assign name="mencion" expr="'si'" />
+                    </if>
+                    <if cond="mencion=='tecnologias de la informacion'">
+                        <assign name="mencion" expr="'ti'" />
+                    </if>
+                    <if cond="mencion=='sistemas de telecomunicacion'">
+                        <assign name="mencion" expr="st" />
+                    </if>
+                    <if cond="mencion=='sistemas electronicos'">
+                        <assign name="mencion" expr="se" />
+                    </if>
+                    <if cond="cuatrimestre=='primero'">
+                        <assign name="cuatrimestre" expr="'primer'" />
+                    </if>
+                    <if cond="cuatrimestre=='uno'">
+                        <assign name="cuatrimestre" expr="'primer'" />
+                    </if>
+                    <if cond="cuatrimestre=='dos'">
+                        <assign name="cuatrimestre" expr="'segundo'" />
+                    </if>
+
+
                     <if cond="grado=='ingenieria informatica'">
                         <!-- Ingenieria Informatica - Primer curso -->
                         <if cond="curso == 'primer'">
@@ -381,30 +384,31 @@
                             </if>
                         </if>
                     </if>
-                    <!--##### Informacion sobre las asignaturas de Telecomunicaciones #####-->
-                    <if cond="grado=='ingenieria en telecomunicaciones'">  
-                      <!-- Ingenieria en Telecomunicaciones - Primer curso -->
+                    <!--#####
+                    Informacion sobre las asignaturas de Telecomunicaciones #####-->
+                    <if cond="grado=='ingenieria en telecomunicaciones'">
+                        <!-- Ingenieria en Telecomunicaciones - Primer curso -->
                         <if cond="curso=='primer'">
                             <if cond="cuatrimestre=='primer'">
                                 <if cond="mencion=='No'">
                                     <prompt>
-                                    Analisis Matematico
-                                    Analisis de Circuitos
-                                    Fundamentos de Informatica
-                                    Ingenieria, Empresa y Sociedad
-                                    algebra Lineal y Geometria
+                                        Analisis Matematico
+                                        Analisis de Circuitos
+                                        Fundamentos de Informatica
+                                        Ingenieria, Empresa y Sociedad
+                                        algebra Lineal y Geometria
                                     </prompt>
                                 </if>
                             </if>
-                        
+
                             <if cond="cuatrimestre=='segundo'">
                                 <if cond="mencion=='No'">
                                     <prompt>
-                                    Componentes y Circuitos Electronicos
-                                    Ecuaciones Diferenciales y Calculo Numerico
-                                    Estadistica y Optimizacion
-                                    Fundamentos Fisicos de la Ingenieria
-                                    Sistemas Lineales
+                                        Componentes y Circuitos Electronicos
+                                        Ecuaciones Diferenciales y Calculo Numerico
+                                        Estadistica y Optimizacion
+                                        Fundamentos Fisicos de la Ingenieria
+                                        Sistemas Lineales
                                     </prompt>
                                 </if>
                             </if>
@@ -413,24 +417,24 @@
                         <if cond="curso=='segundo'">
                             <if cond="cuatrimestre=='primer'">
                                 <if cond="mencion=='No'">
-                                <prompt>
-                                    Fundamentos de Programacion
-                                    Sistemas Telematicos
-                                    Teoria de la Comunicacion
-                                    Transmision de Ondas
-                                </prompt>
+                                    <prompt>
+                                        Fundamentos de Programacion
+                                        Sistemas Telematicos
+                                        Teoria de la Comunicacion
+                                        Transmision de Ondas
+                                    </prompt>
                                 </if>
                             </if>
-                        
+
                             <if cond="cuatrimestre=='segundo'">
                                 <if cond="mencion=='No'">
-                                <prompt>
-                                    Comunicaciones I
-                                    Electronica Analogica
-                                    Electronica Digital
-                                    Infraestructuras y Redes de Comunicacion
-                                    Señales Digitales
-                                </prompt>
+                                    <prompt>
+                                        Comunicaciones I
+                                        Electronica Analogica
+                                        Electronica Digital
+                                        Infraestructuras y Redes de Comunicacion
+                                        Señales Digitales
+                                    </prompt>
                                 </if>
                             </if>
                         </if>
@@ -438,100 +442,100 @@
                         <if cond="curso=='tercero'">
                             <if cond="cuatrimestre=='primer'">
                                 <if cond="mencion=='No'">
-                                <prompt>
-                                    Comunicaciones II
-                                    Electronica de Potencia
-                                    Sistemas Electronicos Digitales
-                                    Sistemas de Conmutacion
-                                    Transmision de Datos y Redes de Computadores
-                                </prompt>
+                                    <prompt>
+                                        Comunicaciones II
+                                        Electronica de Potencia
+                                        Sistemas Electronicos Digitales
+                                        Sistemas de Conmutacion
+                                        Transmision de Datos y Redes de Computadores
+                                    </prompt>
                                 </if>
                             </if>
-                            
+
                             <if cond="cuatrimestre=='segundo'">
                                 <if cond="mencion=='st'">
-                                <prompt>
-                                    Antenas y Propagacion
-                                    Medios y Componentes opticos para Comunicaciones
-                                    Sistemas de Codificacion y Almacenamiento
-                                    Sistemas de Radiocomunicacion
-                                    Tratamiento Digital de Señales
-                                </prompt>
+                                    <prompt>
+                                        Antenas y Propagacion
+                                        Medios y Componentes opticos para Comunicaciones
+                                        Sistemas de Codificacion y Almacenamiento
+                                        Sistemas de Radiocomunicacion
+                                        Tratamiento Digital de Señales
+                                    </prompt>
                                 </if>
                                 <if cond="mencion=='se'">
-                                <prompt>
-                                    Circuitos Electronicos para Radiofrecuencia
-                                    Diseño de Circuitos y Sistemas Electronicos
-                                    Electronica de Microondas
-                                    Instrumentacion Electronica
-                                    Sistemas de Alimentacion
-                                </prompt>
+                                    <prompt>
+                                        Circuitos Electronicos para Radiofrecuencia
+                                        Diseño de Circuitos y Sistemas Electronicos
+                                        Electronica de Microondas
+                                        Instrumentacion Electronica
+                                        Sistemas de Alimentacion
+                                    </prompt>
                                 </if>
                                 <if cond="mencion=='telematica'">
-                                <prompt>
-                                    Complementos de Programacion
-                                    Desarrollo de Aplicaciones en Red
-                                    Gestion de Redes
-                                    Redes Inalambricas y Movilidad
-                                    Seguridad en Redes de Comunicacion
-                                </prompt>
+                                    <prompt>
+                                        Complementos de Programacion
+                                        Desarrollo de Aplicaciones en Red
+                                        Gestion de Redes
+                                        Redes Inalambricas y Movilidad
+                                        Seguridad en Redes de Comunicacion
+                                    </prompt>
                                 </if>
                             </if>
-                        </if>    
+                        </if>
                         <!-- Ingenieria en Telecomunicaciones - Cuarto curso -->
                         <if cond="curso=='cuarto'">
                             <if cond="cuatrimestre=='primer'">
                                 <if cond="mencion=='st'">
-                                <prompt>
-                                    Comunicaciones Inalambricas
-                                    Comunicaciones opticas
-                                    Television y Radio Digital
-                                    Fundamentos de la Fotonica
-                                    Laboratorio de Telematica
-                                    Tecnologia de Circuitos Impresos
-                                    Tecnologias del Habla
-                                </prompt>
+                                    <prompt>
+                                        Comunicaciones Inalambricas
+                                        Comunicaciones opticas
+                                        Television y Radio Digital
+                                        Fundamentos de la Fotonica
+                                        Laboratorio de Telematica
+                                        Tecnologia de Circuitos Impresos
+                                        Tecnologias del Habla
+                                    </prompt>
                                 </if>
                                 <if cond="mencion=='se'">
-                                <prompt>
-                                    Circuitos Integrados para Comunicaciones
-                                    Equipos Electronicos
-                                    Sistemas de Control
-                                    Fundamentos de la Fotonica
-                                    Laboratorio de Telematica
-                                    Tecnologia de Circuitos Impresos
-                                    Tecnologias del Habla
-                                </prompt>
+                                    <prompt>
+                                        Circuitos Integrados para Comunicaciones
+                                        Equipos Electronicos
+                                        Sistemas de Control
+                                        Fundamentos de la Fotonica
+                                        Laboratorio de Telematica
+                                        Tecnologia de Circuitos Impresos
+                                        Tecnologias del Habla
+                                    </prompt>
                                 </if>
                                 <if cond="mencion=='telematica'">
-                                <prompt>
-                                    Diseño y Dimensionado de Redes
-                                    Redes Multimedia
-                                    Redes de Acceso y Corporativas
-                                    Fundamentos de la Fotonica
-                                    Laboratorio de Telematica
-                                    Tecnologia de Circuitos Impresos
-                                    Tecnologias del Habla
-                                </prompt>
+                                    <prompt>
+                                        Diseño y Dimensionado de Redes
+                                        Redes Multimedia
+                                        Redes de Acceso y Corporativas
+                                        Fundamentos de la Fotonica
+                                        Laboratorio de Telematica
+                                        Tecnologia de Circuitos Impresos
+                                        Tecnologias del Habla
+                                    </prompt>
                                 </if>
                             </if>
                             <if cond="cuatrimestre=='segundo'">
                                 <if cond="mencion=='No'">
-                                <prompt>
-                                    Arquitecturas Especializadas para Telecomunicaciones
-                                    Complementos de Analisis Matematico
-                                    Fisica Aplicada a las Telecomunicaciones
-                                    Procesamiento de Video Digital
-                                    Programacion de Sistemas Empotrados y de Tiempo Real
-                                    Trabajo Fin de Grado
-                                </prompt>
+                                    <prompt>
+                                        Arquitecturas Especializadas para Telecomunicaciones
+                                        Complementos de Analisis Matematico
+                                        Fisica Aplicada a las Telecomunicaciones
+                                        Procesamiento de Video Digital
+                                        Programacion de Sistemas Empotrados y de Tiempo Real
+                                        Trabajo Fin de Grado
+                                    </prompt>
                                 </if>
                             </if>
                         </if>
                     </if>
 
                     <goto next="#volver_a_empezar" />
-                <else />
+                    <else />
                     <prompt> De acuerdo, volvamos al principio. </prompt>
                     <clear namelist="plan_estudios" />
                     <clear namelist="confirmar_datos" />
@@ -540,23 +544,19 @@
             </filled>
 
         </field>
-
-        <filled>
-
-        </filled>
-
     </form>
 
 
     <form id="volver_a_empezar">
-        <field name="volver_a_empezar_field" type="boolean">
+        <field name="volver_a_empezar_field">
+            <grammar src="mi_si_no.jsgf" />
             <prompt>
                 ¿Desea consultar otro plan de estudios? Responda "si" o "no".
             </prompt>
             <!--<grammar
             src="builtin:yesno/yesno.grxml"/>-->
             <filled>
-                <if cond="volver_a_empezar_field">
+                <if cond="volver_a_empezar_field == 'si'">
                     <!-- Si el usuario responde "si", reiniciar la consulta -->
                     <prompt>De acuerdo, volvamos al principio.</prompt>
                     <clear namelist="plan_estudios" />
