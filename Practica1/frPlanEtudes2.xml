@@ -9,7 +9,7 @@
         </block>
 
         <field name="grado">
-            <grammar src="fr_Carriere.jsgf" />
+            <grammar src="fr_Carrera.jsgf" />
             <prompt>
                 Quel diplome souhaitez-vous consulter, Informatique ou Telecommunications ?
             </prompt>
@@ -18,7 +18,7 @@
         </field>
 
         <field name="cours">
-            <grammar src="fr_Cours.jsgf" />
+            <grammar src="fr_Curso.jsgf" />
             <prompt>
                 Quel cours souhaitez-vous consulter ?
             </prompt>
@@ -46,7 +46,7 @@
         </field>
 
         <field name="mention">
-            <grammar src="fr_Mentions.jsgf" />
+            <grammar src="fr_Menciones.jsgf" />
             <prompt>
                 Quelle mention souhaitez-vous consulter ?
             </prompt>
@@ -61,7 +61,7 @@
         </field>
 
         <field name="trimestre">
-            <grammar src="fr_Trimestre.jsgf" />
+            <grammar src="fr_Cuatrimestremestre.jsgf" />
             <prompt>
                 Quel trimestre souhaitez-vous consulter ?
             </prompt>
@@ -84,7 +84,7 @@
         </field>
 
         <field name="confirmer_donnees">
-            <grammar src="fr_oui_non.jsgf" />
+            <grammar src="fr_Oui_Non.jsgf" />
 
             <catch event="repetir">
                 <prompt> Desole. Le trimestre <value expr="trimestre"/> est incorrect ? Repetons-le. </prompt>
