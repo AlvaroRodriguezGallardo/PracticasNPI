@@ -549,14 +549,16 @@
 
 
     <form id="volver_a_empezar">
-        <field name="volver_a_empezar_field" type="boolean">
+        <field name="volver_a_empezar_field">
+            <grammar src="mi_si_no.jsgf" />
+
             <prompt>
                 ¿Desea consultar otro plan de estudios? Responda "si" o "no".
             </prompt>
             <!--<grammar
             src="builtin:yesno/yesno.grxml"/>-->
             <filled>
-                <if cond="volver_a_empezar_field">
+                <if cond="volver_a_empezar_field==si">
                     <!-- Si el usuario responde "si", reiniciar la consulta -->
                     <prompt>De acuerdo, volvamos al principio.</prompt>
                     <clear namelist="plan_estudios" />
