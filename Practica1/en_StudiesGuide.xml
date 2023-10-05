@@ -5,7 +5,7 @@
         <link event="repeat"> <grammar src="en_Repetir.jsgf" /> </link>
 
         <block>
-            <prompt> Welcome to the study plan inquiry system of the School of Computer Science and Telecommunications Engineering.</prompt>
+            <prompt> Welcome to the study plan inquiry system of the School of Computer Science and Telecommunications Engineering eeeee.</prompt>
         </block>
 
         <field name="degree">
@@ -31,6 +31,13 @@
                     cond="course == 'second'">
                     <assign name="specialization" expr="'No'" />
                 </if>
+	    <if
+                cond="course == 'one'">
+                <assign name="specialization" expr="'No'" />
+            </if>
+            <if cond="course=='two'">
+                <assign name="specialization" expr="'No'" />
+            </if>
 
             </filled>
 
