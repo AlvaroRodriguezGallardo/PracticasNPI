@@ -31,10 +31,6 @@
                     cond="course == 'second'">
                     <assign name="specialization" expr="'No'" />
                 </if>
-                <if
-                    cond="course == 'third'">
-                    <assign name="specialization" expr="'No'" />
-                </if>
 
             </filled>
 
