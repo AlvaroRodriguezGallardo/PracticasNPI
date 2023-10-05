@@ -1,54 +1,44 @@
 <vxml version="2.1" xmlns="http://www.w3.org/2001/06/vxml" xml:lang="es-es">
-
     <form id="plan_estudios">
-
+        <link event="repetir">
+            <grammar src="es_Repetir.jsgf" />
+        </link>
         <block>
-            <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica
-                Superior de Ingenierias Informatica y de Telecomunicacion.</prompt>
+            <prompt>
+                Bienvenido al sistema de consulta de plan de estudios de la Escuela Técnica Superior
+                de Ingenierías Informática y de Telecomunicación.
+            </prompt>
         </block>
-
         <field name="grado">
             <grammar src="es_Carrera.jsgf" />
             <prompt>
-                Que grado desea consultar, Informatica o Telecomunicaciones?
+                ¿Qué grado desea consultar, Informática o Telecomunicaciones?
             </prompt>
             <filled> De acuerdo, se va a consultar el grado <value expr="grado" />
             </filled>
         </field>
-
-        <link event="repetir">
-            <grammar src="es_Repetir.jsgf" />
-        </link>
-
+        <catch event="repetir">
+            <prompt>Perdón, ¿el grado <value expr="grado" /> es incorrecto? Repitámoslo.</prompt>
+            <clear namelist="grado" />
+            <goto nextitem="grado" />
+        </catch>
         <field name="curso">
             <grammar src="es_Curso.jsgf" />
             <prompt>
-                Que curso desea consultar?
+                ¿Qué curso desea consultar?
             </prompt>
             <filled> De acuerdo, se va a consultar el curso <value expr="curso" />
-                <if
-                    cond="curso == 'primero'">
+        <if
+                    cond="curso == 'primero' || curso == 'primer' || curso == 'segundo'">
                     <assign name="mencion" expr="'No'" />
                 </if>
-                <if
-                    cond="curso == 'primer'">
-                    <assign name="mencion" expr="'No'" />
-                </if>
-                <if
-                    cond="curso == 'segundo'">
-                    <assign name="mencion" expr="'No'" />
-                </if>
-
             </filled>
-
             <catch event="repetir">
-                <prompt> Perdon. <value expr="grado" /> es el grado incorrecto? Repitamoslo.</prompt>
-                <clear namelist="grado" />
-                <goto nextitem="grado" />
-
+                <prompt>Perdón, ¿el curso <value expr="curso" /> es incorrecto? Repitámoslo.</prompt>
+                <clear namelist="curso mencion" />
+                <goto nextitem="curso" />
             </catch>
         </field>
-
         <field name="mencion">
             <grammar src="es_Menciones.jsgf" />
             <prompt>
@@ -101,7 +91,7 @@
 
             </catch>
 
-            <prompt cond="mencion == 'No'"> Quiere saber las asignaturas del grado en <value
+            <prompt cond="mencion == 'No'">Quiere saber las asignaturas del grado en <value
                     expr="grado" />, de <value
                     expr="curso" /> del <value expr="cuatrimestre" /> cuatrimestre?</prompt>
             <prompt cond="mencion != 'No'">Quiere saber las asignaturas del grado en <value
@@ -141,10 +131,10 @@
                         <assign name="mencion" expr="'ti'" />
                     </if>
                     <if cond="mencion=='sistemas de telecomunicacion'">
-                        <assign name="mencion" expr="st" />
+                        <assign name="mencion" expr="'st'" />
                     </if>
                     <if cond="mencion=='sistemas electronicos'">
-                        <assign name="mencion" expr="se" />
+                        <assign name="mencion" expr="'se'" />
                     </if>
                     <if cond="cuatrimestre=='primero'">
                         <assign name="cuatrimestre" expr="'primer'" />
@@ -213,15 +203,13 @@
                         <!-- Ingenieria Informatica - Tercer curso -->
                         <if cond="curso == 'tercero'">
                             <if cond="cuatrimestre == 'primer'">
-                                <if cond="mencion == 'No'">
-                                    <prompt>
-                                        Diseño y Desarrollo de Sistemas de Informacion
-                                        Fundamentos de Redes
-                                        Informatica Grafica
-                                        Ingenieria de Servidores
-                                        Modelos de Computacion
-                                    </prompt>
-                                </if>
+                                <prompt>
+                                    Diseño y Desarrollo de Sistemas de Informacion
+                                    Fundamentos de Redes
+                                    Informatica Grafica
+                                    Ingenieria de Servidores
+                                    Modelos de Computacion
+                                </prompt>
                             </if>
                             <if cond="cuatrimestre == 'segundo'">
                                 <if cond="mencion == 'csi'">
@@ -441,15 +429,13 @@
                         <!-- Ingenieria en Telecomunicaciones - Tercer curso -->
                         <if cond="curso=='tercero'">
                             <if cond="cuatrimestre=='primer'">
-                                <if cond="mencion=='No'">
-                                    <prompt>
-                                        Comunicaciones II
-                                        Electronica de Potencia
-                                        Sistemas Electronicos Digitales
-                                        Sistemas de Conmutacion
-                                        Transmision de Datos y Redes de Computadores
-                                    </prompt>
-                                </if>
+                                <prompt>
+                                    Comunicaciones II
+                                    Electronica de Potencia
+                                    Sistemas Electronicos Digitales
+                                    Sistemas de Conmutacion
+                                    Transmision de Datos y Redes de Computadores
+                                </prompt>
                             </if>
 
                             <if cond="cuatrimestre=='segundo'">
@@ -520,16 +506,14 @@
                                 </if>
                             </if>
                             <if cond="cuatrimestre=='segundo'">
-                                <if cond="mencion=='No'">
-                                    <prompt>
-                                        Arquitecturas Especializadas para Telecomunicaciones
-                                        Complementos de Analisis Matematico
-                                        Fisica Aplicada a las Telecomunicaciones
-                                        Procesamiento de Video Digital
-                                        Programacion de Sistemas Empotrados y de Tiempo Real
-                                        Trabajo Fin de Grado
-                                    </prompt>
-                                </if>
+                                <prompt>
+                                    Arquitecturas Especializadas para Telecomunicaciones
+                                    Complementos de Analisis Matematico
+                                    Fisica Aplicada a las Telecomunicaciones
+                                    Procesamiento de Video Digital
+                                    Programacion de Sistemas Empotrados y de Tiempo Real
+                                    Trabajo Fin de Grado
+                                </prompt>
                             </if>
                         </if>
                     </if>
@@ -544,32 +528,24 @@
             </filled>
 
         </field>
+
     </form>
-
-
     <form id="volver_a_empezar">
         <field name="volver_a_empezar_field">
             <grammar src="mi_si_no.jsgf" />
             <prompt>
                 ¿Desea consultar otro plan de estudios? Responda "si" o "no".
             </prompt>
-            <!--<grammar
-            src="builtin:yesno/yesno.grxml"/>-->
             <filled>
                 <if cond="volver_a_empezar_field == 'si'">
-                    <!-- Si el usuario responde "si", reiniciar la consulta -->
                     <prompt>De acuerdo, volvamos al principio.</prompt>
-                    <clear namelist="plan_estudios" />
-                    <clear namelist="volver_a_empezar" />
+                    <clear namelist="plan_estudios volver_a_empezar" />
                     <goto next="#plan_estudios" />
-                    <else />
-                    <!-- Si el usuario responde "no", finalizar la interaccion -->
-                    <prompt>De acuerdo. ¡Que tenga un buen dia!</prompt>
-                    <exit />
                 </if>
+                <else />
+                <prompt>De acuerdo. ¡Que tenga un buen día!</prompt>
+                <exit />
             </filled>
         </field>
     </form>
-
-
 </vxml>
