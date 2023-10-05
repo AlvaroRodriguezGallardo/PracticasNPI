@@ -2,4 +2,4 @@
 
 grammar en_Cuatrimestre;
 
-public <en_Cuatrimestre> = one | two | first | second 
+public <en_Cuatrimestre> = one | two | first | second;
