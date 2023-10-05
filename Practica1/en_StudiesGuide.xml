@@ -102,7 +102,7 @@
                 semester?</prompt>
 
             <filled>
-                <if cond="confirm_data==yes">
+                <if cond="confirm_data=='yes'">
                     <!-- <prompt> EEE </prompt> -->
                     <if cond="semester=='one'">
                         <assign name="semester" value="'first'" />
