@@ -1,7 +1,7 @@
 
 <vxml version="2.1" >
     <menu>
-    <prompt xml:lang="es-es">¿En qué idioma desea continuar? <prompt/>
+    <prompt xml:lang="es-es">¿En qué idioma desea continuar? </prompt>
     <prompt xml:lang="en-us"> In which language would you like to continue?</prompt>
     <enumerate>
         <choice next="es_PlanEstudios.vxml">
@@ -10,6 +10,6 @@
         English </choice>
         <choice next="fr_PlanEtudes.vxml">
         Frances </choice>
-    <enumerate/>
+    </enumerate>
     </menu>
 </vxml>
