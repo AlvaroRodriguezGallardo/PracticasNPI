@@ -31,10 +31,6 @@
                     cond="curso == 'deuxieme'">
                     <assign name="mencion" expr="'Non'" />
                 </if>
-                <if
-                    cond="curso == 'troisieme'">
-                    <assign name="mencion" expr="'Non'" />
-                </if>
 
             </filled>
 
