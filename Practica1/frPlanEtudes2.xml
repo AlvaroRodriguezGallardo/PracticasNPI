@@ -5,7 +5,7 @@
         <link event="repetir"> <grammar src="fr_Repetir.jsgf" /> </link>
 
         <block>
-            <prompt> Bienvenue dans le systeme de consultation du plan d'etudes de l'ecole Technique Superieure d'Informatique et de Telecommunications. </prompt>
+            <prompt> Bienvenue dans le systeme de consultation du plan detudes de lecole Technique Superieure dInformatique et de Telecommunications. </prompt>
         </block>
 
         <field name="grado">
@@ -13,7 +13,7 @@
             <prompt>
                 Quel diplome souhaitez-vous consulter, Informatique ou Telecommunications ?
             </prompt>
-            <filled> D'accord, nous allons consulter le diplome <value expr="grado" />
+            <filled> Daccord, nous allons consulter le diplome <value expr="grado" />
             </filled>
         </field>
 
@@ -22,18 +22,18 @@
             <prompt>
                 Quel cours souhaitez-vous consulter ?
             </prompt>
-            <filled> D'accord, nous allons consulter le cours <value expr="cours" />
+            <filled> Daccord, nous allons consulter le cours <value expr="cours" />
                 <if
-                    cond="cours == 'premier'">
-                    <assign name="mention" expr="'Non'" />
+                    cond="cours == premier">
+                    <assign name="mention" expr="Non" />
                 </if>
                 <if
-                    cond="cours == 'premier'">
-                    <assign name="mention" expr="'Non'" />
+                    cond="cours == premier">
+                    <assign name="mention" expr="Non" />
                 </if>
                 <if
-                    cond="cours == 'deuxieme'">
-                    <assign name="mention" expr="'Non'" />
+                    cond="cours == deuxieme">
+                    <assign name="mention" expr="Non" />
                 </if>
 
             </filled>
@@ -50,7 +50,7 @@
             <prompt>
                 Quelle mention souhaitez-vous consulter ?
             </prompt>
-            <filled> D'accord, nous allons consulter la mention <value expr="mention" />
+            <filled> Daccord, nous allons consulter la mention <value expr="mention" />
             </filled>
 
             <catch event="repetir">
@@ -65,12 +65,12 @@
             <prompt>
                 Quel trimestre souhaitez-vous consulter ?
             </prompt>
-            <filled> D'accord, nous allons consulter le trimestre <value expr="trimestre" />
+            <filled> Daccord, nous allons consulter le trimestre <value expr="trimestre" />
             </filled>
 
             <catch event="repetir">
 
-                <if cond="mention == 'Non'">
+                <if cond="mention == Non">
                     <prompt> Desole. Le cours <value expr="cours"/> est incorrect ? Repetons-le. </prompt>
                     <clear namelist="cours"/>
                     <clear namelist="mention"/>
@@ -92,65 +92,65 @@
                 <goto nextitem="trimestre"/>
             </catch>
 
-            <prompt cond="mention == 'Non'">Souhaitez-vous connaitre les matieres du diplome en <value
+            <prompt cond="mention == Non">Souhaitez-vous connaitre les matieres du diplome en <value
                 expr="grado" />, du <value
                 expr="cours" /> du <value expr="trimestre" /> trimestre ?</prompt>
-            <prompt cond="mention != 'Non'">Souhaitez-vous connaitre les matieres du diplome en <value
+            <prompt cond="mention != Non">Souhaitez-vous connaitre les matieres du diplome en <value
                 expr="grado" /> avec mention <value
                 expr="mention" />, du <value expr="cours" /> du <value expr="trimestre" />
                 trimestre ?</prompt>
 
             <filled>
-                <if cond="confirmer_donnees=='oui'">
+                <if cond="confirmer_donnees==oui">
                 
-                <if cond="grado=='informatique'">
-                <assign name="grado" expr="'ingenierie informatique'" />
+                <if cond="grado==informatique">
+                <assign name="grado" expr="ingenierie informatique" />
                 </if>
-                <if cond="grado=='telecommunications'">
-                <assign name="grado" expr="'ingenierie en telecommunications'" />
+                <if cond="grado==telecommunications">
+                <assign name="grado" expr="ingenierie en telecommunications" />
                 </if>
-                <if cond="cours=='premier'">
-                <assign name="cours" expr="'premier'" />
+                <if cond="cours==premier">
+                <assign name="cours" expr="premier" />
                 </if>
-                <if cond="cours=='troisieme'">
-                <assign name="cours" expr="'troisieme'" />
+                <if cond="cours==troisieme">
+                <assign name="cours" expr="troisieme" />
                 </if>
-                <if cond="mention=='informatique et systemes intelligents'">
-                <assign name="mention" expr="'csi'" />
+                <if cond="mention==informatique et systemes intelligents">
+                <assign name="mention" expr="csi" />
                 </if>
-                <if cond="mention=='ingenierie logicielle'">
-                <assign name="mention" expr="'is'" />
+                <if cond="mention==ingenierie logicielle">
+                <assign name="mention" expr="is" />
                 </if>
-                <if cond="mention=='ingenierie des ordinateurs'">
-                <assign name="mention" expr="'ic'" />
+                <if cond="mention==ingenierie des ordinateurs">
+                <assign name="mention" expr="ic" />
                 </if>
-                <if cond="mention=='systemes d'information'">
-                <assign name="mention" expr="'si'" />
+                <if cond="mention==systemes dinformation">
+                <assign name="mention" expr="si" />
                 </if>
-                <if cond="mention=='technologies de l'information'">
-                <assign name="mention" expr="'ti'" />
+                <if cond="mention==technologies de linformation">
+                <assign name="mention" expr="ti" />
                 </if>
-                <if cond="mention=='systemes de telecommunication'">
+                <if cond="mention==systemes de telecommunication">
                 <assign name="mention" expr="st" />
                 </if>
-                <if cond="mention=='systemes electroniques'">
+                <if cond="mention==systemes electroniques">
                 <assign name="mention" expr="se" />
                 </if>
-                <if cond="trimestre=='premier'">
-                <assign name="trimestre" expr="'premier'" />
+                <if cond="trimestre==premier">
+                <assign name="trimestre" expr="premier" />
                 </if>
-                <if cond="trimestre=='un'">
-                <assign name="trimestre" expr="'premier'" />
+                <if cond="trimestre==un">
+                <assign name="trimestre" expr="premier" />
                 </if>
-                <if cond="trimestre=='deux'">
-                <assign name="trimestre" expr="'deuxieme'" />
+                <if cond="trimestre==deux">
+                <assign name="trimestre" expr="deuxieme" />
                 </if>
                      
-                    <if cond="grado=='ingenierie informatique'">
+                    <if cond="grado==ingenierie informatique">
                         <!-- Ingenierie Informatique - Premiere annee -->
-                        <if cond="cours == 'premier'">
-                            <if cond="trimestre == 'premier'">
-                                <if cond="mention == 'Non'">
+                        <if cond="cours == premier">
+                            <if cond="trimestre == premier">
+                                <if cond="mention == Non">
                                     <prompt>
                                         Calcul
                                         Fondements Physiques et Technologiques
@@ -160,8 +160,8 @@
                                     </prompt>
                                 </if>
                             </if>
-                            <if cond="trimestre == 'deuxieme'">
-                                <if cond="mention == 'Non'">
+                            <if cond="trimestre == deuxieme">
+                                <if cond="mention == Non">
                                     <prompt>
                                         Statistique
                                         Ingenierie, Entreprise et Societe
@@ -174,25 +174,25 @@
                         </if>
 
                         <!-- Ingenierie Informatique - Deuxieme annee -->
-                        <if cond="cours == 'deuxieme'">
-                            <if cond="trimestre == 'premier'">
-                                <if cond="mention == 'Non'">
+                        <if cond="cours == deuxieme">
+                            <if cond="trimestre == premier">
+                                <if cond="mention == Non">
                                     <prompt>
                                         Structure des Ordinateurs
                                         Structure des Donnees
                                         Programmation et Conception Orientee Objets
                                         Systemes Concurrents et Distribues
-                                        Systemes d'Exploitation
+                                        Systemes dExploitation
                                     </prompt>
                                 </if>
                             </if>
-                            <if cond="trimestre == 'deuxieme'">
-                                <if cond="mention == 'Non'">
+                            <if cond="trimestre == deuxieme">
+                                <if cond="mention == Non">
                                     <prompt>
                                         Algorithmique
                                         Architecture des Ordinateurs
                                         Fondements des Bases de Donnees
-                                        Fondements de l'Ingenierie Logicielle
+                                        Fondements de lIngenierie Logicielle
                                         Intelligence Artificielle
                                     </prompt>
                                 </if>
@@ -200,11 +200,11 @@
                         </if>
 
                         <!-- Ingenierie Informatique - Troisieme annee -->
-                        <if cond="cours == 'troisieme'">
-                            <if cond="trimestre == 'premier'">
-                                <if cond="mention == 'Non'">
+                        <if cond="cours == troisieme">
+                            <if cond="trimestre == premier">
+                                <if cond="mention == Non">
                                     <prompt>
-                                        Conception et Developpement de Systemes d'Information
+                                        Conception et Developpement de Systemes dInformation
                                         Fondements des Reseaux
                                         Informatique Graphique
                                         Ingenierie des Serveurs
@@ -212,8 +212,8 @@
                                     </prompt>
                                 </if>
                             </if>
-                            <if cond="trimestre == 'deuxieme'">
-                                <if cond="mention == 'csi'">
+                            <if cond="trimestre == deuxieme">
+                                <if cond="mention == csi">
                                     <prompt>
                                         Apprentissage Automatique
                                         Ingenierie de la Connaissance
@@ -222,16 +222,16 @@
                                         Techniques des Systemes Intelligents
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'si'">
+                                <if cond="mention == si">
                                     <prompt>
                                         Administration de Bases de Donnees
-                                        Ingenierie des Systemes d'Information
+                                        Ingenierie des Systemes dInformation
                                         Programmation Web
                                         Systemes Multidimensionnels
-                                        Systemes d'Information d'Entreprises
+                                        Systemes dInformation dEntreprises
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'ic'">
+                                <if cond="mention == ic">
                                     <prompt>
                                         Architecture des Systemes
                                         Architecture et Calcul Haute Performance
@@ -240,49 +240,49 @@
                                         Systemes avec Microprocesseurs
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'ti'">
+                                <if cond="mention == ti">
                                     <prompt>
                                         Informatique Ubiquitaire et Intelligence Ambiante
                                         Serveurs Web Haute Performance
                                         Systemes Multimedias
                                         Technologies Web
-                                        Transmission de Donnees et Reseaux d'Ordinateurs
+                                        Transmission de Donnees et Reseaux dOrdinateurs
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'is'">
+                                <if cond="mention == is">
                                     <prompt>
                                         Developpement de Systemes Distribues
                                         Developpement de Logiciels
-                                        Conception d'Interfaces Utilisateur
+                                        Conception dInterfaces Utilisateur
                                         Systemes Graphiques
-                                        Systemes d'Information Bases sur le Web
+                                        Systemes dInformation Bases sur le Web
                                     </prompt>
                                 </if>
                             </if>
                         </if>
                         <!-- Ingenierie Informatique - Quatrieme annee -->
-                        <if cond="cours == 'quatrieme'">
-                            <if cond="trimestre == 'premier'">
-                                <if cond="mention == 'csi'">
+                        <if cond="cours == quatrieme">
+                            <if cond="trimestre == premier">
+                                <if cond="mention == csi">
                                     <prompt>
-                                        Nouveaux Paradigmes d'Interaction
+                                        Nouveaux Paradigmes dInteraction
                                         Processeurs de Langages
                                         Simulation de Systemes
-                                        Theorie de l'Information et Codage
+                                        Theorie de lInformation et Codage
                                         Vision par Ordinateur
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'si'">
+                                <if cond="mention == si">
                                     <prompt>
                                         Bases de Donnees Distribuees
                                         Intelligence des Affaires
-                                        Recuperation de l'Information
+                                        Recuperation de lInformation
                                         Gestion des Ressources Numeriques
                                         Reseaux et Systemes Complexes
-                                        Systemes d'Information Geographique
+                                        Systemes dInformation Geographique
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'ic'">
+                                <if cond="mention == ic">
                                     <prompt>
                                         Centres de Traitement de Donnees
                                         Systemes Embarques
@@ -291,131 +291,131 @@
                                         Technologies emergentes
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'ti'">
+                                <if cond="mention == ti">
                                     <prompt>
-                                        Developpement d'Applications pour Internet
+                                        Developpement dApplications pour Internet
                                         Infrastructure Virtuelle
                                         Securite et Protection des Systemes Informatiques
-                                        Compression et Recuperation de l'Information
-                                        Traitement d'Images Numeriques
+                                        Compression et Recuperation de lInformation
+                                        Traitement dImages Numeriques
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'is'">
+                                <if cond="mention == is">
                                     <prompt>
                                         Developpement Base sur les Agents
                                         Methodologies de Developpement Agile
                                         Direction et Gestion de Projets
                                         Programmation Graphique de Jeux Video
-                                        Securite des Systemes d'Exploitation
+                                        Securite des Systemes dExploitation
                                         Logique et Programmation
                                     </prompt>
                                 </if>
                             </if>
-                            <if cond="trimestre == 'deuxieme'">
-                                <if cond="mention == 'csi'">
+                            <if cond="trimestre == deuxieme">
+                                <if cond="mention == csi">
                                     <prompt>
                                         Cryptographie et Informatique
                                         Programmation Ludique
                                         Robotique Industrielle
-                                        Creation d'Entreprises et Gestion Entrepreneuriale
+                                        Creation dEntreprises et Gestion Entrepreneuriale
                                         Droit Informatique
-                                        ethique, Informatique et Societe de l'Information
+                                        ethique, Informatique et Societe de lInformation
                                         Stages en Entreprise
-                                        Travail de Fin d'etudes
+                                        Travail de Fin detudes
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'si'">
+                                <if cond="mention == si">
                                     <prompt>
-                                        Peripheriques et Dispositifs d'Interface Homme-Machine
+                                        Peripheriques et Dispositifs dInterface Homme-Machine
                                         Systemes Cooperatifs et Gestion de Contenu
-                                        Creation d'Entreprises et Gestion Entrepreneuriale
+                                        Creation dEntreprises et Gestion Entrepreneuriale
                                         Droit Informatique
-                                        ethique Informatique et Societe de l'Information
+                                        ethique Informatique et Societe de lInformation
                                         Stages en Entreprise
-                                        Travail de Fin d'etudes
+                                        Travail de Fin detudes
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'ic'">
+                                <if cond="mention == ic">
                                     <prompt>
                                         Circuits Integres et Imprimes
-                                        Maintenance d'equipements Informatiques
-                                        Creation d'Entreprises et Gestion Entrepreneuriale
+                                        Maintenance dequipements Informatiques
+                                        Creation dEntreprises et Gestion Entrepreneuriale
                                         Droit Informatique
-                                        ethique Informatique et Societe de l'Information
+                                        ethique Informatique et Societe de lInformation
                                         Stages en Entreprise
-                                        Travail de Fin d'etudes
+                                        Travail de Fin detudes
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'ti'">
+                                <if cond="mention == ti">
                                     <prompt>
                                         Traitement Numerique du Signal
                                         Programmation de Dispositifs Mobiles
                                         Reseaux Multiservices
-                                        Creation d'Entreprises et Gestion Entrepreneuriale
+                                        Creation dEntreprises et Gestion Entrepreneuriale
                                         Droit Informatique
-                                        ethique Informatique et Societe de l'Information
+                                        ethique Informatique et Societe de lInformation
                                         Stages en Entreprise
-                                        Travail de Fin d'etudes
+                                        Travail de Fin detudes
                                     </prompt>
                                 </if>
-                                <if cond="mention == 'is'">
+                                <if cond="mention == is">
                                     <prompt>
                                         Animation par Ordinateur
-                                        Creation d'Entreprises et Gestion Entrepreneuriale
+                                        Creation dEntreprises et Gestion Entrepreneuriale
                                         Droit Informatique
                                         Nouvelles Technologies de la Programmation
                                         Programmation Parallele
-                                        ethique Informatique et Societe de l'Information
+                                        ethique Informatique et Societe de lInformation
                                         Stages en Entreprise
-                                        Projet de Fin d'etudes
+                                        Projet de Fin detudes
                                     </prompt>
                                 </if>
                             </if>
                         </if>
                     </if>
                     <!--##### Informations sur les matieres de Telecommunications #####-->
-                    <if cond="grado=='ingenierie en telecommunications'">  
+                    <if cond="grado==ingenierie en telecommunications">  
                       <!-- Ingenierie en Telecommunications - Premiere annee -->
-                        <if cond="cours=='premiere'">
-                            <if cond="trimestre=='premier'">
-                                <if cond="mention=='Non'">
+                        <if cond="cours==premiere">
+                            <if cond="trimestre==premier">
+                                <if cond="mention==Non">
                                     <prompt>
                                     Analyse Mathematique
                                     Analyse de Circuits
-                                    Fondements de l'Informatique
+                                    Fondements de lInformatique
                                     Ingenierie, Entreprise et Societe
                                     Algebre Lineaire et Geometrie
                                     </prompt>
                                 </if>
                             </if>
                         
-                            <if cond="trimestre=='deuxieme'">
-                                <if cond="mention=='Non'">
+                            <if cond="trimestre==deuxieme">
+                                <if cond="mention==Non">
                                     <prompt>
                                     Composants et Circuits electroniques
                                     equations Differentielles et Calcul Numerique
                                     Statistique et Optimisation
-                                    Fondements Physiques de l'Ingenierie
+                                    Fondements Physiques de lIngenierie
                                     Systemes Lineaires
                                     </prompt>
                                 </if>
                             </if>
                         </if>
                         <!-- Ingenierie en Telecommunications - Deuxieme annee -->
-                        <if cond="cours=='deuxieme'">
-                            <if cond="trimestre=='premier'">
-                                <if cond="mention=='Non'">
+                        <if cond="cours==deuxieme">
+                            <if cond="trimestre==premier">
+                                <if cond="mention==Non">
                                 <prompt>
                                     Fondements de la Programmation
                                     Systemes Telematicos
                                     Theorie de la Communication
-                                    Transmission d'Ondes
+                                    Transmission dOndes
                                 </prompt>
                                 </if>
                             </if>
                         
-                            <if cond="trimestre=='deuxieme'">
-                                <if cond="mention=='Non'">
+                            <if cond="trimestre==deuxieme">
+                                <if cond="mention==Non">
                                 <prompt>
                                     Communications I
                                     electronique Analogique
@@ -427,9 +427,9 @@
                             </if>
                         </if>
                         <!-- Ingenierie en Telecommunications - Troisieme annee -->
-                        <if cond="cours=='troisieme'">
-                            <if cond="trimestre=='premier'">
-                                <if cond="mention=='Non'">
+                        <if cond="cours==troisieme">
+                            <if cond="trimestre==premier">
+                                <if cond="mention==Non">
                                 <prompt>
                                     Communications II
                                     electronique de Puissance
@@ -440,8 +440,8 @@
                                 </if>
                             </if>
                             
-                            <if cond="trimestre=='deuxieme'">
-                                <if cond="mention=='st'">
+                            <if cond="trimestre==deuxieme">
+                                <if cond="mention==st">
                                 <prompt>
                                     Antennes et Propagation
                                     Milieux et Composants Optiques pour Communications
@@ -450,19 +450,19 @@
                                     Traitement Numerique de Signaux
                                 </prompt>
                                 </if>
-                                <if cond="mention=='se'">
+                                <if cond="mention==se">
                                 <prompt>
                                     Circuits electroniques pour Radiofrequence
                                     Conception de Circuits et Systemes electroniques
                                     electronique a Micro-ondes
                                     Instrumentation electronique
-                                    Systemes d'Alimentation
+                                    Systemes dAlimentation
                                 </prompt>
                                 </if>
-                                <if cond="mention=='telematica'">
+                                <if cond="mention==telematica">
                                 <prompt>
                                     Complements de Programmation
-                                    Developpement d'Applications en Reseau
+                                    Developpement dApplications en Reseau
                                     Gestion des Reseaux
                                     Reseaux sans Fil et Mobilite
                                     Securite des Reseaux de Communication
@@ -471,9 +471,9 @@
                             </if>
                         </if>    
                         <!-- Ingenierie en Telecommunications - Quatrieme annee -->
-                        <if cond="cours=='quatrieme'">
-                            <if cond="trimestre=='premier'">
-                                <if cond="mention=='st'">
+                        <if cond="cours==quatrieme">
+                            <if cond="trimestre==premier">
+                                <if cond="mention==st">
                                 <prompt>
                                     Communications Sans Fil
                                     Communications Optiques
@@ -484,7 +484,7 @@
                                     Technologies de la Parole
                                 </prompt>
                                 </if>
-                                <if cond="mention=='se'">
+                                <if cond="mention==se">
                                 <prompt>
                                     Circuits Integres pour Communications
                                     equipements electroniques
@@ -495,11 +495,11 @@
                                     Technologies de la Parole
                                 </prompt>
                                 </if>
-                                <if cond="mention=='telematica'">
+                                <if cond="mention==telematica">
                                 <prompt>
                                     Conception et Dimensionnement des Reseaux
                                     Reseaux Multimedias
-                                    Reseaux d'Acces et d'Entreprise
+                                    Reseaux dAcces et dEntreprise
                                     Fondements de la Photonique
                                     Laboratoire de Telematique
                                     Technologie des Circuits Imprimes
@@ -507,15 +507,15 @@
                                 </prompt>
                                 </if>
                             </if>
-                            <if cond="trimestre=='deuxieme'">
-                                <if cond="mention=='Non'">
+                            <if cond="trimestre==deuxieme">
+                                <if cond="mention==Non">
                                 <prompt>
                                     Architectures Specialisees pour les Telecommunications
-                                    Complements d'Analyse Mathematique
+                                    Complements dAnalyse Mathematique
                                     Physique Appliquee aux Telecommunications
                                     Traitement Video Numerique
                                     Programmation de Systemes Embarques et Temps Reel
-                                    Travail de Fin d'etudes
+                                    Travail de Fin detudes
                                 </prompt>
                                 </if>
                             </if>
@@ -524,19 +524,19 @@
 
                     <goto next="#revenir_au_debut" />
                 <else />
-                    <prompt> D'accord, revenons au debut. </prompt>
-                    <clear namelist="plan_d'etudes" />
-                    <goto nextitem="plan_d'etudes" />
+                    <prompt> Daccord, revenons au debut. </prompt>
+                    <clear namelist="plan_detudes" />
+                    <goto nextitem="plan_detudes" />
                 </else>
                 </if>
                 <catch event="noinput">
                 <prompt>
-                    Je n'ai pas entendu de reponse. Pouvez-vous repeter s'il vous plait ?
+                    Je nai pas entendu de reponse. Pouvez-vous repeter sil vous plait ?
                 </prompt>
                 </catch>
                 <catch event="nomatch">
                 <prompt>
-                    Desole, je n'ai pas compris. Pouvez-vous repeter s'il vous plait ?
+                    Desole, je nai pas compris. Pouvez-vous repeter sil vous plait ?
                 </prompt>
                 </catch>
             </filled>
@@ -553,13 +553,13 @@
             <grammar src="fr_Actions.jsgf" />
             <prompt> Que voulez-vous faire maintenant ? </prompt>
             <filled>
-                <if cond="action == 'recommencer'">
-                    <prompt> D'accord, revenons au debut. </prompt>
-                    <clear namelist="plan_d'etudes" />
-                    <goto nextitem="plan_d'etudes" />
+                <if cond="action == recommencer">
+                    <prompt> Daccord, revenons au debut. </prompt>
+                    <clear namelist="plan_detudes" />
+                    <goto nextitem="plan_detudes" />
                 </if>
-                <if cond="action == 'terminer'">
-                    <prompt> D'accord, au revoir ! </prompt>
+                <if cond="action == terminer">
+                    <prompt> Daccord, au revoir ! </prompt>
                     <exit />
                 </if>
             </filled>
