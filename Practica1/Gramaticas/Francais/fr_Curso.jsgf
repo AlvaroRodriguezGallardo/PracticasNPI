@@ -2,4 +2,4 @@
 
 grammar fr_Curso;
 
-public <fr_Curso> = premier | premiere | deuxieme | troisieme | quatrieme | un | une | deux | trois | quatre
+public <fr_Curso> = premier | premiere | deuxieme | troisieme | quatrieme | un | une | deux | trois | quatre;

@@ -2,4 +2,4 @@
 
 grammar fr_Carrera;
 
-public <fr_Carrera> = ingenierie informatique | genie informatique | telecommunication
+public <fr_Carrera> = ingenierie informatique | genie informatique | telecommunication;

@@ -2,4 +2,4 @@
 
 grammar fr_Cuatrimestre;
 
-public <fr_Cuatrimestre> = premier | premiere | deuxieme | un | une | deux 
+public <fr_Cuatrimestre> = premier | premiere | deuxieme | un | une | deux;
