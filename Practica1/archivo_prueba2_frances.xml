@@ -102,25 +102,25 @@
                     <if cond="grado=='telecommunications'">
                         <assign name="grado" expr="'ingenierie en telecommunications'" />
                     </if>
-                    <if cond="curso=='premier'">
+                    <if cond="curso=='premiere'">
                         <assign name="curso" expr="'premier'" />
                     </if>
                     <if cond="curso=='troisieme'">
                         <assign name="curso" expr="'troisieme'" />
                     </if>
-                    <if cond="mencion=='informatique et systemes intelligents'">
+                    <if cond="mencion=='calcul et systemes intelligents'">
                         <assign name="mencion" expr="'CSI'" />
                     </if>
-                    <if cond="mencion=='genie logiciel'">
+                    <if cond="mencion=='ingenierie du software'">
                         <assign name="mencion" expr="'GL'" />
                     </if>
-                    <if cond="mencion=='genie des ordinateurs'">
-                        <assign name="mencion" expr="'GO'" />
+                    <if cond="mencion=='ingenierie des ordinateurs'">
+                        <assign name="mencion" expr="'IC'" />
                     </if>
                     <if cond="mencion=='systemes dinformation'">
                         <assign name="mencion" expr="'SI'" />
                     </if>
-                    <if cond="mencion=='technologies de l'information'">
+                    <if cond="mencion=='technologies de linformation'">
                         <assign name="mencion" expr="'TI'" />
                     </if>
                     <if cond="mencion=='systemes de telecommunication'">
@@ -129,7 +129,7 @@
                     <if cond="mencion=='systemes electroniques'">
                         <assign name="mencion" expr="'SE'" />
                     </if>
-                    <if cond="cuatrimestre=='premier'">
+                    <if cond="cuatrimestre=='premiere'">
                         <assign name="cuatrimestre" expr="'premier'" />
                     </if>
                     <if cond="cuatrimestre=='un'">
@@ -331,7 +331,7 @@
                     Informations sur les matieres en telecommunications #####-->
                     <if cond="grado=='ingenierie en telecommunications'">
                         <!-- Ingenierie en Telecommunications - Premiere annee -->
-                        <if cond="curso=='premiere'">
+                        <if cond="curso=='premier'">
                             <if cond="cuatrimestre=='premier'">
                                 <if cond="mencion=='Non'">
                                     <prompt bargein="false">
