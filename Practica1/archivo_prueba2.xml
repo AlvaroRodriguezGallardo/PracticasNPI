@@ -4,7 +4,7 @@
             <grammar src="es_Repetir.jsgf" />
         </link>
         <block>
-            <prompt>
+            <prompt bargein="false">
                 Bienvenido al sistema de consulta de plan de estudios de la Escuela Técnica Superior
                 de Ingenierías Informática y de Telecomunicación.
             </prompt>
@@ -147,7 +147,7 @@
                         <if cond="curso == 'primer'">
                             <if cond="cuatrimestre == 'primer'">
                                 <if cond="mencion == 'No'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Calculo
                                         Fundamentos Fisicos y Tecnologicos
                                         Fundamentos de Programacion
@@ -158,7 +158,7 @@
                             </if>
                             <if cond="cuatrimestre == 'segundo'">
                                 <if cond="mencion == 'No'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Estadistica
                                         Ingenieria, Empresa y Sociedad
                                         Logica y Metodos Discretos
@@ -173,7 +173,7 @@
                         <if cond="curso == 'segundo'">
                             <if cond="cuatrimestre == 'primer'">
                                 <if cond="mencion == 'No'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Estructura de Computadores
                                         Estructura de Datos
                                         Programacion y Diseño Orientado a Objetos
@@ -184,7 +184,7 @@
                             </if>
                             <if cond="cuatrimestre == 'segundo'">
                                 <if cond="mencion == 'No'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Algoritmica
                                         Arquitectura de Computadores
                                         Fundamentos de Bases de Datos
@@ -198,7 +198,7 @@
                         <!-- Ingenieria Informatica - Tercer curso -->
                         <if cond="curso == 'tercero'">
                             <if cond="cuatrimestre == 'primer'">
-                                <prompt>
+                                <prompt bargein="false">
                                     Diseño y Desarrollo de Sistemas de Informacion
                                     Fundamentos de Redes
                                     Informatica Grafica
@@ -208,7 +208,7 @@
                             </if>
                             <if cond="cuatrimestre == 'segundo'">
                                 <if cond="mencion == 'csi'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Aprendizaje Automatico
                                         Ingenieria del Conocimiento
                                         Metaheuristicas
@@ -217,7 +217,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'si'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Administracion de Bases de Datos
                                         Ingenieria de Sistemas de Informacion
                                         Programacion Web
@@ -226,7 +226,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'ic'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Arquitectura de Sistemas
                                         Arquitectura y Computacion de Altas Prestaciones
                                         Desarrollo de Hardware Digital
@@ -235,7 +235,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'ti'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Computacion Ubicua e Inteligencia Ambiental
                                         Servidores Web de Altas Prestaciones
                                         Sistemas Multimedia
@@ -244,7 +244,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'is'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Desarrollo de Sistemas Distribuidos
                                         Desarrollo de Software
                                         Diseño de Interfaces de Usuario
@@ -258,7 +258,7 @@
                         <if cond="curso == 'cuarto'">
                             <if cond="cuatrimestre == 'primer'">
                                 <if cond="mencion == 'csi'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Nuevos Paradigmas de Interaccion
                                         Procesadores de Lenguajes
                                         Simulacion de Sistemas
@@ -267,7 +267,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'si'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Bases de Datos Distribuidas
                                         Inteligencia de Negocio
                                         Recuperacion de Informacion
@@ -277,7 +277,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'ic'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Centros de Procesamiento de Datos
                                         Sistemas Empotrados
                                         Tecnologias de Red
@@ -286,7 +286,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'ti'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Desarrollo de Aplicaciones para Internet
                                         Infraestructura Virtual
                                         Seguridad y Proteccion de Sistemas Informaticos
@@ -295,7 +295,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'is'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Desarrollo Basado en Agentes
                                         Metodologias de Desarrollo agil
                                         Direccion y Gestion de Proyectos
@@ -307,7 +307,7 @@
                             </if>
                             <if cond="cuatrimestre == 'segundo'">
                                 <if cond="mencion == 'csi'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Criptografia y Computacion
                                         Programacion Ludica
                                         Robotica Industrial
@@ -319,7 +319,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'si'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Perifericos y Dispositivos de Interfaz Humana
                                         Sistemas Cooperativos y Gestion de Contenidos
                                         Creacion de Empresas y Gestion Emprendedora
@@ -330,7 +330,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'ic'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Circuitos Integrados e Impresos
                                         Mantenimiento de Equipos Informaticos
                                         Creacion de Empresas y Gestion Emprendedora
@@ -341,7 +341,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion == 'ti'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Procesamiento Digital de Señales
                                         Programacion de Dispositivos Moviles
                                         Redes Multiservicio
@@ -350,10 +350,10 @@
                                         Etica Informatica y Sociedad de la Informacion
                                         Practicas de Empresa
                                         Trabajo Fin de Grado
-                                    </prompt>
+                                    </prompt >
                                 </if>
                                 <if cond="mencion == 'is'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Animacion por Ordenador
                                         Creacion de Empresas y Gestion Emprendedora
                                         Derecho Informatico
@@ -374,7 +374,7 @@
                         <if cond="curso=='primer'">
                             <if cond="cuatrimestre=='primer'">
                                 <if cond="mencion=='No'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Analisis Matematico
                                         Analisis de Circuitos
                                         Fundamentos de Informatica
@@ -386,7 +386,7 @@
 
                             <if cond="cuatrimestre=='segundo'">
                                 <if cond="mencion=='No'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Componentes y Circuitos Electronicos
                                         Ecuaciones Diferenciales y Calculo Numerico
                                         Estadistica y Optimizacion
@@ -400,7 +400,7 @@
                         <if cond="curso=='segundo'">
                             <if cond="cuatrimestre=='primer'">
                                 <if cond="mencion=='No'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Fundamentos de Programacion
                                         Sistemas Telematicos
                                         Teoria de la Comunicacion
@@ -411,7 +411,7 @@
 
                             <if cond="cuatrimestre=='segundo'">
                                 <if cond="mencion=='No'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Comunicaciones I
                                         Electronica Analogica
                                         Electronica Digital
@@ -424,7 +424,7 @@
                         <!-- Ingenieria en Telecomunicaciones - Tercer curso -->
                         <if cond="curso=='tercero'">
                             <if cond="cuatrimestre=='primer'">
-                                <prompt>
+                                <prompt bargein="false">
                                     Comunicaciones II
                                     Electronica de Potencia
                                     Sistemas Electronicos Digitales
@@ -435,7 +435,7 @@
 
                             <if cond="cuatrimestre=='segundo'">
                                 <if cond="mencion=='st'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Antenas y Propagacion
                                         Medios y Componentes opticos para Comunicaciones
                                         Sistemas de Codificacion y Almacenamiento
@@ -444,7 +444,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion=='se'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Circuitos Electronicos para Radiofrecuencia
                                         Diseño de Circuitos y Sistemas Electronicos
                                         Electronica de Microondas
@@ -453,7 +453,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion=='telematica'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Complementos de Programacion
                                         Desarrollo de Aplicaciones en Red
                                         Gestion de Redes
@@ -467,7 +467,7 @@
                         <if cond="curso=='cuarto'">
                             <if cond="cuatrimestre=='primer'">
                                 <if cond="mencion=='st'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Comunicaciones Inalambricas
                                         Comunicaciones opticas
                                         Television y Radio Digital
@@ -478,7 +478,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion=='se'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Circuitos Integrados para Comunicaciones
                                         Equipos Electronicos
                                         Sistemas de Control
@@ -489,7 +489,7 @@
                                     </prompt>
                                 </if>
                                 <if cond="mencion=='telematica'">
-                                    <prompt>
+                                    <prompt bargein="false">
                                         Diseño y Dimensionado de Redes
                                         Redes Multimedia
                                         Redes de Acceso y Corporativas
@@ -501,7 +501,7 @@
                                 </if>
                             </if>
                             <if cond="cuatrimestre=='segundo'">
-                                <prompt>
+                                <prompt bargein="false">
                                     Arquitecturas Especializadas para Telecomunicaciones
                                     Complementos de Analisis Matematico
                                     Fisica Aplicada a las Telecomunicaciones
