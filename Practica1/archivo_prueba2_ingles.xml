@@ -119,7 +119,7 @@
                     <if cond="mencion=='computation engineering'">
                         <assign name="mencion" expr="'ce'" />
                     </if>
-                    <if cond="mencion=='sistemas de informacion'">
+                    <if cond="mencion=='information systems'">
                         <assign name="mencion" expr="'is'" />
                     </if>
                     <if cond="mencion=='information technologies'">
