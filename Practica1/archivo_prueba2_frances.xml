@@ -29,7 +29,7 @@
             </prompt>
             <filled> daccord, nous allons consulter le cours <value expr="curso" />
                 <if
-                    cond="curso == 'premier' || curso == 'deuxieme'">
+                    cond="curso == 'premier' || curso == 'deuxieme' || curso == 'un' | curso == 'une' | curso == 'deux'">
                     <assign name="mencion" expr="'Non'" />
                 </if>
             </filled>
@@ -137,6 +137,21 @@
                     </if>
                     <if cond="cuatrimestre=='deux'">
                         <assign name="cuatrimestre" expr="'deuxieme'" />
+                    </if>
+                    <if cond="curso=='un'">
+                        <assign name="curso" expr="'premier'" />
+                    </if>
+                    <if cond="curso=='une'">
+                        <assign name="curso" expr="'premier'" />
+                    </if>
+                    <if cond="curso=='deux'">
+                        <assign name="curso" expr="'deuxieme'" />
+                    </if>
+                    <if cond="curso=='trois'">
+                        <assign name="curso" expr="'troisieme'" />
+                    </if>
+                    <if cond="curso=='quatre'">
+                        <assign name="curso" expr="'quiatrieme'" />
                     </if>
 
 
