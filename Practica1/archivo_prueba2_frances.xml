@@ -507,7 +507,7 @@
     </form>
     <form id="volver_a_empezar">
         <field name="volver_a_empezar_field">
-            <grammar src="fr_oui_non.jsgf" />
+            <grammar src="mi_oui_non.jsgf" />
             <prompt>
                 Souhaitez-vous consulter un autre plan detudes ? Repondez "oui" ou "non".
             </prompt>
