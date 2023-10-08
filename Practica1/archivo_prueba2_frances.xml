@@ -107,11 +107,8 @@
                     <if cond="curso=='premiere'">
                         <assign name="curso" expr="'premier'" />
                     </if>
-                    <if cond="curso=='troisieme'">
-                        <assign name="curso" expr="'troisieme'" />
-                    </if>
                     <if cond="mencion=='calcul et systemes intelligents'">
-                        <assign name="mencion" expr="'cis'" />
+                        <assign name="mencion" expr="'csi'" />
                     </if>
                     <if cond="mencion=='ingenierie du software'">
                         <assign name="mencion" expr="'is'" />
