@@ -432,7 +432,7 @@
                                         Systemes dAlimentation
                                     </prompt>
                                 </if>
-                                <if cond="mencion=='telematica'">
+                                <if cond="mencion=='telemathique'">
                                     <prompt bargein="false">
                                         Complements de Programmation
                                         Developpement dApplications en Reseau
