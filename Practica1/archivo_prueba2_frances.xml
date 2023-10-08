@@ -75,7 +75,7 @@
         </field>
 
         <field name="confirmar_datos">
-            <grammar src="fr_oui_non.jsgf" />
+            <grammar src="mi_oui_non.jsgf" />
 
             <catch event="repetir">
                 <prompt> Pardon. Le semestre <value expr="cuatrimestre" /> est incorrect ? Repetons.</prompt>
