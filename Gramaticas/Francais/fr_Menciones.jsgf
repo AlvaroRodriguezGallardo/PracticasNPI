@@ -1,5 +1,0 @@
-#JSGF V1.0;
-
-grammar fr_Menciones;
-
-public <fr_Menciones> = calcul et systemes intelligents | csi | ingenierie du software | is | ingenierie des ordinateurs | io | systemes dinformation | si | tecnologies de linformation | ti | systemes de telecommunication | st | telemathique | systemes electroniques | se;

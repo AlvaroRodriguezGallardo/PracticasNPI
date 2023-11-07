@@ -1,5 +1,0 @@
-#JSGF V1.0;
-
-grammar mi_oui_non;
-
-public <mi_oui_non> = oui | non;
