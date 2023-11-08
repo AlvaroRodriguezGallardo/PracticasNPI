@@ -19,7 +19,7 @@ public class CircleMenuControler : MonoBehaviour
 
     }
 
-    public float radious = 50; //Radio del circulo que forman los botones, en pixeles.
+    public float radious = 1000; //Radio del circulo que forman los botones, en pixeles.
     public GameObject buttonPrefab; //
     public List<ButtonStruct> buttonsProperties; //Las propiedades que tendrá cada botón
 
@@ -34,7 +34,7 @@ public class CircleMenuControler : MonoBehaviour
             GameObject nuevoObjeto = Instantiate(buttonPrefab, Vector3.zero, Quaternion.identity, transform);
 
             //Calculamos su posición, y se la aplicamos
-            Vector2 buttonPosition = new Vector2(radious*Mathf.Sin(2*Mathf.PI*i/buttonsProperties.Count), radious*Mathf.Cos(2*Mathf.PI*i/buttonsProperties.Count));
+            Vector2 buttonPosition = new Vector2(radious * Mathf.Sin(2f * Mathf.PI * i / buttonsProperties.Count + 2f * Mathf.PI * 0.5f / buttonsProperties.Count), radious * Mathf.Cos(2f * Mathf.PI * i / buttonsProperties.Count + 2f * Mathf.PI * 0.5f / buttonsProperties.Count));
             nuevoObjeto.GetComponent<RectTransform>().anchoredPosition = buttonPosition;
 
             //Cambiamos el texto del botón
