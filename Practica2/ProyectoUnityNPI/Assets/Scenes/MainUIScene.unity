@@ -827,6 +827,7 @@ RectTransform:
   - {fileID: 897927574}
   - {fileID: 940340121}
   - {fileID: 1015061906}
+  - {fileID: 1232606109}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -834,6 +835,96 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1232606108
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1232606109}
+  - component: {fileID: 1232606110}
+  m_Layer: 5
+  m_Name: MenuDocencia
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1232606109
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232606108}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1065027004}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.5, y: 0.5}
+  m_SizeDelta: {x: 101, y: 99}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1232606110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232606108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c09fe0c7e6a8e010a82c1030bce6f10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radious: 500
+  buttonPrefab: {fileID: 6376333311679389086, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
+  buttonsProperties:
+  - text: Tus horarios
+    icon: {fileID: 21300000, guid: 3d530c825c142b045a31745d1c6f9df7, type: 3}
+    onClick:
+      m_PersistentCalls:
+        m_Calls: []
+  - text: "Informacion grados, m\xE1steres y doctorados"
+    icon: {fileID: 21300000, guid: dce8f924bb923c74980acbf80cc8fd1e, type: 3}
+    onClick:
+      m_PersistentCalls:
+        m_Calls: []
+  - text: Volver al Inicio
+    icon: {fileID: 21300000, guid: 6f6024dac82fa0f3eba6eb576ede0f83, type: 3}
+    onClick:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1608334603}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1232606108}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1608334603
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c09fe0c7e6a8e010a82c1030bce6f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radious: 500
+  radious: 625
   buttonPrefab: {fileID: 6376333311679389086, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
   buttonsProperties:
   - text: Docencia
@@ -890,7 +981,19 @@ MonoBehaviour:
     onClick:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 996906907}
+        - m_Target: {fileID: 1232606108}
+          m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_MethodName: SetActive
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
+        - m_Target: {fileID: 1608334603}
           m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_MethodName: SetActive
           m_Mode: 6
