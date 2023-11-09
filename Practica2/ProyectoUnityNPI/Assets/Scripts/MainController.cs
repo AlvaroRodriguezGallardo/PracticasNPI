@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 using Leap;
 using Leap.Unity;
+using UnityEngine.InputSystem.UI;
 
 public class MainController : MonoBehaviour
 {
@@ -55,8 +57,17 @@ public class MainController : MonoBehaviour
     void Update()
     {
         
+        //Muestra y esconde las manos al pulsar la tecla espacio
         if(Input.GetKeyDown(KeyCode.Space)){
             HandsGameobject.SetActive(!HandsGameobject.activeSelf);
+        }
+
+        //Para testeo
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+
+            SimularClickIzquierdo(); 
+            
         }
 
     }
@@ -71,7 +82,7 @@ public class MainController : MonoBehaviour
         else{
 
             //Si no teniamos alguna mano guardada de antemano, guardamos una
-            if(!handIdIsValid){
+            if(!handIdIsValid || frame.Hand(handId) == null){
                 handId = frame.Hands[0].Id;
                 handIdIsValid = true;
             }
@@ -79,16 +90,29 @@ public class MainController : MonoBehaviour
             //Obtenemos la mano que queremos trackear
             Hand hand = frame.Hand(handId);
 
-            //Aqui habría que comprobar que el id que tenemos es válido, pero ni idea de como
-
             //Movemos el cursor a la palma de la mano
-            Vector3 handWorldPos = hand.StabilizedPalmPosition;
+            Vector3 handWorldPos = hand.PalmPosition;
             Vector2 handScreenPos = Camera.main.WorldToScreenPoint(handWorldPos);
             Mouse.current.WarpCursorPosition(handScreenPos);
+            
+            
+
+            //Debug.Log(handWorldPos.ToString() + handScreenPos.ToString());
 
         }
 
 
 
+    }
+
+    public void SimularClickIzquierdo()
+    {
+        Mouse.current.CopyState<MouseState>(out var mouseState);
+        mouseState.WithButton(MouseButton.Left, true);
+        InputState.Change( Mouse.current, mouseState);
+        //InputSystem.Update();
+
+
+        Debug.Log("Click!");
     }
 }
