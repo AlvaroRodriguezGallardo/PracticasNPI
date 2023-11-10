@@ -63,11 +63,11 @@ public class MainController : MonoBehaviour
         }
 
         //Para testeo
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-
-            SimularClickIzquierdo(); 
-            
+        if(handIdIsValid){
+            Hand hand = leapProvider.CurrentFrame.Hand(handId);
+            if(hand.GrabStrength == 1.0f){
+                SimularClickIzquierdo();
+            }
         }
 
     }
