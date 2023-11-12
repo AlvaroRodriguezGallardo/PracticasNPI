@@ -30,6 +30,7 @@ public class MainController : MonoBehaviour
 
     int handId;
     bool handIdIsValid = false;
+    bool prevFistState = false;
 
     void Start()
     {
@@ -96,7 +97,19 @@ public class MainController : MonoBehaviour
             Mouse.current.WarpCursorPosition(handScreenPos);
             
             
+            // Detectar cambio en el estado del puño
+            bool currentFistState = hand.GrabStrength == 1.0f;
+            if (currentFistState != prevFistState)
+            {
+                prevFistState = currentFistState;
 
+                // Simular clic izquierdo solo cuando el puño cambia de estado abierto a cerrado
+                if (currentFistState)
+                {
+                    SimularClickIzquierdo();
+                }
+            }
+            
             //Debug.Log(handWorldPos.ToString() + handScreenPos.ToString());
 
         }
