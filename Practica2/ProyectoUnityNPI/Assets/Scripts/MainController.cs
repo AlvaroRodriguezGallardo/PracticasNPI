@@ -31,6 +31,13 @@ public class MainController : MonoBehaviour
     int handId;
     bool handIdIsValid = false;
     bool prevFistState = false;
+    bool wasHandOpen = true;
+    public Transform leftHand;
+    public Transform rightHand;
+    //public float intersectionThreshold = 0.1f;
+
+
+    //private X_Gesture xGesture;
 
     void Start()
     {
@@ -52,6 +59,7 @@ public class MainController : MonoBehaviour
 
         //Cada vez que se detecte un nuevo frame, se llamará a la función OnUpdateFrame
         leapProvider.OnUpdateFrame += OnUpdateFrame;
+        //xGesture = new X_Gesture(this);
     }
 
     // Update is called once per frame
@@ -64,12 +72,14 @@ public class MainController : MonoBehaviour
         }
 
         //Para testeo
+        /*
         if(handIdIsValid){
             Hand hand = leapProvider.CurrentFrame.Hand(handId);
             if(hand.GrabStrength == 1.0f){
                 SimularClickIzquierdo();
             }
         }
+        */
 
     }
 
@@ -87,6 +97,17 @@ public class MainController : MonoBehaviour
                 handId = frame.Hands[0].Id;
                 handIdIsValid = true;
             }
+            /*
+            if (xGesture.DetectXGesture(frame))
+            {
+                Vector3 intersectionPoint = xGesture.CalculateIntersectionPoint(leftHand.position, rightHand.position);
+                if (xGesture.IsNearWristIntersection(leftHand.position, rightHand.position, intersectionPoint))
+                {
+                    // Ejecuta la acción de "Volver a la pestaña anterior"
+                    Debug.Log("Volver a la pestaña anterior");
+                }
+            }
+            */
 
             //Obtenemos la mano que queremos trackear
             Hand hand = frame.Hand(handId);
@@ -98,17 +119,16 @@ public class MainController : MonoBehaviour
             
             
             // Detectar cambio en el estado del puño
-            bool currentFistState = hand.GrabStrength == 1.0f;
-            if (currentFistState != prevFistState)
+            bool isHandOpen = hand.GrabStrength < 0.05f;  // Puedes ajustar este umbral según sea necesario
+            Debug.Log(isHandOpen);
+    
+            if (wasHandOpen && !isHandOpen)
             {
-                prevFistState = currentFistState;
-
-                // Simular clic izquierdo solo cuando el puño cambia de estado abierto a cerrado
-                if (currentFistState)
-                {
-                    SimularClickIzquierdo();
-                }
+                SimularClickIzquierdo();
             }
+
+            wasHandOpen = isHandOpen;// Solo realizar acciones cuando se detecta un cambio de estado de abierto a cerrado
+            Debug.Log(wasHandOpen);
             
             //Debug.Log(handWorldPos.ToString() + handScreenPos.ToString());
 
@@ -128,4 +148,11 @@ public class MainController : MonoBehaviour
 
         Debug.Log("Click!");
     }
+    /*
+    public Frame GetLeapFrame()
+    {
+        // Obtén el frame actual de Ultraleap
+        return leapProvider.CurrentFrame;
+    }
+    */
 }

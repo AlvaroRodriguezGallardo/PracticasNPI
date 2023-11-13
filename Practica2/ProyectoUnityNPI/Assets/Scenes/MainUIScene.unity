@@ -511,6 +511,9 @@ MonoBehaviour:
   DesktopTracker: {fileID: 1853710329}
   ScreentopTracker: {fileID: 513620994}
   HandsGameobject: {fileID: 1344100257}
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
+  intersectionThreshold: 0.1
 --- !u!4 &675988969
 Transform:
   m_ObjectHideFlags: 0
