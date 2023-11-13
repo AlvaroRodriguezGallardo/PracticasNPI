@@ -8,6 +8,7 @@ using UnityEngine.InputSystem.LowLevel;
 using Leap;
 using Leap.Unity;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.SceneManagement;
 
 public class MainController : MonoBehaviour
 {
@@ -30,14 +31,15 @@ public class MainController : MonoBehaviour
 
     int handId;
     bool handIdIsValid = false;
-    bool prevFistState = false;
     bool wasHandOpen = true;
     public Transform leftHand;
     public Transform rightHand;
-    //public float intersectionThreshold = 0.1f;
 
+    float lastGestureDetectionTime = 0f;
+    float gestureCooldown = 0.1f;  // Ajusta según sea necesario
 
-    //private X_Gesture xGesture;
+    private string previousScene;
+    public MenuController menuController;
 
     void Start()
     {
@@ -56,36 +58,23 @@ public class MainController : MonoBehaviour
                 leapProvider = ScreentopTracker.GetComponent<LeapProvider>();
                 break;
         }
+        if (menuController == null)
+        {
+            Debug.LogError("Asigna el controlador de menú en el Inspector.");
+        }
+
+        previousScene = SceneManager.GetActiveScene().name;
 
         //Cada vez que se detecte un nuevo frame, se llamará a la función OnUpdateFrame
         leapProvider.OnUpdateFrame += OnUpdateFrame;
-        //xGesture = new X_Gesture(this);
     }
 
     // Update is called once per frame
-    void Update()
+    void OnUpdateFrame(Frame frame)
     {
-        
-        //Muestra y esconde las manos al pulsar la tecla espacio
         if(Input.GetKeyDown(KeyCode.Space)){
             HandsGameobject.SetActive(!HandsGameobject.activeSelf);
         }
-
-        //Para testeo
-        /*
-        if(handIdIsValid){
-            Hand hand = leapProvider.CurrentFrame.Hand(handId);
-            if(hand.GrabStrength == 1.0f){
-                SimularClickIzquierdo();
-            }
-        }
-        */
-
-    }
-
-    void OnUpdateFrame(Frame frame)
-    {
-        
         //Comprobamos que se detecte alguna mano
         if(frame.Hands.Count == 0){
             handIdIsValid = false;
@@ -97,17 +86,7 @@ public class MainController : MonoBehaviour
                 handId = frame.Hands[0].Id;
                 handIdIsValid = true;
             }
-            /*
-            if (xGesture.DetectXGesture(frame))
-            {
-                Vector3 intersectionPoint = xGesture.CalculateIntersectionPoint(leftHand.position, rightHand.position);
-                if (xGesture.IsNearWristIntersection(leftHand.position, rightHand.position, intersectionPoint))
-                {
-                    // Ejecuta la acción de "Volver a la pestaña anterior"
-                    Debug.Log("Volver a la pestaña anterior");
-                }
-            }
-            */
+
 
             //Obtenemos la mano que queremos trackear
             Hand hand = frame.Hand(handId);
@@ -119,24 +98,39 @@ public class MainController : MonoBehaviour
             
             
             // Detectar cambio en el estado del puño
-            bool isHandOpen = hand.GrabStrength < 0.05f;  // Puedes ajustar este umbral según sea necesario
-            Debug.Log(isHandOpen);
+            bool isHandOpen = hand.GrabStrength < 0.8f;  // Puedes ajustar este umbral según sea necesario
     
             if (wasHandOpen && !isHandOpen)
             {
-                SimularClickIzquierdo();
+                if (DetectGestoPersonalizado(hand))
+                {
+                    // Solo realizar la acción si el gesto comienza y ha pasado suficiente tiempo desde la última detección
+                    if (Time.time - lastGestureDetectionTime > gestureCooldown)
+                    {
+                        // Realizar la acción de volver al menú anterior
+                        menuController.RetrocederAMenuAnterior();
+
+                        // Actualizar el estado de la detección y el tiempo
+                        lastGestureDetectionTime = Time.time;
+                    }
+                }
+                else
+                {
+                    SimularClickIzquierdo();
+                }
             }
 
-            wasHandOpen = isHandOpen;// Solo realizar acciones cuando se detecta un cambio de estado de abierto a cerrado
-            Debug.Log(wasHandOpen);
             
-            //Debug.Log(handWorldPos.ToString() + handScreenPos.ToString());
+
+            wasHandOpen = isHandOpen;// Solo realizar acciones cuando se detecta un cambio de estado de abierto a cerrado
+
+            
 
         }
 
 
-
     }
+
 
     public void SimularClickIzquierdo()
     {
@@ -145,14 +139,34 @@ public class MainController : MonoBehaviour
         InputState.Change( Mouse.current, mouseState);
         //InputSystem.Update();
 
-
         Debug.Log("Click!");
     }
-    /*
-    public Frame GetLeapFrame()
+
+    bool DetectGestoPersonalizado(Hand hand)
     {
-        // Obtén el frame actual de Ultraleap
-        return leapProvider.CurrentFrame;
+        // Verifica si el puño está cerrado
+        bool isHandClosed = hand.GrabStrength > 0.8f;
+        Debug.Log(isHandClosed);
+
+        // Verifica si el pulgar está abierto
+        bool isThumbOpen = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended;
+        Debug.Log(isThumbOpen);
+
+        // Verifica si el pulgar está apuntando hacia la izquierda
+        Vector3 thumbDirection = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
+        Debug.Log(thumbDirection);
+        bool isThumbPointingLeft = thumbDirection.x < -0.6f;  // Ajusta según sea necesario
+
+        // Combina las condiciones según tus criterios
+        return isHandClosed && isThumbOpen && isThumbPointingLeft;
+    }
+
+
+    /*public void VolverAlMenuAnterior()
+    {
+        // Carga la escena anterior
+        SceneManager.LoadScene(previousScene);
     }
     */
+    
 }
