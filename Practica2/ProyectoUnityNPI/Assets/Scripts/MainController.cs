@@ -34,12 +34,9 @@ public class MainController : MonoBehaviour
     bool wasHandOpen = true;
     public Transform leftHand;
     public Transform rightHand;
-
     float lastGestureDetectionTime = 0f;
-    float gestureCooldown = 0.1f;  // Ajusta según sea necesario
+    float gestureCooldown = 1.5f;  // Ajusta según sea n
 
-    private string previousScene;
-    public MenuController menuController;
 
     void Start()
     {
@@ -58,12 +55,6 @@ public class MainController : MonoBehaviour
                 leapProvider = ScreentopTracker.GetComponent<LeapProvider>();
                 break;
         }
-        if (menuController == null)
-        {
-            Debug.LogError("Asigna el controlador de menú en el Inspector.");
-        }
-
-        previousScene = SceneManager.GetActiveScene().name;
 
         //Cada vez que se detecte un nuevo frame, se llamará a la función OnUpdateFrame
         leapProvider.OnUpdateFrame += OnUpdateFrame;
@@ -98,33 +89,23 @@ public class MainController : MonoBehaviour
             
             
             // Detectar cambio en el estado del puño
-            bool isHandOpen = hand.GrabStrength < 0.8f;  // Puedes ajustar este umbral según sea necesario
+            bool isHandOpen = hand.GrabStrength < 0.95f;  // Puedes ajustar este umbral según sea necesario
     
             if (wasHandOpen && !isHandOpen)
             {
-                if (DetectGestoPersonalizado(hand))
-                {
-                    // Solo realizar la acción si el gesto comienza y ha pasado suficiente tiempo desde la última detección
+                if (!DetectGestoPersonalizado())
+                {                
                     if (Time.time - lastGestureDetectionTime > gestureCooldown)
                     {
-                        // Realizar la acción de volver al menú anterior
-                        menuController.RetrocederAMenuAnterior();
-
+                        // Realizar la acción de clicar
+                        SimularClickIzquierdo();
                         // Actualizar el estado de la detección y el tiempo
                         lastGestureDetectionTime = Time.time;
                     }
                 }
-                else
-                {
-                    SimularClickIzquierdo();
-                }
-            }
+            }   
 
-            
-
-            wasHandOpen = isHandOpen;// Solo realizar acciones cuando se detecta un cambio de estado de abierto a cerrado
-
-            
+            wasHandOpen = isHandOpen;// Solo realizar acciones cuando se detecta un cambio de estado de abierto a cerrado            
 
         }
 
@@ -142,10 +123,12 @@ public class MainController : MonoBehaviour
         Debug.Log("Click!");
     }
 
-    bool DetectGestoPersonalizado(Hand hand)
+    public bool DetectGestoPersonalizado()
     {
+        Frame frame = leapProvider.CurrentFrame;
+        Hand hand = frame.Hand(handId);
         // Verifica si el puño está cerrado
-        bool isHandClosed = hand.GrabStrength > 0.8f;
+        bool isHandClosed = hand.GrabStrength > 0.95f;
         Debug.Log(isHandClosed);
 
         // Verifica si el pulgar está abierto
@@ -162,11 +145,5 @@ public class MainController : MonoBehaviour
     }
 
 
-    /*public void VolverAlMenuAnterior()
-    {
-        // Carga la escena anterior
-        SceneManager.LoadScene(previousScene);
-    }
-    */
-    
+
 }

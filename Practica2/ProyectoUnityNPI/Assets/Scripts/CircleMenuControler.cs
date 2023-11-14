@@ -22,11 +22,16 @@ public class CircleMenuControler : MonoBehaviour
     public float radious = 1000; //Radio del circulo que forman los botones, en pixeles.
     public GameObject buttonPrefab; //
     public List<ButtonStruct> buttonsProperties; //Las propiedades que tendrá cada botón
+    public UnityEvent accionesGestoVolver;
+    private MainController mainController;
+    float lastGestureDetectionTime = 0f;
+    float gestureCooldown = 1.5f;  // Ajusta según sea necesario
+    
 
     // Start is called before the first frame update
     void Start()
     {
-
+        mainController = FindObjectOfType<MainController>();
         //Recorremos la lista con las propiedades de cada botón
         for(int i = 0; i < buttonsProperties.Count; ++i){
 
@@ -53,6 +58,15 @@ public class CircleMenuControler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(mainController.DetectGestoPersonalizado()){
+            if (Time.time - lastGestureDetectionTime > gestureCooldown)
+            {
+                Debug.Log("Deberia volver hacia atras");
+                // Realizar la acción de volver al menú anterior
+                accionesGestoVolver.Invoke();
+                // Actualizar el estado de la detección y el tiempo
+                lastGestureDetectionTime = Time.time;
+            }
+        }
     }
 }
