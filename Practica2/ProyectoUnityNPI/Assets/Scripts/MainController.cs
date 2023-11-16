@@ -41,6 +41,7 @@ public class MainController : MonoBehaviour
     void Start()
     {
 
+        Screen.SetResolution(2160, 3840, FullScreenMode.FullScreenWindow); 
         handIdIsValid = false;
 
         //Seleccionamos el modo de trackeo
