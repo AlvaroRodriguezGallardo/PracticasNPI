@@ -66,22 +66,12 @@ public class MainController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space)){
             HandsGameobject.SetActive(!HandsGameobject.activeSelf);
         }
+
+        //Obtenemos la mano que queremos trackear
+        Hand hand = GetCurrentHand(frame);
         //Comprobamos que se detecte alguna mano
-        if(frame.Hands.Count == 0){
-            handIdIsValid = false;
-        }
-        else{
-
-            //Si no teniamos alguna mano guardada de antemano, guardamos una
-            if(!handIdIsValid || frame.Hand(handId) == null){
-                handId = frame.Hands[0].Id;
-                handIdIsValid = true;
-            }
-
-
-            //Obtenemos la mano que queremos trackear
-            Hand hand = frame.Hand(handId);
-
+        if(hand != null){
+        
             //Movemos el cursor a la palma de la mano
             Vector3 handWorldPos = hand.PalmPosition;
             Vector2 handScreenPos = Camera.main.WorldToScreenPoint(handWorldPos);
@@ -126,24 +116,51 @@ public class MainController : MonoBehaviour
     public bool DetectGestoPersonalizado()
     {
         Frame frame = leapProvider.CurrentFrame;
-        Hand hand = frame.Hand(handId);
-        // Verifica si el puño está cerrado
-        bool isHandClosed = hand.GrabStrength > 0.95f;
-        Debug.Log(isHandClosed);
+        Hand hand = GetCurrentHand(frame);
 
-        // Verifica si el pulgar está abierto
-        bool isThumbOpen = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended;
-        Debug.Log(isThumbOpen);
+        if(hand != null){
+            // Verifica si el puño está cerrado
+            bool isHandClosed = hand.GrabStrength > 0.95f;
+            Debug.Log(isHandClosed);
 
-        // Verifica si el pulgar está apuntando hacia la izquierda
-        Vector3 thumbDirection = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
-        Debug.Log(thumbDirection);
-        bool isThumbPointingLeft = thumbDirection.x < -0.6f;  // Ajusta según sea necesario
+            // Verifica si el pulgar está abierto
+            bool isThumbOpen = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended;
+            Debug.Log(isThumbOpen);
 
-        // Combina las condiciones según tus criterios
-        return isHandClosed && isThumbOpen && isThumbPointingLeft;
+            // Verifica si el pulgar está apuntando hacia la izquierda
+            Vector3 thumbDirection = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
+            Debug.Log(thumbDirection);
+            bool isThumbPointingLeft = thumbDirection.x < -0.6f;  // Ajusta según sea necesario
+
+            // Combina las condiciones según tus criterios
+            return isHandClosed && isThumbOpen && isThumbPointingLeft;
+        }
+        else return false;
+    }
+
+    Hand GetCurrentHand(Frame frame){
+
+        //Comprobamos que se detecte alguna mano
+        if(frame.Hands.Count == 0){
+            handIdIsValid = false;
+            return null;
+        }
+        else{
+
+            //Si no teniamos alguna mano guardada de antemano, guardamos una
+            if(!handIdIsValid || frame.Hand(handId) == null){
+                handId = frame.Hands[0].Id;
+                handIdIsValid = true;
+            }
+
+            //Obtenemos la mano que queremos trackear
+            return frame.Hand(handId);
+        
+        }
+    
     }
 
 
 
 }
+
