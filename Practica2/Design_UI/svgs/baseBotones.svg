@@ -26,15 +26,15 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
-     inkscape:zoom="0.51213161"
-     inkscape:cx="139.61255"
-     inkscape:cy="580.90537"
+     inkscape:zoom="1.0242632"
+     inkscape:cx="275.80801"
+     inkscape:cy="648.75902"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="1920"
      inkscape:window-y="32"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g7" />
+     inkscape:current-layer="svg1" />
   <defs
      id="defs1" />
   <g
@@ -184,4 +184,18 @@
          cx="59.742496" />
     </g>
   </g>
+  <rect
+     style="display:inline;fill:#d0f3fe;fill-opacity:1;stroke:#d0f3fe;stroke-width:1.81529;stroke-dasharray:none;stroke-opacity:0"
+     id="rect12"
+     width="150.20949"
+     height="114.6375"
+     x="-39.151993"
+     y="96.255524"
+     ry="51.875145"
+     rx="63.510258"
+     transform="matrix(0.99377357,0,0,1.3021412,70.746768,-15.986365)"
+     inkscape:label="cosaAzul"
+     inkscape:export-filename="../../ProyectoUnityNPI/Assets/Images/Final/cosaAzul.png"
+     inkscape:export-xdpi="168.12485"
+     inkscape:export-ydpi="168.12485" />
 </svg>
