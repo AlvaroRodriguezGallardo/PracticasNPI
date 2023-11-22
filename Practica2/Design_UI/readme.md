@@ -4,20 +4,32 @@ This is the final UI design, but I have to ask to Marcelino if he likes it. Besi
 
 ### 1- Main menu
 
-![main_menu](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/cf2f25b9-5275-4c59-b2a3-ee96c6baccf8)
+![Frame 1](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/c6ddd8d7-44b9-46d6-acd4-f38e1bba57bf)
 
 ### 2- QR
 
-![qr](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/9b460894-0815-478f-810a-c490ba521bf4)
+![Frame 4](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/827f9266-9bd0-4e93-bba4-bb4dc90942be)
 
 ### 3- Study guides
 
-![study_guides](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/cbaf835e-4680-46d2-a1fc-9c33a66f990f)
+![Frame 5](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/375e8744-6438-492f-a2ed-8ace690fe3c5)
 
 ### 4- Teacher's information
 
-![teacher_info](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/71822aba-7442-4e8d-b7c9-b2641cee44e6)
+Here we have the frame with all information.
+
+![Frame 6](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/8ae45883-6765-4ffe-97d2-5461883f3294)
+
+Here I show a solution in which we need to complement with Android project.
+
+![Frame 9](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/9cd452c0-3c12-4721-a6f9-29fee2c5ef45)
 
 ### 5- Menu
 
-![menu](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/dc661b8b-2aa9-4c40-97f1-aa32b93a09d9)
+The first design is
+
+![Frame 7](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/a9f38a83-929b-4f16-b755-03453260bc55)
+
+However, I propose this one. I think it has a better UI design
+
+![Frame 10](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/40068aa3-03f8-4fd7-a3f3-c4414114becd)
