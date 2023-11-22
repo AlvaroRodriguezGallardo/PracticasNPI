@@ -1,6 +1,8 @@
 Here we will be uploading all referenced with UI/UX design of our project
 
-This is the final UI design, but I have to ask to Marcelino if he likes it. Besides, there are not frames about tutorial (I do not know which gestures are used) and departments list (generally, more than five options is horrible in UI design).
+This is the final UI design, but I have to ask to Marcelino if he likes it. Besides, there are not frames about tutorial (I do not know which gestures are used) and departments list (generally, more than five options is horrible in UI design). I think we have make a scroll.
+
+Note: QR image is small because of the size of screen where this software will be deployed.
 
 ### 1- Main menu
 
