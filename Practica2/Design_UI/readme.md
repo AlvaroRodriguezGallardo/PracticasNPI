@@ -10,7 +10,7 @@ Note: QR image is small because of the size of screen where this software will b
 
 ### 2- QR
 
-![Frame 4](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/827f9266-9bd0-4e93-bba4-bb4dc90942be)
+![Frame 4 (1)](https://github.com/AlvaroRodriguezGallardo/PracticasNPI/assets/80212790/a72707d9-640f-48b6-ab66-1edd9db5b9f6)
 
 ### 3- Study guides
 
