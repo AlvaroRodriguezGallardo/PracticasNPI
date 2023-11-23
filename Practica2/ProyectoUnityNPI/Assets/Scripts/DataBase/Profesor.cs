@@ -10,6 +10,9 @@ public struct StructProfesor{
     public string telefono;
     public Sprite foto;
 
+    [SerializeField]
+    public Horario horarioClases;
+
 }
 
 
