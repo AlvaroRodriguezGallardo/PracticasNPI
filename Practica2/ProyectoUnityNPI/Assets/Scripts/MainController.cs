@@ -118,6 +118,8 @@ public class MainController : MonoBehaviour
     {
         Frame frame = leapProvider.CurrentFrame;
         Hand hand = GetCurrentHand(frame);
+        float currentposition = hand.PalmPosition.x;
+        Debug.Log(currentposition);
 
         if(hand != null){
             // Verifica si el puño está cerrado
@@ -132,6 +134,8 @@ public class MainController : MonoBehaviour
             Vector3 thumbDirection = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
             Debug.Log(thumbDirection);
             bool isThumbPointingLeft = thumbDirection.x < -0.6f;  // Ajusta según sea necesario
+
+            
 
             // Combina las condiciones según tus criterios
             return isHandClosed && isThumbOpen && isThumbPointingLeft;
