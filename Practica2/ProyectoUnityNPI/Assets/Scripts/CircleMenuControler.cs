@@ -41,8 +41,8 @@ public class CircleMenuControler : MonoBehaviour
             GameObject nuevoObjeto = Instantiate(buttonPrefab, Vector3.zero, Quaternion.identity, transform);
 
             //Calculamos su posición, y se la aplicamos
-            Vector2 buttonPosition = new Vector2(radious * Mathf.Sin(2f * Mathf.PI * i / buttonsProperties.Count + 2f * Mathf.PI * 0.5f / buttonsProperties.Count), 
-                                    YMultiplier * radious * Mathf.Cos(2f * Mathf.PI * i / buttonsProperties.Count + 2f * Mathf.PI * 0.5f / buttonsProperties.Count));
+            Vector2 buttonPosition = new Vector2(radious * Mathf.Sin(-2f * Mathf.PI * i / buttonsProperties.Count + 2f * Mathf.PI * 0.5f / buttonsProperties.Count), 
+                                    YMultiplier * radious * Mathf.Cos(-2f * Mathf.PI * i / buttonsProperties.Count + 2f * Mathf.PI * 0.5f / buttonsProperties.Count));
             nuevoObjeto.GetComponent<RectTransform>().anchoredPosition = buttonPosition;
 
             //Cambiamos el texto del botón
