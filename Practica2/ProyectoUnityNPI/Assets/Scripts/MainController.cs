@@ -36,6 +36,9 @@ public class MainController : MonoBehaviour
     public Transform rightHand;
     float lastGestureDetectionTime = 0f;
     float gestureCooldown = 1.5f;  // Ajusta según sea n
+    Vector3 previousHandPosition;
+    bool isGestoIniciado = false;
+    float gestoStartTime = 0f;
 
 
     void Start()
@@ -118,30 +121,85 @@ public class MainController : MonoBehaviour
     {
         Frame frame = leapProvider.CurrentFrame;
         Hand hand = GetCurrentHand(frame);
-        float currentposition = hand.PalmPosition.x;
-        Debug.Log(currentposition);
 
-        if(hand != null){
+        if (hand != null)
+        {
             // Verifica si el puño está cerrado
             bool isHandClosed = hand.GrabStrength > 0.95f;
-            Debug.Log(isHandClosed);
 
             // Verifica si el pulgar está abierto
             bool isThumbOpen = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended;
-            Debug.Log(isThumbOpen);
 
             // Verifica si el pulgar está apuntando hacia la izquierda
             Vector3 thumbDirection = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
-            Debug.Log(thumbDirection);
-            bool isThumbPointingLeft = thumbDirection.x < -0.6f;  // Ajusta según sea necesario
+            bool isThumbPointingLeft = thumbDirection.x < -0.6f;
 
-            
+            // Verifica la transición rápida hacia la izquierda y luego hacia la derecha después de cerrar el puño
+            if (isHandClosed && isThumbOpen && isThumbPointingLeft)
+            {
+                if (!isGestoIniciado)
+                {
+                    // Si el gesto no ha comenzado, inicia el seguimiento del tiempo y la posición
+                    gestoStartTime = Time.time;
+                    previousHandPosition = hand.PalmPosition;
+                    isGestoIniciado = true;
+                }
+                else
+                {
+                    // Si el gesto ha comenzado, verifica la transición rápida y la traslación de la mano
+                    float gestoDuration = Time.time - gestoStartTime;
+                    Vector3 currentHandPosition = hand.PalmPosition;
+                    float translationX = currentHandPosition.x - previousHandPosition.x;
 
-            // Combina las condiciones según tus criterios
-            return isHandClosed && isThumbOpen && isThumbPointingLeft;
+                    Debug.Log("currentHandPosition: " + translationX);
+                    Debug.Log("gestoDuration: " + gestoDuration);
+
+                    if (gestoDuration < 0.5f && translationX < -0.05f)  // Ajusta según sea necesario
+                    {
+                        // Restablece el estado del gesto y devuelve true
+                        isGestoIniciado = false;
+                        return true;
+                    }
+                }
+            }
+            else
+            {
+                // Si el pulgar no está apuntando a la izquierda, reinicia el estado del gesto
+                isGestoIniciado = false;
+            }
+
+            return false;
         }
-        else return false;
+        else return false;
+    }
+
+    public bool DetectGestoComedor(){
+        Frame frame = leapProvider.CurrentFrame;
+        Hand hand = GetCurrentHand(frame);
+
+        if (hand != null)
+        {
+            // Obtén la dirección del pulgar
+            Vector3 thumbDirection = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
+
+            // Obtén la dirección del índice
+            Vector3 indexDirection = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
+
+            // Puedes comparar las direcciones según tus criterios, por ejemplo, verificar si la dirección del índice rota hacia la izquierda
+            bool isRotationLeft = Vector3.Dot(Vector3.Cross(indexDirection, thumbDirection), hand.PalmNormal) < 0;
+
+            // Comprueba que el pulgar está mirando hacia arriba
+            bool thumbIsFacingUp = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended;
+
+            // Puedes ajustar el umbral según sea necesario
+            return isRotationLeft && thumbIsFacingUp;
+        }
+        else
+        {
+            return false;
+        }
     }
+
 
     Hand GetCurrentHand(Frame frame){
 
