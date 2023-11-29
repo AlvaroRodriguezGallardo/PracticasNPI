@@ -10,9 +10,6 @@ public class MenuHorariosController : MonoBehaviour
     public GameObject menuQRObject;
     public GameObject scheduleObject;
 
-
-    public TextMeshProUGUI obLunes, obMartes, obMiercoles, obJueves, obViernes;
-
     bool lookingforQR;
     QRScanner qrScanner;
 
@@ -22,13 +19,6 @@ public class MenuHorariosController : MonoBehaviour
 
     void Start(){
         qrScanner = menuQRObject.GetComponentInChildren<QRScanner>();
-
-        obLunes = scheduleObject.transform.Find("Lunes").Find("MainText").GetComponent<TextMeshProUGUI>();
-        obMartes = scheduleObject.transform.Find("Martes").Find("MainText").GetComponent<TextMeshProUGUI>();
-        obMiercoles = scheduleObject.transform.Find("Miercoles").Find("MainText").GetComponent<TextMeshProUGUI>();
-        obJueves = scheduleObject.transform.Find("Jueves").Find("MainText").GetComponent<TextMeshProUGUI>();
-        obViernes = scheduleObject.transform.Find("Viernes").Find("MainText").GetComponent<TextMeshProUGUI>();
-
     }
     void OnEnable()
     {
@@ -46,7 +36,7 @@ public class MenuHorariosController : MonoBehaviour
         if(lookingforQR){
 
             scannedText = qrScanner.Scan();
-            if(scannedText != null && BDAlumnos.Exists(scannedText)){
+            if(scannedText != null){
 
                 lookingforQR = false;
                 ShowSchedule(scannedText);
@@ -59,53 +49,13 @@ public class MenuHorariosController : MonoBehaviour
 
     void ShowSchedule(string id){
 
-        StructAlumnos infoAlumno = BDAlumnos.Get(id);
-        
         menuQRObject.SetActive(false);
         scheduleObject.SetActive(true);
 
-        scheduleObject.GetComponentInChildren<TextMeshProUGUI>().text = "Horario de " + infoAlumno.nombre;
+        //Temporal para testear
+        scheduleObject.GetComponentInChildren<TextMeshProUGUI>().text = "Horario de " + id;
 
-        string aux = "";
-
-        foreach(Horario.SlotHorario slot in infoAlumno.horarios.GetDia(Horario.DiaSemana.Lunes)){
-
-            aux += slot.inicio.toString() + "-" + slot.fin.toString() + "\n" + slot.nombreClase + "\n\n";
-
-        }
-        obLunes.text = aux;
-
-        aux = "";
-        foreach(Horario.SlotHorario slot in infoAlumno.horarios.GetDia(Horario.DiaSemana.Martes)){
-
-            aux += slot.inicio.toString() + "-" + slot.fin.toString() + "\n" + slot.nombreClase + "\n\n";
-
-        }
-        obMartes.text = aux;
-
-        aux = "";
-        foreach(Horario.SlotHorario slot in infoAlumno.horarios.GetDia(Horario.DiaSemana.Miercoles)){
-
-            aux += slot.inicio.toString() + "-" + slot.fin.toString() + "\n" + slot.nombreClase + "\n\n";
-
-        }
-        obMiercoles.text = aux;
-
-        aux = "";
-        foreach(Horario.SlotHorario slot in infoAlumno.horarios.GetDia(Horario.DiaSemana.Jueves)){
-
-            aux += slot.inicio.toString() + "-" + slot.fin.toString() + "\n" + slot.nombreClase + "\n\n";
-
-        }
-        obJueves.text = aux;
-
-        aux = "";
-        foreach(Horario.SlotHorario slot in infoAlumno.horarios.GetDia(Horario.DiaSemana.Viernes)){
-
-            aux += slot.inicio.toString() + "-" + slot.fin.toString() + "\n" + slot.nombreClase + "\n\n";
-
-        }
-        obViernes.text = aux;
+        Debug.Log("Mostrando horario " + id.ToString());
 
     }
 }

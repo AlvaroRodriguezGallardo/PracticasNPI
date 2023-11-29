@@ -29,9 +29,6 @@ public class BDProfesores
         profesores.Remove(id);
     }
 
-    public static bool Exists(string id){
-        return profesores.ContainsKey(id);
-    }
     public static StructProfesor Get(string id){
         return profesores[id];
     }

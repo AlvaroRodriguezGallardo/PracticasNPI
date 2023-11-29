@@ -1,0 +1,14 @@
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\bin\Debug\net8.0\BD_NPI.exe
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\bin\Debug\net8.0\BD_NPI.deps.json
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\bin\Debug\net8.0\BD_NPI.runtimeconfig.json
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\bin\Debug\net8.0\BD_NPI.dll
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\bin\Debug\net8.0\BD_NPI.pdb
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\obj\Debug\net8.0\BD_NPI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\obj\Debug\net8.0\BD_NPI.AssemblyInfoInputs.cache
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\obj\Debug\net8.0\BD_NPI.AssemblyInfo.cs
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\obj\Debug\net8.0\BD_NPI.csproj.CoreCompileInputs.cache
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\obj\Debug\net8.0\BD_NPI.dll
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\obj\Debug\net8.0\refint\BD_NPI.dll
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\obj\Debug\net8.0\BD_NPI.pdb
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\obj\Debug\net8.0\BD_NPI.genruntimeconfig.cache
+C:\Users\Carlos\OneDrive\Documentos\UGR\UGR - Año 4\NPI Año 4\Práctica_2\BD_NPI\obj\Debug\net8.0\ref\BD_NPI.dll

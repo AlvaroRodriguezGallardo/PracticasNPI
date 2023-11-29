@@ -14,21 +14,18 @@ public struct StructAlumnos{
 public class BDAlumnos
 {
 
-    static Dictionary<string, StructAlumnos> alumnos = new Dictionary<string, StructAlumnos>();
+    static Dictionary<string, StructAlumnos> profesores = new Dictionary<string, StructAlumnos>();
 
     public static void Insertar(string id, StructAlumnos datos){
-        alumnos.Add(id, datos);
+        profesores.Add(id, datos);
     }
 
     public static void Eliminar(string id){
-        alumnos.Remove(id);
+        profesores.Remove(id);
     }
 
-    public static bool Exists(string id){
-        return alumnos.ContainsKey(id);
-    }
     public static StructAlumnos Get(string id){
-            return alumnos[id];
+        return profesores[id];
     }
    
 }
