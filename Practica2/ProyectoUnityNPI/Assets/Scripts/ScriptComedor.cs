@@ -4,120 +4,79 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using TMPro;
-using System.IO;
 
 public class GeneradorBotones : MonoBehaviour
 {
-    [System.Serializable]
-    public struct ButtonStruct
-    {
+    [System.Serializable]   //Hacerlo serializable permite cambiar los valores de las instancias de esta clase desde el editor
+    public struct ButtonStruct{
         public string nombreDia;
-        public string nombreTipoMenu;
-        public UnityEvent onClick;
+        public Sprite icon;
+        public UnityEvent onClick; //Almacena las funciones que se ejecutan al pulsar un boton
     }
+    public GameObject botonPrefab; // Prefab del botón
+    public Transform contenedorBotones; // Contenedor para los botones
 
-    public GameObject botonPrefab;
-    public Transform contenedorBotones;
-
-    private List<string> diasSemana = new List<string> { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
-    private List<string> tiposMenu = new List<string> { "Normal", "Vegetariano", "Celiaco" };
-    private int tipoMenuSeleccionado = 0;
-    private int diaSemanaSeleccionado = 0;
-    public GameObject menu;
-
-    // Lista de objetos asociados a cada combinación de día y menú
-    public List<GameObject> objetosAsociados;
+    // Lista de información de botones serializables
+    private List<string> diasSemana = new List<string> { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" };
+    private List<string> tiposMenu = new List<string> { "Normal", "Vegetariano", "Celíaco" };
+    public List<ButtonStruct> listaDiasSemana;
+    public List<ButtonStruct> listaTiposMenu;
 
     void Start()
     {
-        Generarmenus();
+        // Generar los botones
         GenerarBotones();
     }
 
     void GenerarBotones()
     {
+        // Espaciado entre botones
         float espacioEntreBotones = 250f;
 
-        for (int i = 0; i < diasSemana.Count; ++i)
-        {
+        for(int i = 0; i < listaDiasSemana.Count; ++i){
+
+            //Creamos el botón, basándonos en el prefab
             GameObject nuevoBoton = Instantiate(botonPrefab, Vector3.zero, Quaternion.identity, transform);
 
-            Vector2 buttonPosition = new Vector2(espacioEntreBotones * i * 1.20f - 750f, -1200f);
+            //Calculamos su posición, y se la aplicamos
+            Vector2 buttonPosition = new Vector2(espacioEntreBotones*i - 650f, -1000f);
             nuevoBoton.GetComponent<RectTransform>().anchoredPosition = buttonPosition;
 
+            //Cambiamos el texto del botón
             nuevoBoton.GetComponentInChildren<TextMeshProUGUI>().text = diasSemana[i];
 
-            int diaIndex = i;
+            int diaIndex = i; // Variable local para capturar el valor correcto en el cierre
             nuevoBoton.GetComponent<Button>().onClick.AddListener(() => BotonClicDiaSemana(diaIndex));
+
         }
 
-        for (int i = 0; i < tiposMenu.Count; ++i)
-        {
+        for(int i = 0; i < listaTiposMenu.Count; ++i){
+
+            //Creamos el botón, basándonos en el prefab
             GameObject nuevoBoton = Instantiate(botonPrefab, Vector3.zero, Quaternion.identity, transform);
 
-            Vector2 buttonPosition = new Vector2(espacioEntreBotones * i * 1.20f - 350f, 400f);
+            //Calculamos su posición, y se la aplicamos
+            Vector2 buttonPosition = new Vector2(espacioEntreBotones*i - 250f, 600f);
             nuevoBoton.GetComponent<RectTransform>().anchoredPosition = buttonPosition;
 
+            //Cambiamos el texto del botón
             nuevoBoton.GetComponentInChildren<TextMeshProUGUI>().text = tiposMenu[i];
 
-            int menuIndex = i;
+            int menuIndex = i; // Variable local para capturar el valor correcto en el cierre
             nuevoBoton.GetComponent<Button>().onClick.AddListener(() => BotonClicTipoMenu(menuIndex));
+
         }
     }
 
+    // Función para manejar clics en los botones
     void BotonClicDiaSemana(int diaIndex)
     {
         Debug.Log("Se hizo clic en el botón del día: " + diasSemana[diaIndex]);
-
-        diaSemanaSeleccionado = diaIndex;
-
-        ActivarObjetoCorrespondiente();
+        // Aquí puedes agregar la lógica que deseas realizar cuando se hace clic en un botón.
     }
-
     void BotonClicTipoMenu(int menuIndex)
     {
         Debug.Log("Se hizo clic en el botón del tipo de menú: " + tiposMenu[menuIndex]);
-
-        tipoMenuSeleccionado = menuIndex;
-
-        ActivarObjetoCorrespondiente();
-    }
-
-    void ActivarObjetoCorrespondiente()
-    {
-        // Buscar el objeto asociado a la combinación de día y menú
-        string nombreObjeto = $"{diasSemana[diaSemanaSeleccionado]}_{tiposMenu[tipoMenuSeleccionado]}";
-        GameObject objetoAsociado = objetosAsociados.Find(obj => obj.name == nombreObjeto);
-
-        // Activar el objeto encontrado y desactivar los demás
-        foreach (var obj in objetosAsociados)
-        {
-            obj.SetActive(obj == objetoAsociado);
-        }
-    }
-
-    void Generarmenus()
-    {
-        // Asignar referencias a objetos asociados
-        objetosAsociados = new List<GameObject>();
-        for (int i = 0; i < diasSemana.Count; ++i)
-        {
-            for (int j = 0; j < tiposMenu.Count; ++j)
-            {
-                string nombreObjeto = $"{diasSemana[i]}_{tiposMenu[j]}";
-                GameObject objeto = GameObject.Find(nombreObjeto);
-
-                if (objeto != null)
-                {
-                    objetosAsociados.Add(objeto);
-                    objeto.SetActive(false);
-                }
-                else
-                {
-                    Debug.LogError($"Objeto {nombreObjeto} no encontrado.");
-                }
-            }
-        }
-        objetosAsociados[0].SetActive(true);
+        // Aquí puedes agregar la lógica que deseas realizar cuando se hace clic en un botón.
     }
 }
