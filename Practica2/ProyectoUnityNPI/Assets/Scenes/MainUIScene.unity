@@ -1035,10 +1035,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
@@ -1046,7 +1050,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1015061905}
     - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 675988968}
+    - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
@@ -1054,15 +1066,31 @@ PrefabInstance:
       value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetDesactivarTutorialConMovimiento
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: MainController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3633669195980421999, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3782810198297011414, guid: 4e82d32ee46d0f7078fc68172cc88927, type: 3}
@@ -7354,6 +7382,25 @@ MonoBehaviour:
   HandsGameobject: {fileID: 1344100257}
   leftHand: {fileID: 0}
   rightHand: {fileID: 0}
+  TiempoLimiteInactividad: 60
+  Tutorial: {fileID: 1015061905}
+  MainMenu: {fileID: 1608334603}
+  OtrosMenus:
+  - {fileID: 1232606108}
+  - {fileID: 897927572}
+  - {fileID: 1077623445}
+  - {fileID: 1248227979}
+  - {fileID: 1830616442}
+  - {fileID: 1841262054}
+  - {fileID: 1191059585}
+  - {fileID: 538461916}
+  - {fileID: 1382672655}
+  - {fileID: 364396730}
+  - {fileID: 838910406}
+  - {fileID: 1563733302}
+  - {fileID: 934881794}
+  - {fileID: 741895274}
+  - {fileID: 1915312006}
 --- !u!4 &675988969
 Transform:
   m_ObjectHideFlags: 0
@@ -14077,7 +14124,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1344100258
 Transform:
   m_ObjectHideFlags: 0
@@ -22832,7 +22879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1966907511
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28104,6 +28151,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 675988968}
+        m_TargetAssemblyTypeName: MainController, Assembly-CSharp
+        m_MethodName: SetDesactivarTutorialConMovimiento
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2118714291
 MonoBehaviour:

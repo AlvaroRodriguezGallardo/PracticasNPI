@@ -40,6 +40,14 @@ public class MainController : MonoBehaviour
     bool isGestoIniciado = false;
     float gestoStartTime = 0f;
 
+    public float TiempoLimiteInactividad;
+    public GameObject Tutorial, MainMenu;
+    public List<GameObject> OtrosMenus;
+
+    float tiempoInactividad = 0;
+    Vector3 lastMousePos;
+    bool desactivarTutorialConMovimiento = true;
+
 
     void Start()
     {
@@ -62,6 +70,36 @@ public class MainController : MonoBehaviour
 
         //Cada vez que se detecte un nuevo frame, se llamará a la función OnUpdateFrame
         leapProvider.OnUpdateFrame += OnUpdateFrame;
+
+        lastMousePos = Input.mousePosition;
+    }
+
+    void Update(){
+
+        //Todo esto sirve para activar el tutorial tras un tiempo de inactividad,
+        //y para desactivarlo cuando se detecte movimiento
+        if(Input.mousePosition != lastMousePos){
+            tiempoInactividad = 0;
+            if(desactivarTutorialConMovimiento)
+                Tutorial.SetActive(false);
+        }
+        else{
+            tiempoInactividad += Time.deltaTime;
+        }
+
+        if(tiempoInactividad >= TiempoLimiteInactividad){
+            Tutorial.SetActive(true);
+            MainMenu.SetActive(true);
+            
+            foreach(GameObject menu in OtrosMenus)
+                menu.SetActive(false);
+
+        }
+
+        lastMousePos = Input.mousePosition;
+        //Debug.Log(tiempoInactividad);
+
+
     }
 
     // Update is called once per frame
@@ -223,7 +261,9 @@ public class MainController : MonoBehaviour
     
     }
 
-
+    public void SetDesactivarTutorialConMovimiento(bool b){
+        desactivarTutorialConMovimiento = b;
+    }
 
 }
 
