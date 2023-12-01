@@ -8,6 +8,8 @@ using UnityEngine.InputSystem.LowLevel;
 using Leap;
 using Leap.Unity;
 using UnityEngine.InputSystem.UI;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MainController : MonoBehaviour
@@ -36,7 +38,7 @@ public class MainController : MonoBehaviour
     public Transform rightHand;
     float lastGestureDetectionTime = 0f;
     float gestureCooldown = 1.5f;  // Ajusta según sea n
-    Vector3 previousHandPosition;
+    public Vector3 previousHandPosition;
     bool isGestoIniciado = false;
     float gestoStartTime = 0f;
 
@@ -47,6 +49,9 @@ public class MainController : MonoBehaviour
     float tiempoInactividad = 0;
     Vector3 lastMousePos;
     bool desactivarTutorialConMovimiento = true;
+    bool areAllFingersExtended = false;
+    float fingerCheckCooldown = 0.5f; // Tiempo de espera antes de cambiar areAllFingersExtended
+    float fingerCheckTimer = 0f;
 
 
     void Start()
@@ -211,31 +216,75 @@ public class MainController : MonoBehaviour
         else return false;
     }
 
-    public bool DetectGestoComedor(){
+    public bool DetectGestoComedor()
+    {
         Frame frame = leapProvider.CurrentFrame;
         Hand hand = GetCurrentHand(frame);
 
         if (hand != null)
         {
-            // Obtén la dirección del pulgar
-            Vector3 thumbDirection = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
+            // Verifica que el pulgar esté extendido y apuntando hacia arriba
+            bool thumbIsFacingUp = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended && hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction.y > 0.5f;
 
-            // Obtén la dirección del índice
-            Vector3 indexDirection = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
+            // Verifica que los otros cuatro dedos estén extendidos
+            bool fingersAreExtended = true;
+            for (int i = 1; i < 5; i++)
+            {
+                fingersAreExtended &= hand.Fingers[i].IsExtended;
+            }
 
-            // Puedes comparar las direcciones según tus criterios, por ejemplo, verificar si la dirección del índice rota hacia la izquierda
-            bool isRotationLeft = Vector3.Dot(Vector3.Cross(indexDirection, thumbDirection), hand.PalmNormal) < 0;
-
-            // Comprueba que el pulgar está mirando hacia arriba
-            bool thumbIsFacingUp = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended;
+            // Obtén la dirección de los dedos índice, medio, anular y meñique
+            Vector3[] fingerDirections = new Vector3[4];
+            for (int i = 1; i < 5; i++)
+            {
+                fingerDirections[i - 1] = hand.Fingers[i].Bone(Bone.BoneType.TYPE_DISTAL).Direction.normalized;
+            }
 
             // Puedes ajustar el umbral según sea necesario
-            return isRotationLeft && thumbIsFacingUp;
+            bool fingersAreRotated = true;
+            for (int i = 0; i < 4; i++)
+            {
+                // Verifica que la dirección del dedo rota hacia el centro de la palma
+                fingersAreRotated &= Vector3.Dot(fingerDirections[i], hand.PalmNormal) > 0.5f;
+            }
+
+            // Combinar todas las condiciones según tus criterios
+            return thumbIsFacingUp && fingersAreExtended && fingersAreRotated;
         }
         else
         {
-            return false;
-        }
+            return false;
+        }
+    }
+
+
+    public bool DetectGestoScroll()
+    {
+        Frame frame = leapProvider.CurrentFrame;
+        Hand hand = GetCurrentHand(frame);
+
+        if (hand != null)
+        {
+            
+
+        // Verifica que los dedos pulgar, anular y meñique estén cerrados
+        bool areThumbRingPinkyClosed = !hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended
+            && !hand.Fingers[(int)Finger.FingerType.TYPE_RING].IsExtended
+            && !hand.Fingers[(int)Finger.FingerType.TYPE_PINKY].IsExtended;
+
+        // Verifica que los dedos índice y corazón estén extendidos
+        bool areIndexMiddleExtended = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].IsExtended
+            && hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].IsExtended;
+
+        // Si todos los dedos están extendidos y se cumplen las condiciones específicas
+        if (areThumbRingPinkyClosed && areIndexMiddleExtended)
+        {
+            return true;
+        }
+            
+        }
+
+        return false;
     }
 
 
@@ -264,6 +313,60 @@ public class MainController : MonoBehaviour
     public void SetDesactivarTutorialConMovimiento(bool b){
         desactivarTutorialConMovimiento = b;
     }
+
+    public void SimularClickSostenido(bool mantenerPresionado)
+    {
+        var mouseButton = Mouse.current.leftButton;
+
+        // Simula clic pulsado
+        if (mantenerPresionado)
+        {
+            InputSystem.QueueStateEvent(mouseButton, new InputStateBlock
+            {
+                buttons = 1, // Simula un botón presionado
+            });
+            InputSystem.Update();
+
+            // Espera un tiempo (ajusta según sea necesario)
+            float tiempoMantenimientoClick = 2f; // 2 segundos como ejemplo
+            float tiempoInicio = Time.time;
+            while (Time.time - tiempoInicio < tiempoMantenimientoClick)
+            {
+                InputSystem.Update(); // Asegura la actualización del sistema de entrada durante el bucle
+            }
+        }
+        else
+        {
+            // Simula clic liberado
+            InputSystem.QueueStateEvent(mouseButton, new InputStateBlock
+            {
+                buttons = 0, // Simula el botón liberado
+            });
+            InputSystem.Update();
+        }
+
+        Debug.Log("Clic sostenido!");
+    }
+
+
+
+
+
+
+    /*
+    bool AreAllFingersExtended(Hand hand)
+    {
+        // Verifica que todos los dedos estén extendidos
+        for (int i = 0; i < 5; i++)
+        {
+            if (!hand.Fingers[i].IsExtended)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    */
 
 }
 

@@ -81,5 +81,16 @@ public class CircleMenuControler : MonoBehaviour
                 lastGestureDetectionTime = Time.time;
             }
         }
+        if(mainController.DetectGestoScroll()){
+            if (Time.time - lastGestureDetectionTime > gestureCooldown)
+            {
+                Debug.Log("Deberia scroll");
+                // Realizar la acción de volver al menú anterior
+                //accionesGestoComedor.Invoke();
+                // Actualizar el estado de la detección y el tiempo
+                lastGestureDetectionTime = Time.time;
+            }
+        }
+        
     }
 }
