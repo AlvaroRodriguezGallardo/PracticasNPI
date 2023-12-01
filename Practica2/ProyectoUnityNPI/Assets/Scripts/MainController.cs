@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
@@ -9,7 +10,6 @@ using Leap;
 using Leap.Unity;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.InputSystem.Controls;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MainController : MonoBehaviour
@@ -53,11 +53,10 @@ public class MainController : MonoBehaviour
     float fingerCheckCooldown = 0.5f; // Tiempo de espera antes de cambiar areAllFingersExtended
     float fingerCheckTimer = 0f;
 
-
     void Start()
     {
 
-        Screen.SetResolution(2160, 3840, FullScreenMode.FullScreenWindow); 
+        Screen.SetResolution(2160, 3840, FullScreenMode.FullScreenWindow);
         handIdIsValid = false;
 
         //Seleccionamos el modo de trackeo
@@ -79,24 +78,28 @@ public class MainController : MonoBehaviour
         lastMousePos = Input.mousePosition;
     }
 
-    void Update(){
+    void Update()
+    {
 
         //Todo esto sirve para activar el tutorial tras un tiempo de inactividad,
         //y para desactivarlo cuando se detecte movimiento
-        if(Input.mousePosition != lastMousePos){
+        if (Input.mousePosition != lastMousePos)
+        {
             tiempoInactividad = 0;
-            if(desactivarTutorialConMovimiento)
+            if (desactivarTutorialConMovimiento)
                 Tutorial.SetActive(false);
         }
-        else{
+        else
+        {
             tiempoInactividad += Time.deltaTime;
         }
 
-        if(tiempoInactividad >= TiempoLimiteInactividad){
+        if (tiempoInactividad >= TiempoLimiteInactividad)
+        {
             Tutorial.SetActive(true);
             MainMenu.SetActive(true);
-            
-            foreach(GameObject menu in OtrosMenus)
+
+            foreach (GameObject menu in OtrosMenus)
                 menu.SetActive(false);
 
         }
@@ -110,28 +113,30 @@ public class MainController : MonoBehaviour
     // Update is called once per frame
     void OnUpdateFrame(Frame frame)
     {
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
             HandsGameobject.SetActive(!HandsGameobject.activeSelf);
         }
 
         //Obtenemos la mano que queremos trackear
         Hand hand = GetCurrentHand(frame);
         //Comprobamos que se detecte alguna mano
-        if(hand != null){
-        
+        if (hand != null)
+        {
+
             //Movemos el cursor a la palma de la mano
             Vector3 handWorldPos = hand.PalmPosition;
             Vector2 handScreenPos = Camera.main.WorldToScreenPoint(handWorldPos);
             Mouse.current.WarpCursorPosition(handScreenPos);
-            
-            
+
+
             // Detectar cambio en el estado del puño
             bool isHandOpen = hand.GrabStrength < 0.95f;  // Puedes ajustar este umbral según sea necesario
-    
+
             if (wasHandOpen && !isHandOpen)
             {
                 if (!DetectGestoPersonalizado())
-                {                
+                {
                     if (Time.time - lastGestureDetectionTime > gestureCooldown)
                     {
                         // Realizar la acción de clicar
@@ -140,7 +145,7 @@ public class MainController : MonoBehaviour
                         lastGestureDetectionTime = Time.time;
                     }
                 }
-            }   
+            }
 
             wasHandOpen = isHandOpen;// Solo realizar acciones cuando se detecta un cambio de estado de abierto a cerrado            
 
@@ -154,7 +159,7 @@ public class MainController : MonoBehaviour
     {
         Mouse.current.CopyState<MouseState>(out var mouseState);
         mouseState.WithButton(MouseButton.Left, true);
-        InputState.Change( Mouse.current, mouseState);
+        InputState.Change(Mouse.current, mouseState);
         //InputSystem.Update();
 
         Debug.Log("Click!");
@@ -213,8 +218,8 @@ public class MainController : MonoBehaviour
 
             return false;
         }
-        else return false;
-    }
+        else return false;
+    }
 
     public bool DetectGestoComedor()
     {
@@ -258,15 +263,13 @@ public class MainController : MonoBehaviour
     }
 
 
-    public bool DetectGestoScroll()
+public bool DetectGestoScroll()
+{
+    Frame frame = leapProvider.CurrentFrame;
+    Hand hand = GetCurrentHand(frame);
+
+    if (hand != null)
     {
-        Frame frame = leapProvider.CurrentFrame;
-        Hand hand = GetCurrentHand(frame);
-
-        if (hand != null)
-        {
-            
-
         // Verifica que los dedos pulgar, anular y meñique estén cerrados
         bool areThumbRingPinkyClosed = !hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended
             && !hand.Fingers[(int)Finger.FingerType.TYPE_RING].IsExtended
@@ -276,97 +279,85 @@ public class MainController : MonoBehaviour
         bool areIndexMiddleExtended = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].IsExtended
             && hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].IsExtended;
 
-        // Si todos los dedos están extendidos y se cumplen las condiciones específicas
-        if (areThumbRingPinkyClosed && areIndexMiddleExtended)
+        // Verifica el ángulo entre los dedos y la palma de la mano
+        float angleThreshold = 60f; // Establece el umbral de ángulo según tus necesidades
+
+        // Calcula el ángulo entre los dedos y la dirección de la palma
+        float thumbAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Direction, hand.PalmNormal);
+        float indexAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Direction, hand.PalmNormal);
+        float middleAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].Direction, hand.PalmNormal);
+
+        // Verifica si el ángulo entre los dedos y la palma es mayor que el umbral
+        bool isAngleGreaterThanThreshold = thumbAngle > angleThreshold && indexAngle > angleThreshold && middleAngle > angleThreshold;
+
+        // Si todos los dedos están extendidos, hay un movimiento hacia abajo y el ángulo es mayor que el umbral
+        if (areThumbRingPinkyClosed && areIndexMiddleExtended && isAngleGreaterThanThreshold)
         {
             return true;
         }
-            
-        }
+    }
 
-        return false;
+    return false;
+}
+
+
+
+    // Implementa esta función para obtener la posición de la mano en el fotograma anterior
+    private Vector3 GetPreviousHandPosition()
+    {
+        // Implementa la lógica para obtener la posición de la mano en el fotograma anterior
+        // Puedes almacenar la posición en una variable y actualizarla en cada fotograma
+        // Asegúrate de inicializarla adecuadamente en el primer fotograma
+        return Vector3.zero; // Cambia esto según tu implementación
     }
 
 
-    Hand GetCurrentHand(Frame frame){
+
+    Hand GetCurrentHand(Frame frame)
+    {
 
         //Comprobamos que se detecte alguna mano
-        if(frame.Hands.Count == 0){
+        if (frame.Hands.Count == 0)
+        {
             handIdIsValid = false;
             return null;
         }
-        else{
+        else
+        {
 
             //Si no teniamos alguna mano guardada de antemano, guardamos una
-            if(!handIdIsValid || frame.Hand(handId) == null){
+            if (!handIdIsValid || frame.Hand(handId) == null)
+            {
                 handId = frame.Hands[0].Id;
                 handIdIsValid = true;
             }
 
             //Obtenemos la mano que queremos trackear
             return frame.Hand(handId);
-        
+
         }
-    
+
     }
 
-    public void SetDesactivarTutorialConMovimiento(bool b){
+    public void SetDesactivarTutorialConMovimiento(bool b)
+    {
         desactivarTutorialConMovimiento = b;
     }
-
-    public void SimularClickSostenido(bool mantenerPresionado)
-    {
-        var mouseButton = Mouse.current.leftButton;
-
-        // Simula clic pulsado
-        if (mantenerPresionado)
-        {
-            InputSystem.QueueStateEvent(mouseButton, new InputStateBlock
-            {
-                buttons = 1, // Simula un botón presionado
-            });
-            InputSystem.Update();
-
-            // Espera un tiempo (ajusta según sea necesario)
-            float tiempoMantenimientoClick = 2f; // 2 segundos como ejemplo
-            float tiempoInicio = Time.time;
-            while (Time.time - tiempoInicio < tiempoMantenimientoClick)
-            {
-                InputSystem.Update(); // Asegura la actualización del sistema de entrada durante el bucle
-            }
-        }
-        else
-        {
-            // Simula clic liberado
-            InputSystem.QueueStateEvent(mouseButton, new InputStateBlock
-            {
-                buttons = 0, // Simula el botón liberado
-            });
-            InputSystem.Update();
-        }
-
-        Debug.Log("Clic sostenido!");
-    }
-
-
-
-
-
-
-    /*
-    bool AreAllFingersExtended(Hand hand)
-    {
-        // Verifica que todos los dedos estén extendidos
-        for (int i = 0; i < 5; i++)
-        {
-            if (!hand.Fingers[i].IsExtended)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-    */
-
 }
+/*
+bool AreAllFingersExtended(Hand hand)
+{
+    // Verifica que todos los dedos estén extendidos
+    for (int i = 0; i < 5; i++)
+    {
+        if (!hand.Fingers[i].IsExtended)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+*/
+
+
 

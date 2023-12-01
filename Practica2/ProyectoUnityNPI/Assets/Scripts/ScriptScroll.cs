@@ -7,6 +7,9 @@ using UnityEngine.InputSystem;
 public class ScriptScroll : MonoBehaviour
 {
     private MainController mainController;
+    [SerializeField]
+    public ScrollRect scrollRect;
+    public float scrollSpeed = 0.1f; // Ajusta según sea necesario
     void Start()
     {
         mainController = FindObjectOfType<MainController>();
@@ -16,10 +19,12 @@ public class ScriptScroll : MonoBehaviour
     {
 
         if(mainController != null && mainController.DetectGestoScroll()){
-            mainController.SimularClickSostenido(true);
+            Scroll();
         }
-        else{
-            mainController.SimularClickSostenido(false);
-        }
+    }
+    public void Scroll()
+    {
+        scrollRect.verticalNormalizedPosition -= scrollSpeed;
+        Debug.Log("Scrolleando");
     }
 }
