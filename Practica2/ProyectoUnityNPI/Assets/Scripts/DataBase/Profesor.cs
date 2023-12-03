@@ -9,7 +9,8 @@ public struct StructProfesor{
     public string email;
     public string telefono;
     public Sprite foto;
-
+    public Sprite qr_info;
+    
     [SerializeField]
     public Horario horarioClases;
 
@@ -29,6 +30,12 @@ public class BDProfesores
         profesores.Remove(id);
     }
 
+<<<<<<< HEAD
+=======
+    public static bool Exists(string id){
+        return profesores.ContainsKey(id);
+    }
+>>>>>>> remotes/origin/main
     public static StructProfesor Get(string id){
         return profesores[id];
     }

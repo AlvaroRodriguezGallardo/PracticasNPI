@@ -1,0 +1,577 @@
+<vxml version="2.1" xmlns="http://www.w3.org/2001/06/vxml" xml:lang="es-es">
+
+    <form id="plan_estudios">
+
+        <link event="repetir"> <grammar src="es_Repetir.jsgf" /> </link>
+
+        <block>
+            <prompt> Bienvenido al sistema de consulta de plan de estudios de la Escuela Tecnica
+                Superior de Ingenierias Informatica y de Telecomunicacion.</prompt>
+        </block>
+
+        <field name="grado">
+            <grammar src="es_Carrera.jsgf" />
+            <prompt>
+                Que grado desea consultar, Informatica o Telecomunicaciones?
+            </prompt>
+            <filled> De acuerdo, se va a consultar el grado <value expr="grado" />
+            </filled>
+        </field>
+
+        <field name="curso">
+            <grammar src="es_Curso.jsgf" />
+            <prompt>
+                Que curso desea consultar?
+            </prompt>
+            <filled> De acuerdo, se va a consultar el curso <value expr="curso" />
+                <if
+                    cond="curso == 'primero'">
+                    <assign name="mencion" expr="'No'" />
+                </if>
+                <if
+                    cond="curso == 'primer'">
+                    <assign name="mencion" expr="'No'" />
+                </if>
+                <if
+                    cond="curso == 'segundo'">
+                    <assign name="mencion" expr="'No'" />
+                </if>
+
+            </filled>
+
+            <catch event="repetir">
+                <prompt> Perdon. <value expr="grado"/> es el grado incorrecto? Repitamoslo.</prompt>
+                <clear namelist="grado"/>
+                <goto nextitem="grado"/>
+
+            </catch>
+        </field>
+
+        <field name="mencion">
+            <grammar src="es_Menciones.jsgf" />
+            <prompt>
+                Que mencion desea consultar?
+            </prompt>
+            <filled> De acuerdo, se va a consultar la mencion <value expr="mencion" />
+            </filled>
+
+            <catch event="repetir">
+                <prompt> Perdon. El curso <value expr="curso"/> es incorrecto? Repitamoslo.</prompt>
+                <clear namelist="curso"/>
+                <goto nextitem="curso"/>
+
+            </catch>
+        </field>
+
+        <field name="cuatrimestre">
+            <grammar src="es_Cuatrimestre.jsgf" />
+            <prompt>
+                Que cuatrimestre desea consultar?
+            </prompt>
+            <filled> De acuerdo, se va a consultar el cuatrimestre <value expr="cuatrimestre" />
+            </filled>
+
+            <catch event="repetir">
+
+                <if cond="mencion == 'No'">
+                    <prompt> Perdon. El curso <value expr="curso"/> es incorrecto? Repitamoslo.</prompt>
+                    <clear namelist="curso"/>
+                    <clear namelist="mencion"/>
+                    <goto nextitem="curso"/>
+
+                <else/>
+                    <prompt> Perdon. <value expr="mencion"/> es la mencion incorrecta? Repitamosla.</prompt>
+                    <clear namelist="mencion"/>
+                    <goto nextitem="mencion"/>
+                </if>
+
+            </catch>
+        </field>
+
+        <field name="confirmar_datos">
+        <grammar src="mi_si_no.jsgf" />
+
+            <catch event="repetir">
+                <prompt> Perdon. El cuatrimestre <value expr="cuatrimestre"/> es incorrecto? Repitamoslo.</prompt>
+                <clear namelist="cuatrimestre"/>
+                <goto nextitem="cuatrimestre"/>
+
+            </catch>
+
+            <prompt cond="mencion == 'No'">Quiere saber las asignaturas del grado en <value
+                    expr="grado" />, de <value
+                    expr="curso" /> del <value expr="cuatrimestre" /> cuatrimestre?</prompt>
+            <prompt cond="mencion != 'No'">Quiere saber las asignaturas del grado en <value
+                    expr="grado" /> con mencion <value
+                    expr="mencion" />, de <value expr="curso" /> del <value expr="cuatrimestre" />
+                cuatrimestre?</prompt>
+
+
+            <filled>
+                <if cond="confirmar_datos=='si'">
+                
+                <if cond="grado=='informatica'">
+                <assign name="grado" expr="'ingenieria informatica'" />
+                </if>
+                <if cond="grado=='telecomunicaciones'">
+                <assign name="grado" expr="'ingenieria en telecomunicaciones'" />
+                </if>
+                <if cond="curso=='primero'">
+                <assign name="curso" expr="'primer'" />
+                </if>
+                <if cond="curso=='tercer'">
+                <assign name="curso" expr="'tercero'" />
+                </if>
+                <if cond="mencion=='computacion y sistemas inteligentes'">
+                <assign name="mencion" expr="'csi'" />
+                </if>
+                <if cond="mencion=='ingenieria del software'">
+                <assign name="mencion" expr="'is'" />
+                </if>
+                <if cond="mencion=='ingenieria de computadores'">
+                <assign name="mencion" expr="'ic'" />
+                </if>
+                <if cond="mencion=='sistemas de informacion'">
+                <assign name="mencion" expr="'si'" />
+                </if>
+                <if cond="mencion=='tecnologias de la informacion'">
+                <assign name="mencion" expr="'ti'" />
+                </if>
+                <if cond="mencion=='sistemas de telecomunicacion'">
+                <assign name="mencion" expr="'st'" />
+                </if>
+                <if cond="mencion=='sistemas electronicos'">
+                <assign name="mencion" expr="'se'" />
+                </if>
+                <if cond="cuatrimestre=='primero'">
+                <assign name="cuatrimestre" expr="'primer'" />
+                </if>
+                <if cond="cuatrimestre=='uno'">
+                <assign name="cuatrimestre" expr="'primer'" />
+                </if>
+                <if cond="cuatrimestre=='dos'">
+                <assign name="cuatrimestre" expr="'segundo'" />
+                </if>
+
+                     
+                    <if cond="grado=='ingenieria informatica'">
+                        <!-- Ingenieria Informatica - Primer curso -->
+                        <if cond="curso == 'primer'">
+                            <if cond="cuatrimestre == 'primer'">
+                                <if cond="mencion == 'No'">
+                                    <prompt>
+                                        Calculo
+                                        Fundamentos Fisicos y Tecnologicos
+                                        Fundamentos de Programacion
+                                        Fundamentos del Software
+                                        Algebra Lineal y Estructuras Matematicas
+                                    </prompt>
+                                </if>
+                            </if>
+                            <if cond="cuatrimestre == 'segundo'">
+                                <if cond="mencion == 'No'">
+                                    <prompt>
+                                        Estadistica
+                                        Ingenieria, Empresa y Sociedad
+                                        Logica y Metodos Discretos
+                                        Metodologia de la Programacion
+                                        Tecnologia y Organizacion de Computadores
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+
+                        <!-- Ingenieria Informatica - Segundo curso -->
+                        <if cond="curso == 'segundo'">
+                            <if cond="cuatrimestre == 'primer'">
+                                <if cond="mencion == 'No'">
+                                    <prompt>
+                                        Estructura de Computadores
+                                        Estructura de Datos
+                                        Programacion y Diseño Orientado a Objetos
+                                        Sistemas Concurrentes y Distribuidos
+                                        Sistemas Operativos
+                                    </prompt>
+                                </if>
+                            </if>
+                            <if cond="cuatrimestre == 'segundo'">
+                                <if cond="mencion == 'No'">
+                                    <prompt>
+                                        Algoritmica
+                                        Arquitectura de Computadores
+                                        Fundamentos de Bases de Datos
+                                        Fundamentos de Ingenieria del Software
+                                        Inteligencia Artificial
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+
+                        <!-- Ingenieria Informatica - Tercer curso -->
+                        <if cond="curso == 'tercero'">
+                            <if cond="cuatrimestre == 'primer'">
+                                <if cond="mencion == 'No'">
+                                    <prompt>
+                                        Diseño y Desarrollo de Sistemas de Informacion
+                                        Fundamentos de Redes
+                                        Informatica Grafica
+                                        Ingenieria de Servidores
+                                        Modelos de Computacion
+                                    </prompt>
+                                </if>
+                            </if>
+                            <if cond="cuatrimestre == 'segundo'">
+                                <if cond="mencion == 'csi'">
+                                    <prompt>
+                                        Aprendizaje Automatico
+                                        Ingenieria del Conocimiento
+                                        Metaheuristicas
+                                        Modelos Avanzados de Computacion
+                                        Tecnicas de los Sistemas Inteligentes
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'si'">
+                                    <prompt>
+                                        Administracion de Bases de Datos
+                                        Ingenieria de Sistemas de Informacion
+                                        Programacion Web
+                                        Sistemas Multidimensionales
+                                        Sistemas de Informacion de Empresas
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'ic'">
+                                    <prompt>
+                                        Arquitectura de Sistemas
+                                        Arquitectura y Computacion de Altas Prestaciones
+                                        Desarrollo de Hardware Digital
+                                        Diseño de Sistemas Electronicos
+                                        Sistemas con Microprocesadores
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'ti'">
+                                    <prompt>
+                                        Computacion Ubicua e Inteligencia Ambiental
+                                        Servidores Web de Altas Prestaciones
+                                        Sistemas Multimedia
+                                        Tecnologias Web
+                                        Transmision de Datos y Redes de Computadores
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'is'">
+                                    <prompt>
+                                        Desarrollo de Sistemas Distribuidos
+                                        Desarrollo de Software
+                                        Diseño de Interfaces de Usuario
+                                        Sistemas Graficos
+                                        Sistemas de Informacion Basados en Web
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+                        <!-- Ingenieria Informatica - Cuarto curso -->
+                        <if cond="curso == 'cuarto'">
+                            <if cond="cuatrimestre == 'primer'">
+                                <if cond="mencion == 'csi'">
+                                    <prompt>
+                                        Nuevos Paradigmas de Interaccion
+                                        Procesadores de Lenguajes
+                                        Simulacion de Sistemas
+                                        Teoria de la Informacion y la Codificacion
+                                        Vision por Computador
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'si'">
+                                    <prompt>
+                                        Bases de Datos Distribuidas
+                                        Inteligencia de Negocio
+                                        Recuperacion de Informacion
+                                        Gestion de Recursos Digitales
+                                        Redes y Sistemas Complejos
+                                        Sistemas de Informacion Geograficos
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'ic'">
+                                    <prompt>
+                                        Centros de Procesamiento de Datos
+                                        Sistemas Empotrados
+                                        Tecnologias de Red
+                                        Informatica Industrial
+                                        Tecnologias Emergentes
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'ti'">
+                                    <prompt>
+                                        Desarrollo de Aplicaciones para Internet
+                                        Infraestructura Virtual
+                                        Seguridad y Proteccion de Sistemas Informaticos
+                                        Compresion y Recuperacion de Informacion
+                                        Tratamiento de Imagenes Digitales
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'is'">
+                                    <prompt>
+                                        Desarrollo Basado en Agentes
+                                        Metodologias de Desarrollo agil
+                                        Direccion y Gestion de Proyectos
+                                        Programacion Grafica de Videojuegos
+                                        Seguridad en Sistemas Operativos
+                                        Logica y Programacion
+                                    </prompt>
+                                </if>
+                            </if>
+                            <if cond="cuatrimestre == 'segundo'">
+                                <if cond="mencion == 'csi'">
+                                    <prompt>
+                                        Criptografia y Computacion
+                                        Programacion Ludica
+                                        Robotica Industrial
+                                        Creacion de Empresas y Gestion Emprendedora
+                                        Derecho Informatico
+                                        Etica, Informatica y Sociedad de la Informacion
+                                        Practicas de Empresa
+                                        Trabajo Fin de Grado
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'si'">
+                                    <prompt>
+                                        Perifericos y Dispositivos de Interfaz Humana
+                                        Sistemas Cooperativos y Gestion de Contenidos
+                                        Creacion de Empresas y Gestion Emprendedora
+                                        Derecho Informatico
+                                        Etica Informatica y Sociedad de la Informacion
+                                        Practicas de Empresa
+                                        Trabajo Fin de Grado
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'ic'">
+                                    <prompt>
+                                        Circuitos Integrados e Impresos
+                                        Mantenimiento de Equipos Informaticos
+                                        Creacion de Empresas y Gestion Emprendedora
+                                        Derecho Informatico
+                                        Etica Informatica y Sociedad de la Informacion
+                                        Practicas de Empresa
+                                        Trabajo Fin de Grado
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'ti'">
+                                    <prompt>
+                                        Procesamiento Digital de Señales
+                                        Programacion de Dispositivos Moviles
+                                        Redes Multiservicio
+                                        Creacion de Empresas y Gestion Emprendedora
+                                        Derecho Informatico
+                                        Etica Informatica y Sociedad de la Informacion
+                                        Practicas de Empresa
+                                        Trabajo Fin de Grado
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'is'">
+                                    <prompt>
+                                        Animacion por Ordenador
+                                        Creacion de Empresas y Gestion Emprendedora
+                                        Derecho Informatico
+                                        Nuevas Tecnologias de la Programacion
+                                        Programacion Paralela
+                                        Etica Informatica y Sociedad de la Informacion
+                                        Practicas de Empresa
+                                        Proyecto Fin de Grado
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+                    </if>
+                    <!--##### Informacion sobre las asignaturas de Telecomunicaciones #####-->
+                    <if cond="grado=='ingenieria en telecomunicaciones'">  
+                      <!-- Ingenieria en Telecomunicaciones - Primer curso -->
+                        <if cond="curso=='primer'">
+                            <if cond="cuatrimestre=='primer'">
+                                <if cond="mencion=='No'">
+                                    <prompt>
+                                    Analisis Matematico
+                                    Analisis de Circuitos
+                                    Fundamentos de Informatica
+                                    Ingenieria, Empresa y Sociedad
+                                    algebra Lineal y Geometria
+                                    </prompt>
+                                </if>
+                            </if>
+                        
+                            <if cond="cuatrimestre=='segundo'">
+                                <if cond="mencion=='No'">
+                                    <prompt>
+                                    Componentes y Circuitos Electronicos
+                                    Ecuaciones Diferenciales y Calculo Numerico
+                                    Estadistica y Optimizacion
+                                    Fundamentos Fisicos de la Ingenieria
+                                    Sistemas Lineales
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+                        <!-- Ingenieria en Telecomunicaciones - Segundo curso -->
+                        <if cond="curso=='segundo'">
+                            <if cond="cuatrimestre=='primer'">
+                                <if cond="mencion=='No'">
+                                <prompt>
+                                    Fundamentos de Programacion
+                                    Sistemas Telematicos
+                                    Teoria de la Comunicacion
+                                    Transmision de Ondas
+                                </prompt>
+                                </if>
+                            </if>
+                        
+                            <if cond="cuatrimestre=='segundo'">
+                                <if cond="mencion=='No'">
+                                <prompt>
+                                    Comunicaciones I
+                                    Electronica Analogica
+                                    Electronica Digital
+                                    Infraestructuras y Redes de Comunicacion
+                                    Señales Digitales
+                                </prompt>
+                                </if>
+                            </if>
+                        </if>
+                        <!-- Ingenieria en Telecomunicaciones - Tercer curso -->
+                        <if cond="curso=='tercero'">
+                            <if cond="cuatrimestre=='primer'">
+                                <if cond="mencion=='No'">
+                                <prompt>
+                                    Comunicaciones II
+                                    Electronica de Potencia
+                                    Sistemas Electronicos Digitales
+                                    Sistemas de Conmutacion
+                                    Transmision de Datos y Redes de Computadores
+                                </prompt>
+                                </if>
+                            </if>
+                            
+                            <if cond="cuatrimestre=='segundo'">
+                                <if cond="mencion=='st'">
+                                <prompt>
+                                    Antenas y Propagacion
+                                    Medios y Componentes opticos para Comunicaciones
+                                    Sistemas de Codificacion y Almacenamiento
+                                    Sistemas de Radiocomunicacion
+                                    Tratamiento Digital de Señales
+                                </prompt>
+                                </if>
+                                <if cond="mencion=='se'">
+                                <prompt>
+                                    Circuitos Electronicos para Radiofrecuencia
+                                    Diseño de Circuitos y Sistemas Electronicos
+                                    Electronica de Microondas
+                                    Instrumentacion Electronica
+                                    Sistemas de Alimentacion
+                                </prompt>
+                                </if>
+                                <if cond="mencion=='telematica'">
+                                <prompt>
+                                    Complementos de Programacion
+                                    Desarrollo de Aplicaciones en Red
+                                    Gestion de Redes
+                                    Redes Inalambricas y Movilidad
+                                    Seguridad en Redes de Comunicacion
+                                </prompt>
+                                </if>
+                            </if>
+                        </if>    
+                        <!-- Ingenieria en Telecomunicaciones - Cuarto curso -->
+                        <if cond="curso=='cuarto'">
+                            <if cond="cuatrimestre=='primer'">
+                                <if cond="mencion=='st'">
+                                <prompt>
+                                    Comunicaciones Inalambricas
+                                    Comunicaciones opticas
+                                    Television y Radio Digital
+                                    Fundamentos de la Fotonica
+                                    Laboratorio de Telematica
+                                    Tecnologia de Circuitos Impresos
+                                    Tecnologias del Habla
+                                </prompt>
+                                </if>
+                                <if cond="mencion=='se'">
+                                <prompt>
+                                    Circuitos Integrados para Comunicaciones
+                                    Equipos Electronicos
+                                    Sistemas de Control
+                                    Fundamentos de la Fotonica
+                                    Laboratorio de Telematica
+                                    Tecnologia de Circuitos Impresos
+                                    Tecnologias del Habla
+                                </prompt>
+                                </if>
+                                <if cond="mencion=='telematica'">
+                                <prompt>
+                                    Diseño y Dimensionado de Redes
+                                    Redes Multimedia
+                                    Redes de Acceso y Corporativas
+                                    Fundamentos de la Fotonica
+                                    Laboratorio de Telematica
+                                    Tecnologia de Circuitos Impresos
+                                    Tecnologias del Habla
+                                </prompt>
+                                </if>
+                            </if>
+                            <if cond="cuatrimestre=='segundo'">
+                                <if cond="mencion=='No'">
+                                <prompt>
+                                    Arquitecturas Especializadas para Telecomunicaciones
+                                    Complementos de Analisis Matematico
+                                    Fisica Aplicada a las Telecomunicaciones
+                                    Procesamiento de Video Digital
+                                    Programacion de Sistemas Empotrados y de Tiempo Real
+                                    Trabajo Fin de Grado
+                                </prompt>
+                                </if>
+                            </if>
+                        </if>
+                    </if>
+
+                    <goto next="#volver_a_empezar" />
+                <else />
+                    <prompt> De acuerdo, volvamos al principio. </prompt>
+                    <clear namelist="plan_estudios" />
+                    <clear namelist="confirmar_datos" />
+                    <goto next="#plan_estudios" />
+                </if>
+            </filled>
+
+        </field>
+
+        <filled>
+
+        </filled>
+
+    </form>
+
+
+    <form id="volver_a_empezar">
+        <field name="volver_a_empezar_field">
+            <grammar src="mi_si_no.jsgf" />
+
+            <prompt>
+                ¿Desea consultar otro plan de estudios? Responda "si" o "no".
+            </prompt>
+            <!--<grammar
+            src="builtin:yesno/yesno.grxml"/>-->
+            <filled>
+                <if cond="volver_a_empezar_field=='si'">
+                    <!-- Si el usuario responde "si", reiniciar la consulta -->
+                    <prompt>De acuerdo, volvamos al principio.</prompt>
+                    <clear namelist="plan_estudios" />
+                    <clear namelist="volver_a_empezar" />
+                    <goto next="#plan_estudios" />
+                    <else />
+                    <!-- Si el usuario responde "no", finalizar la interaccion -->
+                    <prompt>De acuerdo. ¡Que tenga un buen dia!</prompt>
+                    <exit />
+                </if>
+            </filled>
+        </field>
+    </form>
+
+
+</vxml>

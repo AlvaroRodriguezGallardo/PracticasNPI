@@ -1,0 +1,5 @@
+#JSGF V1.0;
+
+grammar es_Menciones;
+
+public <es_Menciones> = computacion y sistemas inteligentes | csi | ingenieria del software | is | ingenieria de computadores | ic | sistemas de informacion | si | tecnologias de la informacion | ti | sistemas de telecomunicacion | st | telematica | sistemas electronicos | se;

@@ -81,5 +81,7 @@ public class CircleMenuControler : MonoBehaviour
                 lastGestureDetectionTime = Time.time;
             }
         }
+        
+        
     }
 }

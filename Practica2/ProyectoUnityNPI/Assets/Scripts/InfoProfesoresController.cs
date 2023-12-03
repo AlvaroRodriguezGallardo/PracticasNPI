@@ -23,6 +23,7 @@ public class InfoProfesoresController : MonoBehaviour
         else    
             transform.Find("Foto").GetComponent<Image>().sprite = iconoPredeterminado;
 
+        transform.Find("QR").GetComponent<Image>().sprite = datos.qr_info;
 
     }
 

@@ -1,0 +1,5 @@
+#JSGF V1.0;
+
+grammar mi_si_no;
+
+public <mi_si_no> = yes | no;
