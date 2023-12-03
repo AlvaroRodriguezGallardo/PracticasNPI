@@ -1,5 +1,0 @@
-#JSGF V1.0;
-
-grammar en_Curso;
-
-public <en_Curso> = first | second | third | fourth | one | two | three |four;

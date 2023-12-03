@@ -1,5 +1,0 @@
-#JSGF V1.0;
-
-grammar en_Menciones;
-
-public <en_Menciones> = computation and intelligent systems | cis | software engineering | se | computation engineering | ce | information systems | is | information technologies | it | telecommunication systems | ts | telematics | electronic systems | es;

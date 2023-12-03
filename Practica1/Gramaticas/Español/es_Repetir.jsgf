@@ -1,5 +1,0 @@
-#JSGF V1.0;
-
-grammar es_Repetir;
-
-public <es_Repetir> = repetir|error|equivocado|atras|volver;

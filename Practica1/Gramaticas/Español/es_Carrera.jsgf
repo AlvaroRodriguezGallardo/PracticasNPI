@@ -1,5 +1,0 @@
-#JSGF V1.0;
-
-grammar es_Carrera;
-
-public <es_Carrera> = ingenieria informatica | ingenieria en telecomunicaciones | informatica | telecomunicaciones;

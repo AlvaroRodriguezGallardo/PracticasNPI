@@ -1,5 +1,0 @@
-#JSGF V1.0;
-
-grammar fr_Repetir;
-
-public <fr_Repetir> = répéter|erreur|incorrect|retour|retour;
