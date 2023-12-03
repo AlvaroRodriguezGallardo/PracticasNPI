@@ -1,0 +1,5 @@
+#JSGF V1.0;
+
+grammar es_Curso;
+
+public <es_Curso> = primero | segundo | tercero | cuarto | primer | tercer;

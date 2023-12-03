@@ -1,0 +1,5 @@
+#JSGF V1.0;
+
+grammar en_Carrera;
+
+public <en_Carrera> = computer engineering | telecommunications engineering | telecommunications;
