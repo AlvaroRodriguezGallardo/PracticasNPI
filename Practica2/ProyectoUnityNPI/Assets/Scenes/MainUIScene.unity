@@ -8664,7 +8664,7 @@ MonoBehaviour:
     descripcion: "Entra en la p\xE1gina de Solicitud gen\xE9rica UGR. Puedes entrar
       con el QR de arriba."
     tramite: 0
-    foto: {fileID: 21300000, guid: c0017915a93e89042bca3d788e0b6384, type: 3}
+    foto: {fileID: 21300000, guid: bebd5140b8036d74b9961c286309d9eb, type: 3}
   - nombre: Paso 2 SG
     descripcion: Introduce los datos que te piden.
     tramite: 0
@@ -8676,7 +8676,7 @@ MonoBehaviour:
   - nombre: Paso 1 CN
     descripcion: Entra en Acceso Identificado UGR. Puedes acceder con el QR de arriba.
     tramite: 1
-    foto: {fileID: 21300000, guid: 59a291a1631c3f546810e5bf542cece6, type: 3}
+    foto: {fileID: 21300000, guid: 252d3e052dcf6a14985ff793927f9d1b, type: 3}
   - nombre: Paso 2 CN
     descripcion: Introduce tus datos personales.
     tramite: 1
@@ -8689,7 +8689,7 @@ MonoBehaviour:
     descripcion: "Movilidad Nacional: Informaci\xF3n sobre becas de movilidad a nivel
       nacional."
     tramite: 2
-    foto: {fileID: 21300000, guid: 791177dc5fb1b4d41912a37802d13510, type: 3}
+    foto: {fileID: 21300000, guid: fe26e509ce840934e9511f309eafd2c4, type: 3}
   - nombre: Paso 1 ERASMUS
     descripcion: "Para poder optar a una beca Erasmus, debes haber superado un m\xEDnimo
       de 60 cr\xE9ditos, haber acreditado t\xEDtulo de idiomas y no haber superado
@@ -8701,7 +8701,7 @@ MonoBehaviour:
       de la ETSIIT o lea el QR de arriba para acceder a la web de la Universidad
       donde encontrar\xE1 m\xE1s informaci\xF3n."
     tramite: 3
-    foto: {fileID: 21300000, guid: 32ad1e1a742e0ae499086a0d5263eaed, type: 3}
+    foto: {fileID: 21300000, guid: 56ae8ed7939547a4084b948475129e19, type: 3}
   - nombre: Paso 3 ERASMUS
     descripcion: "Adem\xE1s de la solicitud, debe presentar el certificado acad\xE9mico
       y el certificado de idiomas."
@@ -8745,7 +8745,7 @@ MonoBehaviour:
     descripcion: "Entre a la p\xE1gina de CIGES UGR. Puede acceder desde el c\xF3digo
       QR de arriba."
     tramite: 5
-    foto: {fileID: 21300000, guid: c8b99aa0f9ba7e2418205667f323df04, type: 3}
+    foto: {fileID: 21300000, guid: ab49499589e999945b41034b6449d519, type: 3}
   - nombre: Paso 2 Cita Online
     descripcion: Pulse en Acceso comunidad universitaria
     tramite: 5
@@ -8767,7 +8767,7 @@ MonoBehaviour:
   - nombre: Paso 1 Becas
     descripcion: "Informaci\xF3n acerca de las becas universitarias."
     tramite: 6
-    foto: {fileID: 21300000, guid: 3ee3fad2157e947469512b21ab783ad6, type: 3}
+    foto: {fileID: 21300000, guid: 30ec69cd63d76644287187f8bfa7d3d8, type: 3}
 --- !u!1 &678138368
 GameObject:
   m_ObjectHideFlags: 0
