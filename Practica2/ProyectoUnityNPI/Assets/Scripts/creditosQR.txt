@@ -1,4 +1,0 @@
-Implementación ZXing en Unity
-	https://github.com/micjahn/ZXing.Net/tree/master/Clients/UnityDemo
-Tutorial
-	https://www.youtube.com/watch?v=43qt62TbY7E
