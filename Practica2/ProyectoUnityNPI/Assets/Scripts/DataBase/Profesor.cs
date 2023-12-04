@@ -30,12 +30,10 @@ public class BDProfesores
         profesores.Remove(id);
     }
 
-<<<<<<< HEAD
-=======
     public static bool Exists(string id){
         return profesores.ContainsKey(id);
     }
->>>>>>> remotes/origin/main
+
     public static StructProfesor Get(string id){
         return profesores[id];
     }

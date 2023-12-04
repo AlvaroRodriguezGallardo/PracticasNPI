@@ -21,12 +21,15 @@ public class InfoPasosController : MonoBehaviour
 
             transform.Find("Nombre").GetComponent<TextMeshProUGUI>().text = datos.nombre;
             transform.Find("Descripcion").GetComponent<TextMeshProUGUI>().text = datos.descripcion;
-        
 
-            if(datos.foto != null)
+            if (datos.foto != null)
+            {
                 transform.Find("Foto").GetComponent<Image>().sprite = datos.foto;
-            else    
+            }
+            else
+            {
                 transform.Find("Foto").GetComponent<Image>().sprite = iconoPredeterminado;
+            }
         }
 
     }
@@ -42,11 +45,14 @@ public class InfoPasosController : MonoBehaviour
             transform.Find("Nombre").GetComponent<TextMeshProUGUI>().text = datos.nombre;
             transform.Find("Descripcion").GetComponent<TextMeshProUGUI>().text = datos.descripcion;
 
-
             if (datos.foto != null)
+            {
                 transform.Find("Foto").GetComponent<Image>().sprite = datos.foto;
+            }
             else
+            {
                 transform.Find("Foto").GetComponent<Image>().sprite = iconoPredeterminado;
+            }
         }
 
     }

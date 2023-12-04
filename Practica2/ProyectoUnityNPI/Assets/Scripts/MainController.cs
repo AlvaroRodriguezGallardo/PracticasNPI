@@ -9,10 +9,7 @@ using UnityEngine.InputSystem.LowLevel;
 using Leap;
 using Leap.Unity;
 using UnityEngine.InputSystem.UI;
-<<<<<<< HEAD
-=======
 using UnityEngine.InputSystem.Controls;
->>>>>>> remotes/origin/main
 using UnityEngine.SceneManagement;
 
 public class MainController : MonoBehaviour
@@ -41,12 +38,6 @@ public class MainController : MonoBehaviour
     public Transform rightHand;
     float lastGestureDetectionTime = 0f;
     float gestureCooldown = 1.5f;  // Ajusta según sea n
-<<<<<<< HEAD
-    Vector3 previousHandPosition;
-    bool isGestoIniciado = false;
-    float gestoStartTime = 0f;
-
-=======
     public Vector3 previousHandPosition;
     bool isGestoIniciado = false;
     float gestoStartTime = 0f;
@@ -61,16 +52,11 @@ public class MainController : MonoBehaviour
     bool areAllFingersExtended = false;
     float fingerCheckCooldown = 0.5f; // Tiempo de espera antes de cambiar areAllFingersExtended
     float fingerCheckTimer = 0f;
->>>>>>> remotes/origin/main
 
     void Start()
     {
 
-<<<<<<< HEAD
-        Screen.SetResolution(2160, 3840, FullScreenMode.FullScreenWindow); 
-=======
         Screen.SetResolution(2160, 3840, FullScreenMode.FullScreenWindow);
->>>>>>> remotes/origin/main
         handIdIsValid = false;
 
         //Seleccionamos el modo de trackeo
@@ -88,8 +74,6 @@ public class MainController : MonoBehaviour
 
         //Cada vez que se detecte un nuevo frame, se llamará a la función OnUpdateFrame
         leapProvider.OnUpdateFrame += OnUpdateFrame;
-<<<<<<< HEAD
-=======
 
         lastMousePos = Input.mousePosition;
     }
@@ -124,47 +108,26 @@ public class MainController : MonoBehaviour
         //Debug.Log(tiempoInactividad);
 
 
->>>>>>> remotes/origin/main
     }
 
     // Update is called once per frame
     void OnUpdateFrame(Frame frame)
     {
-<<<<<<< HEAD
-        if(Input.GetKeyDown(KeyCode.Space)){
-=======
         if (Input.GetKeyDown(KeyCode.Space))
         {
->>>>>>> remotes/origin/main
             HandsGameobject.SetActive(!HandsGameobject.activeSelf);
         }
 
         //Obtenemos la mano que queremos trackear
         Hand hand = GetCurrentHand(frame);
         //Comprobamos que se detecte alguna mano
-<<<<<<< HEAD
-        if(hand != null){
-        
-=======
         if (hand != null)
         {
 
->>>>>>> remotes/origin/main
             //Movemos el cursor a la palma de la mano
             Vector3 handWorldPos = hand.PalmPosition;
             Vector2 handScreenPos = Camera.main.WorldToScreenPoint(handWorldPos);
             Mouse.current.WarpCursorPosition(handScreenPos);
-<<<<<<< HEAD
-            
-            
-            // Detectar cambio en el estado del puño
-            bool isHandOpen = hand.GrabStrength < 0.95f;  // Puedes ajustar este umbral según sea necesario
-    
-            if (wasHandOpen && !isHandOpen)
-            {
-                if (!DetectGestoPersonalizado())
-                {                
-=======
 
 
             // Detectar cambio en el estado del puño
@@ -174,7 +137,6 @@ public class MainController : MonoBehaviour
             {
                 if (!DetectGestoPersonalizado())
                 {
->>>>>>> remotes/origin/main
                     if (Time.time - lastGestureDetectionTime > gestureCooldown)
                     {
                         // Realizar la acción de clicar
@@ -183,11 +145,7 @@ public class MainController : MonoBehaviour
                         lastGestureDetectionTime = Time.time;
                     }
                 }
-<<<<<<< HEAD
-            }   
-=======
             }
->>>>>>> remotes/origin/main
 
             wasHandOpen = isHandOpen;// Solo realizar acciones cuando se detecta un cambio de estado de abierto a cerrado            
 
@@ -201,11 +159,7 @@ public class MainController : MonoBehaviour
     {
         Mouse.current.CopyState<MouseState>(out var mouseState);
         mouseState.WithButton(MouseButton.Left, true);
-<<<<<<< HEAD
-        InputState.Change( Mouse.current, mouseState);
-=======
         InputState.Change(Mouse.current, mouseState);
->>>>>>> remotes/origin/main
         //InputSystem.Update();
 
         Debug.Log("Click!");
@@ -264,58 +218,16 @@ public class MainController : MonoBehaviour
 
             return false;
         }
-<<<<<<< HEAD
-        else return false;
-    }
-
-    public bool DetectGestoComedor(){
-=======
         else return false;
     }
 
     public bool DetectGestoComedor()
     {
->>>>>>> remotes/origin/main
         Frame frame = leapProvider.CurrentFrame;
         Hand hand = GetCurrentHand(frame);
 
         if (hand != null)
         {
-<<<<<<< HEAD
-            // Obtén la dirección del pulgar
-            Vector3 thumbDirection = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
-
-            // Obtén la dirección del índice
-            Vector3 indexDirection = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
-
-            // Puedes comparar las direcciones según tus criterios, por ejemplo, verificar si la dirección del índice rota hacia la izquierda
-            bool isRotationLeft = Vector3.Dot(Vector3.Cross(indexDirection, thumbDirection), hand.PalmNormal) < 0;
-
-            // Comprueba que el pulgar está mirando hacia arriba
-            bool thumbIsFacingUp = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended;
-
-            // Puedes ajustar el umbral según sea necesario
-            return isRotationLeft && thumbIsFacingUp;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-
-    Hand GetCurrentHand(Frame frame){
-
-        //Comprobamos que se detecte alguna mano
-        if(frame.Hands.Count == 0){
-            handIdIsValid = false;
-            return null;
-        }
-        else{
-
-            //Si no teniamos alguna mano guardada de antemano, guardamos una
-            if(!handIdIsValid || frame.Hand(handId) == null){
-=======
             // Verifica que el pulgar esté extendido y apuntando hacia arriba
             bool thumbIsFacingUp = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended && hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction.y > 0.5f;
 
@@ -351,77 +263,77 @@ public class MainController : MonoBehaviour
     }
 
 
-public bool DetectGestoScrollArriba()
-{
-    Frame frame = leapProvider.CurrentFrame;
-    Hand hand = GetCurrentHand(frame);
-
-    if (hand != null)
+    public bool DetectGestoScrollArriba()
     {
-        // Verifica que los dedos pulgar, anular y meñique estén cerrados
-        bool areThumbRingPinkyClosed = !hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended
-            && !hand.Fingers[(int)Finger.FingerType.TYPE_RING].IsExtended
-            && !hand.Fingers[(int)Finger.FingerType.TYPE_PINKY].IsExtended;
+        Frame frame = leapProvider.CurrentFrame;
+        Hand hand = GetCurrentHand(frame);
 
-        // Verifica que los dedos índice y corazón estén extendidos
-        bool areIndexMiddleExtended = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].IsExtended
-            && hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].IsExtended;
-
-        // Verifica el ángulo entre los dedos y la palma de la mano
-        float angleThresholdIndex = 85.0f;
-
-        // Calcula el ángulo entre los dedos y la dirección de la palma
-        float indexAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Direction, hand.PalmNormal);
-        float middleAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].Direction, hand.PalmNormal);
-
-        // Verifica si el ángulo entre los dedos y la palma es mayor que el umbral
-        bool isAngleGreaterThanThreshold = indexAngle > angleThresholdIndex;
-
-        // Si todos los dedos están extendidos, hay un movimiento hacia abajo y el ángulo es mayor que el umbral
-        if (areThumbRingPinkyClosed && areIndexMiddleExtended && isAngleGreaterThanThreshold)
+        if (hand != null)
         {
-            return true;
+            // Verifica que los dedos pulgar, anular y meñique estén cerrados
+            bool areThumbRingPinkyClosed = !hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended
+                && !hand.Fingers[(int)Finger.FingerType.TYPE_RING].IsExtended
+                && !hand.Fingers[(int)Finger.FingerType.TYPE_PINKY].IsExtended;
+
+            // Verifica que los dedos índice y corazón estén extendidos
+            bool areIndexMiddleExtended = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].IsExtended
+                && hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].IsExtended;
+
+            // Verifica el ángulo entre los dedos y la palma de la mano
+            float angleThresholdIndex = 85.0f;
+
+            // Calcula el ángulo entre los dedos y la dirección de la palma
+            float indexAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Direction, hand.PalmNormal);
+            float middleAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].Direction, hand.PalmNormal);
+
+            // Verifica si el ángulo entre los dedos y la palma es mayor que el umbral
+            bool isAngleGreaterThanThreshold = indexAngle > angleThresholdIndex;
+
+            // Si todos los dedos están extendidos, hay un movimiento hacia abajo y el ángulo es mayor que el umbral
+            if (areThumbRingPinkyClosed && areIndexMiddleExtended && isAngleGreaterThanThreshold)
+            {
+                return true;
+            }
         }
+
+        return false;
     }
 
-    return false;
-}
-
-public bool DetectGestoScrollAbajo()
-{
-    Frame frame = leapProvider.CurrentFrame;
-    Hand hand = GetCurrentHand(frame);
-
-    if (hand != null)
+    public bool DetectGestoScrollAbajo()
     {
-        // Verifica que los dedos pulgar, anular y meñique estén cerrados
-        bool areThumbRingPinkyClosed = !hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended
-            && !hand.Fingers[(int)Finger.FingerType.TYPE_RING].IsExtended
-            && !hand.Fingers[(int)Finger.FingerType.TYPE_PINKY].IsExtended;
+        Frame frame = leapProvider.CurrentFrame;
+        Hand hand = GetCurrentHand(frame);
 
-        // Verifica que los dedos índice y corazón estén extendidos
-        bool areIndexMiddleExtended = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].IsExtended
-            && hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].IsExtended;
-
-        // Verifica el ángulo entre los dedos y la palma de la mano
-        float angleThresholdIndex = 60f;
-        // Calcula el ángulo entre los dedos y la dirección de la palma
-        float indexAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Direction, hand.PalmNormal);
-        float middleAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].Direction, hand.PalmNormal);
-
-        Debug.Log("indexAngle: " + indexAngle);
-        // Verifica si el ángulo entre los dedos y la palma es mayor que el umbral
-        bool isAngleGreaterThanThreshold = indexAngle < angleThresholdIndex;
-
-        // Si todos los dedos están extendidos, hay un movimiento hacia abajo y el ángulo es mayor que el umbral
-        if (areThumbRingPinkyClosed && areIndexMiddleExtended && isAngleGreaterThanThreshold)
+        if (hand != null)
         {
-            return true;
-        }
-    }
+            // Verifica que los dedos pulgar, anular y meñique estén cerrados
+            bool areThumbRingPinkyClosed = !hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended
+                && !hand.Fingers[(int)Finger.FingerType.TYPE_RING].IsExtended
+                && !hand.Fingers[(int)Finger.FingerType.TYPE_PINKY].IsExtended;
 
-    return false;
-}
+            // Verifica que los dedos índice y corazón estén extendidos
+            bool areIndexMiddleExtended = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].IsExtended
+                && hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].IsExtended;
+
+            // Verifica el ángulo entre los dedos y la palma de la mano
+            float angleThresholdIndex = 60f;
+            // Calcula el ángulo entre los dedos y la dirección de la palma
+            float indexAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Direction, hand.PalmNormal);
+            float middleAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].Direction, hand.PalmNormal);
+
+            Debug.Log("indexAngle: " + indexAngle);
+            // Verifica si el ángulo entre los dedos y la palma es mayor que el umbral
+            bool isAngleGreaterThanThreshold = indexAngle < angleThresholdIndex;
+
+            // Si todos los dedos están extendidos, hay un movimiento hacia abajo y el ángulo es mayor que el umbral
+            if (areThumbRingPinkyClosed && areIndexMiddleExtended && isAngleGreaterThanThreshold)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
 
@@ -451,23 +363,12 @@ public bool DetectGestoScrollAbajo()
             //Si no teniamos alguna mano guardada de antemano, guardamos una
             if (!handIdIsValid || frame.Hand(handId) == null)
             {
->>>>>>> remotes/origin/main
                 handId = frame.Hands[0].Id;
                 handIdIsValid = true;
             }
 
             //Obtenemos la mano que queremos trackear
             return frame.Hand(handId);
-<<<<<<< HEAD
-        
-        }
-    
-    }
-
-
-
-}
-=======
 
         }
 
@@ -493,6 +394,4 @@ bool AreAllFingersExtended(Hand hand)
 }
 */
 
-
->>>>>>> remotes/origin/main
 

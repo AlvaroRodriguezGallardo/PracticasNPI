@@ -23,8 +23,6 @@ public class InicializarBD : MonoBehaviour
         for(int i = 0; i < alumnos.Count; ++i){
 
             BDAlumnos.Insertar(i.ToString(), alumnos[i]);
-
-<<<<<<< HEAD
         }
 
         for (int i = 0; i < pasos.Count; ++i)
@@ -33,12 +31,7 @@ public class InicializarBD : MonoBehaviour
             BDPasos.Insertar(i, pasos[i]);
 
         }
-=======
-        } 
->>>>>>> remotes/origin/main
+    } 
 
 
-    }
-
-    
 }
