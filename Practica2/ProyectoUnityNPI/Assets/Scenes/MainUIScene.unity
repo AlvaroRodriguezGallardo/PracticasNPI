@@ -5149,6 +5149,9 @@ MonoBehaviour:
   accionesGestoComedor:
     m_PersistentCalls:
       m_Calls: []
+  accionesGestoComedorIzquierda:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &380953836
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7337,7 +7340,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1894614287}
   - {fileID: 763037013}
   - {fileID: 1780662453}
   - {fileID: 1204926643}
@@ -8277,6 +8279,9 @@ MonoBehaviour:
   - {fileID: 934881794}
   - {fileID: 741895274}
   - {fileID: 1915312006}
+  - {fileID: 380101963}
+  - {fileID: 1301198987}
+  - {fileID: 552151951}
 --- !u!4 &675988969
 Transform:
   m_ObjectHideFlags: 0
@@ -15745,7 +15750,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 599629401}
-  - {fileID: 181376467}
   - {fileID: 1950078206}
   m_Father: {fileID: 1065027004}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15904,6 +15908,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   accionesGestoComedor:
+    m_PersistentCalls:
+      m_Calls: []
+  accionesGestoComedorIzquierda:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &1302423203
