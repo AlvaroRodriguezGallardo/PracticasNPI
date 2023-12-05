@@ -25,6 +25,7 @@ public class CircleMenuControler : MonoBehaviour
     public List<ButtonStruct> buttonsProperties; //Las propiedades que tendrá cada botón
     public UnityEvent accionesGestoVolver;
     public UnityEvent accionesGestoComedor;
+    public UnityEvent accionesGestoComedorIzquierda;
     private MainController mainController;
     float lastGestureDetectionTime = 0f;
     float gestureCooldown = 1.5f;  // Ajusta según sea necesario
@@ -74,9 +75,19 @@ public class CircleMenuControler : MonoBehaviour
         if(mainController.DetectGestoComedor()){
             if (Time.time - lastGestureDetectionTime > gestureCooldown)
             {
-                Debug.Log("Deberia comedor");
+                Debug.Log("Deberia comedor derecha");
                 // Realizar la acción de volver al menú anterior
                 accionesGestoComedor.Invoke();
+                // Actualizar el estado de la detección y el tiempo
+                lastGestureDetectionTime = Time.time;
+            }
+        }
+        if(mainController.DetectGestoComedorIzquierda()){
+            if (Time.time - lastGestureDetectionTime > gestureCooldown)
+            {
+                Debug.Log("Deberia comedor izquierda");
+                // Realizar la acción de volver al menú anterior
+                accionesGestoComedorIzquierda.Invoke();
                 // Actualizar el estado de la detección y el tiempo
                 lastGestureDetectionTime = Time.time;
             }

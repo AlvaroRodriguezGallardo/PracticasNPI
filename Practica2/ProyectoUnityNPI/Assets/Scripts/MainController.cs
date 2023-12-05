@@ -226,7 +226,7 @@ public class MainController : MonoBehaviour
         Frame frame = leapProvider.CurrentFrame;
         Hand hand = GetCurrentHand(frame);
 
-        if (hand != null)
+        if (hand != null && !hand.IsLeft)
         {
             // Verifica que el pulgar esté extendido y apuntando hacia arriba
             bool thumbIsFacingUp = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended && hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction.y > 0.5f;
@@ -262,6 +262,46 @@ public class MainController : MonoBehaviour
         }
     }
 
+    public bool DetectGestoComedorIzquierda()
+    {
+        Frame frame = leapProvider.CurrentFrame;
+        Hand hand = GetCurrentHand(frame);
+
+        if (hand != null && hand.IsLeft)
+        {
+            // Verifica que el pulgar esté extendido y apuntando hacia arriba
+            bool thumbIsFacingUp = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended && hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction.y > 0.5f;
+
+            // Verifica que los otros cuatro dedos estén extendidos
+            bool fingersAreExtended = true;
+            for (int i = 1; i < 5; i++)
+            {
+                fingersAreExtended &= hand.Fingers[i].IsExtended;
+            }
+
+            // Obtén la dirección de los dedos índice, medio, anular y meñique
+            Vector3[] fingerDirections = new Vector3[4];
+            for (int i = 1; i < 5; i++)
+            {
+                fingerDirections[i - 1] = hand.Fingers[i].Bone(Bone.BoneType.TYPE_DISTAL).Direction.normalized;
+            }
+
+            // Puedes ajustar el umbral según sea necesario
+            bool fingersAreRotated = true;
+            for (int i = 0; i < 4; i++)
+            {
+                // Verifica que la dirección del dedo rota hacia el centro de la palma (para la mano izquierda, cambia la condición a < 0.5f)
+                fingersAreRotated &= Vector3.Dot(fingerDirections[i], hand.PalmNormal) > 0.5f;
+            }
+
+            // Combinar todas las condiciones según tus criterios
+            return thumbIsFacingUp && fingersAreExtended && fingersAreRotated;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     public bool DetectGestoScrollArriba()
     {

@@ -120,4 +120,12 @@ public class GeneradorBotones : MonoBehaviour
         }
         objetosAsociados[0].SetActive(true);
     }
+
+    public void AccionGestoSiguiente(){
+        BotonClicDiaSemana((diaSemanaSeleccionado + 1)%6);
+    }
+
+    public void AccionGestoAnterior(){
+        BotonClicDiaSemana((diaSemanaSeleccionado + 5)%6);
+    }
 }
