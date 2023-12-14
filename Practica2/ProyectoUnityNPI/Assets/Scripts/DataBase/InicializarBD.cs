@@ -8,6 +8,7 @@ public class InicializarBD : MonoBehaviour
     [SerializeField]
     public List<StructProfesor> profesores;
     public List<StructAlumnos> alumnos;
+    public List<StructPaso> pasos;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +23,15 @@ public class InicializarBD : MonoBehaviour
         for(int i = 0; i < alumnos.Count; ++i){
 
             BDAlumnos.Insertar(i.ToString(), alumnos[i]);
+        }
 
-        } 
+        for (int i = 0; i < pasos.Count; ++i)
+        {
+
+            BDPasos.Insertar(i, pasos[i]);
+
+        }
+    } 
 
 
-    }
-
-    
 }

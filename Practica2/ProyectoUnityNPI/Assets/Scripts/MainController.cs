@@ -303,74 +303,74 @@ public class MainController : MonoBehaviour
         }
     }
 
-public bool DetectGestoScrollArriba()
-{
-    Frame frame = leapProvider.CurrentFrame;
-    Hand hand = GetCurrentHand(frame);
-
-    if (hand != null)
+    public bool DetectGestoScrollArriba()
     {
-        // Verifica que los dedos pulgar, anular y meñique estén cerrados
-        bool areThumbRingPinkyMiddleClosed = !hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended
+        Frame frame = leapProvider.CurrentFrame;
+        Hand hand = GetCurrentHand(frame);
+
+        if (hand != null)
+        {
+            // Verifica que los dedos pulgar, corazón, anular y meñique estén cerrados
+            bool areThumbRingPinkyMiddleClosed = !hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended
             && !hand.Fingers[(int)Finger.FingerType.TYPE_RING].IsExtended
             && !hand.Fingers[(int)Finger.FingerType.TYPE_PINKY].IsExtended
             && !hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].IsExtended;
 
-        // Verifica que los dedos índice y corazón estén extendidos
-        bool areIndexExtended = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].IsExtended;
+            // Verifica que el dedo índice esté extendido
+            bool areIndexExtended = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].IsExtended;
 
-        // Verifica el ángulo entre los dedos y la palma de la mano
-        float angleThresholdIndex = 85.0f;
+            // Verifica el ángulo entre los dedos y la palma de la mano
+            float angleThresholdIndex = 85.0f;
 
-        // Calcula el ángulo entre los dedos y la dirección de la palma
-        float indexAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Direction, hand.PalmNormal);
+            // Calcula el ángulo entre los dedos y la dirección de la palma
+            float indexAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Direction, hand.PalmNormal);
 
-        // Verifica si el ángulo entre los dedos y la palma es mayor que el umbral
-        bool isAngleGreaterThanThreshold = indexAngle > angleThresholdIndex;
+            // Verifica si el ángulo entre los dedos y la palma es mayor que el umbral
+            bool isAngleGreaterThanThreshold = indexAngle > angleThresholdIndex;
 
-        // Si todos los dedos están extendidos, hay un movimiento hacia abajo y el ángulo es mayor que el umbral
-        if (areThumbRingPinkyMiddleClosed && areIndexExtended && isAngleGreaterThanThreshold)
-        {
-            return true;
+            // Si todos los dedos están extendidos, hay un movimiento hacia abajo y el ángulo es mayor que el umbral
+            if (areThumbRingPinkyMiddleClosed && areIndexExtended && isAngleGreaterThanThreshold)
+                {
+                    return true;
+                }
         }
+
+        return false;
     }
 
-    return false;
-}
-
-public bool DetectGestoScrollAbajo()
-{
-    Frame frame = leapProvider.CurrentFrame;
-    Hand hand = GetCurrentHand(frame);
-
-    if (hand != null)
+    public bool DetectGestoScrollAbajo()
     {
-        // Verifica que los dedos pulgar, anular y meñique estén cerrados
-        bool areThumbRingPinkyMiddleClosed = !hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended
-            && !hand.Fingers[(int)Finger.FingerType.TYPE_RING].IsExtended
-            && !hand.Fingers[(int)Finger.FingerType.TYPE_PINKY].IsExtended
-            && !hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].IsExtended;
+        Frame frame = leapProvider.CurrentFrame;
+        Hand hand = GetCurrentHand(frame);
 
-        // Verifica que los dedos índice y corazón estén extendidos
-        bool areIndexExtended = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].IsExtended;
-
-        // Verifica el ángulo entre los dedos y la palma de la mano
-        float angleThresholdIndex = 60f;
-        // Calcula el ángulo entre los dedos y la dirección de la palma
-        float indexAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Direction, hand.PalmNormal);
-        Debug.Log("indexAngle: " + indexAngle);
-        // Verifica si el ángulo entre los dedos y la palma es mayor que el umbral
-        bool isAngleGreaterThanThreshold = indexAngle < angleThresholdIndex;
-
-        // Si todos los dedos están extendidos, hay un movimiento hacia abajo y el ángulo es mayor que el umbral
-        if (areThumbRingPinkyMiddleClosed && areIndexExtended && isAngleGreaterThanThreshold)
+        if (hand != null)
         {
-            return true;
-        }
-    }
+           // Verifica que los dedos pulgar, corazón, anular y meñique estén cerrados
+            bool areThumbRingPinkyMiddleClosed = !hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].IsExtended
+                && !hand.Fingers[(int)Finger.FingerType.TYPE_RING].IsExtended
+                && !hand.Fingers[(int)Finger.FingerType.TYPE_PINKY].IsExtended
+                && !hand.Fingers[(int)Finger.FingerType.TYPE_MIDDLE].IsExtended;
 
-    return false;
-}
+            // Verifica que los dedos índice y corazón estén extendidos
+            bool areIndexExtended = hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].IsExtended;
+
+            // Verifica el ángulo entre los dedos y la palma de la mano
+            float angleThresholdIndex = 60f;
+            // Calcula el ángulo entre los dedos y la dirección de la palma
+            float indexAngle = Vector3.Angle(hand.Fingers[(int)Finger.FingerType.TYPE_INDEX].Direction, hand.PalmNormal);
+            Debug.Log("indexAngle: " + indexAngle);
+            // Verifica si el ángulo entre los dedos y la palma es mayor que el umbral
+            bool isAngleGreaterThanThreshold = indexAngle < angleThresholdIndex;
+
+            // Si todos los dedos están extendidos, hay un movimiento hacia abajo y el ángulo es mayor que el umbral
+            if (areThumbRingPinkyMiddleClosed && areIndexExtended && isAngleGreaterThanThreshold)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
 
@@ -430,6 +430,5 @@ bool AreAllFingersExtended(Hand hand)
     return true;
 }
 */
-
 
 
