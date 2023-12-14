@@ -9,7 +9,8 @@ public class InfoProfesoresController : MonoBehaviour
 {
 
     public Sprite iconoPredeterminado;
-    
+    public Sprite despachoPredeterminado;
+
     public void MostrarInfoProfesor(string id){
 
         StructProfesor datos = BDProfesores.Get(id);
@@ -23,7 +24,13 @@ public class InfoProfesoresController : MonoBehaviour
         else    
             transform.Find("Foto").GetComponent<Image>().sprite = iconoPredeterminado;
 
-        transform.Find("QR").GetComponent<Image>().sprite = datos.qr_info;
+        transform.Find("QR_info").GetComponent<Image>().sprite = datos.qr_info;
+        if(datos.qr_despacho != null)
+            transform.Find("QR_despacho").GetComponent<Image>().sprite = datos.qr_despacho;
+        else
+            transform.Find("QR_despacho").GetComponent<Image>().sprite = despachoPredeterminado;
+
+
 
     }
 
