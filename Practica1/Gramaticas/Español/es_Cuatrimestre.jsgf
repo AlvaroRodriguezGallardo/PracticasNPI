@@ -1,0 +1,5 @@
+#JSGF V1.0;
+
+grammar es_Cuatrimestre;
+
+public <es_Cuatrimestre> = uno | dos | primero | segundo | primer;

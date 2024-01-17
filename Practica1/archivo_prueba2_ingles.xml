@@ -1,0 +1,543 @@
+<vxml version="2.1" xmlns="http://www.w3.org/2001/06/vxml" xml:lang="en-us">
+    <form id="plan_estudios">
+        <link event="repetir">
+            <grammar src="en_Repetir.jsgf" />
+        </link>
+        <block>
+            <prompt bargein="false">
+                Welcome to the curriculum consultation system of the Higher Technical School of Computer Engineering and Telecommunications.
+            </prompt>
+        </block>
+        <field name="grado">
+            <grammar src="en_Carrera.jsgf" />
+            <prompt>
+                What degree would you like to inquire about, Computer engineering or Telecommunications?
+            </prompt>
+            <filled> Alright, we are going to consult the degree <value expr="grado" />
+            </filled>
+        </field>
+        <catch event="repetir">
+            <prompt>I'm sorry, is the degree <value expr="grado" /> incorrect? Let's repeat it.</prompt>
+            <clear namelist="grado" />
+            <goto nextitem="grado" />
+        </catch>
+        <field name="curso">
+            <grammar src="en_Curso.jsgf" />
+            <prompt>
+                What course would you like to inquire about?
+            </prompt>
+            <filled> Alright, we will consult course <value expr="curso" />.
+                <if
+                    cond="curso == 'first' || curso == 'one' || curso == 'second' || curso == 'two'">
+                    <assign name="mencion" expr="'No'" />
+                </if>
+            </filled>
+        </field>
+        <field name="mencion">
+            <grammar src="en_Menciones.jsgf" />
+            <prompt>
+                Which specialization would you like to inquire about?
+            </prompt>
+            <filled> Alright, we will consult the specialization <value expr="mencion" />
+            </filled>
+
+            <catch event="repetir">
+                <prompt> I'm sorry. Is the course <value expr="curso" /> incorrect? Let's repeat it.</prompt>
+                <clear namelist="curso" />
+                <goto nextitem="curso" />
+
+            </catch>
+        </field>
+
+        <field name="cuatrimestre">
+            <grammar src="en_Cuatrimestre.jsgf" />
+            <prompt>
+                Which semester would you like to inquire about?
+            </prompt>
+            <filled> Alright, we will consult semester <value expr="cuatrimestre" />
+            </filled>
+
+            <catch event="repetir">
+
+                <if cond="mencion == 'No'">
+                    <prompt> I'm sorry. Is the course <value expr="curso" /> incorrect? Let's repeat it.</prompt>
+                    <clear namelist="curso" />
+                    <clear namelist="mencion" />
+                    <goto nextitem="curso" />
+
+                    <else />
+                    <prompt> I'm sorry. Is <value expr="mencion" /> the incorrect specialization? Let's repeat it.</prompt>
+                    <clear namelist="mencion" />
+                    <goto nextitem="mencion" />
+                </if>
+
+            </catch>
+        </field>
+
+        <field name="confirmar_datos">
+            <grammar src="en_mi_si_no.jsgf" />
+
+            <catch event="repetir">
+                <prompt> I'm sorry. Is the semester <value expr="cuatrimestre" /> incorrect? Let's repeat it.</prompt>
+                <clear namelist="cuatrimestre" />
+                <goto nextitem="cuatrimestre" />
+
+            </catch>
+
+            <prompt cond="mencion == 'No'">Do you want to know the subjects for the degree in <value expr="grado" />, for <value expr="curso" /> in the <value expr="cuatrimestre" /> semester?</prompt>
+            <prompt cond="mencion != 'No'">Do you want to know the subjects for the degree in <value expr="grado" /> with specialization <value expr="mencion" />, for <value expr="curso" /> in the <value expr="cuatrimestre" /> semester?</prompt>
+
+
+            <filled>
+                <if cond="confirmar_datos=='yes'">
+
+                    <!--<if cond="grado=='informatica'">
+                        <assign name="grado" expr="'ingenieria informatica'" />
+                    </if>-->
+                    <if cond="grado=='telecommunications'">
+                        <assign name="grado" expr="'telecommunications engineering'" />
+                    </if>
+                    <if cond="curso=='one'">
+                        <assign name="curso" expr="'first'" />
+                    </if>
+                    <if cond="curso=='two'">
+                        <assign name="curso" expr="'second'" />
+                    </if>
+                    <if cond="curso=='three'">
+                        <assign name="curso" expr="'third'" />
+                    </if>
+                    <if cond="curso=='four'">
+                        <assign name="curso" expr="'fourth'" />
+                    </if>
+
+                    <if cond="mencion=='computation and intelligent systems'">
+                        <assign name="mencion" expr="'cis'" />
+                    </if>
+                    <if cond="mencion=='software engineering'">
+                        <assign name="mencion" expr="'se'" />
+                    </if>
+                    <if cond="mencion=='computation engineering'">
+                        <assign name="mencion" expr="'ce'" />
+                    </if>
+                    <if cond="mencion=='information systems'">
+                        <assign name="mencion" expr="'is'" />
+                    </if>
+                    <if cond="mencion=='information technologies'">
+                        <assign name="mencion" expr="'it'" />
+                    </if>
+                    <if cond="mencion=='telecommunication systems'">
+                        <assign name="mencion" expr="'ts'" />
+                    </if>
+                    <if cond="mencion=='electronic systems'">
+                        <assign name="mencion" expr="'es'" />
+                    </if>
+                    <if cond="cuatrimestre=='one'">
+                        <assign name="cuatrimestre" expr="'first'" />
+                    </if>
+                    <if cond="cuatrimestre=='two'">
+                        <assign name="cuatrimestre" expr="'second'" />
+                    </if>
+
+
+                    <if cond="grado=='computer engineering'">
+                        <!-- Ingenieria Informatica - first curso -->
+                        <if cond="curso == 'first'">
+                            <if cond="cuatrimestre == 'first'">
+                                <if cond="mencion == 'No'">
+                                    <prompt bargein="false">
+                                        Calculus
+                                        Physical and Technological Foundations
+                                        Programming Fundamentals
+                                        Software Fundamentals
+                                        Linear Algebra and Mathematical Structures
+                                    </prompt>
+                                </if>
+                            </if>
+                            <if cond="cuatrimestre == 'second'">
+                                <if cond="mencion == 'No'">
+                                    <prompt bargein="false">
+                                        Statistics
+                                        Engineering, Business, and Society
+                                        Logic and Discrete Methods
+                                        Programming Methodology
+                                        Computer Organization and Technology
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+
+                        <!-- Ingenieria Informatica - second curso -->
+                        <if cond="curso == 'second'">
+                            <if cond="cuatrimestre == 'first'">
+                                <if cond="mencion == 'No'">
+                                    <prompt bargein="false">
+                                        Computer Architecture
+                                        Data Structures
+                                        Object-Oriented Programming and Design
+                                        Concurrent and Distributed Systems
+                                        Operating Systems
+                                    </prompt>
+                                </if>
+                            </if>
+                            <if cond="cuatrimestre == 'second'">
+                                <if cond="mencion == 'No'">
+                                    <prompt bargein="false">
+                                        Algorithmics
+                                        Computer Architecture
+                                        Fundamentals of Databases
+                                        Software Engineering Fundamentals
+                                        Artificial Intelligence
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+
+                        <!-- Ingenieria Informatica - Tercer curso -->
+                        <if cond="curso == 'third'">
+                            <if cond="cuatrimestre == 'first'">
+                                <prompt bargein="false">
+                                    Information Systems Design and Development
+                                    Network Fundamentals
+                                    Computer Graphics
+                                    Server Engineering
+                                    Models of Computation
+                                </prompt>
+                            </if>
+                            <if cond="cuatrimestre == 'second'">
+                                <if cond="mencion == 'cis'">
+                                    <prompt bargein="false">
+                                        Machine Learning
+                                        Knowledge Engineering
+                                        Metaheuristics
+                                        Advanced Computing Models
+                                        Intelligent Systems Techniques
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'is'">
+                                    <prompt bargein="false">
+                                        Database Administration
+                                        Information Systems Engineering
+                                        Web Programming
+                                        Multidimensional Systems
+                                        Business Information Systems
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'ce'">
+                                    <prompt bargein="false">
+                                        Systems Architecture
+                                        High-Performance Computing and Architecture
+                                        Digital Hardware Development
+                                        Electronic Systems Design
+                                        Microprocessor Systems
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'it'">
+                                    <prompt bargein="false">
+                                        Ubiquitous Computing and Ambient Intelligence
+                                        High-Performance Web Servers
+                                        Multimedia Systems
+                                        Web Technologies
+                                        Data Transmission and Computer Networks
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'se'">
+                                    <prompt bargein="false">
+                                        Distributed Systems Development
+                                        Software Development
+                                        User Interface Design
+                                        Graphics Systems
+                                        Web-Based Information Systems
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+                        <!-- Ingenieria Informatica - fourth curso -->
+                        <if cond="curso == 'fourth'">
+                            <if cond="cuatrimestre == 'first'">
+                                <if cond="mencion == 'cis'">
+                                    <prompt bargein="false">
+                                        New Interaction Paradigms
+                                        Language Processors
+                                        Systems Simulation
+                                        Information Theory and Coding
+                                        Computer Vision
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'is'">
+                                    <prompt bargein="false">
+                                        Distributed Databases
+                                        Business Intelligence
+                                        Information Retrieval
+                                        Digital Resource Management
+                                        Complex Networks and Systems
+                                        Geographic Information Systems
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'ce'">
+                                    <prompt bargein="false">
+                                        Data Centers
+                                        Embedded Systems
+                                        Network Technologies
+                                        Industrial Informatics
+                                        Emerging Technologies
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'it'">
+                                    <prompt bargein="false">
+                                        Internet Applications Development
+                                        Virtual Infrastructure
+                                        Security and Protection of Computer Systems
+                                        Data Compression and Retrieval
+                                        Digital Image Processing
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'se'">
+                                    <prompt bargein="false">
+                                        Agent Based Development
+                                        Agile Development Methodologies
+                                        Project Management and Leadership
+                                        Video Game Graphics Programming
+                                        Operating Systems Security
+                                        Logic and Programming
+                                    </prompt>
+                                </if>
+                            </if>
+                            <if cond="cuatrimestre == 'second'">
+                                <if cond="mencion == 'cis'">
+                                    <prompt bargein="false">
+                                        Cryptography and Computing
+                                        Game Programming
+                                        Industrial Robotics
+                                        Entrepreneurship and Entrepreneurial Management
+                                        Informatics Law
+                                        Ethics, Informatics, and Information Society
+                                        Internship
+                                        Bachelor's Thesis
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'is'">
+                                    <prompt bargein="false">
+                                        Human Computer Interaction
+                                        Cooperative Systems and Content Management
+                                        Entrepreneurship and Entrepreneurial Management
+                                        Informatics Law
+                                        Ethics, Informatics, and Information Society
+                                        Internship
+                                        Bachelor's Thesis
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'ce'">
+                                    <prompt bargein="false">
+                                        Integrated Circuits and Printed Circuit Boards
+                                        Computer Equipment Maintenance
+                                        Control Systems
+                                        Fundamentals of Photonics
+                                        Telematics Laboratory
+                                        Printed Circuit Board Technology
+                                        Speech Technologies
+                                    </prompt>
+                                </if>
+                                <if cond="mencion == 'it'">
+                                    <prompt bargein="false">
+                                        Digital Signal Processing
+                                        Mobile Device Programming
+                                        Multiservice Networks
+                                        Entrepreneurship and Entrepreneurial Management
+                                        Informatics Law
+                                        Ethics, Informatics, and Information Society
+                                        Internship
+                                        Bachelor's Thesis
+                                    </prompt >
+                                </if>
+                                <if cond="mencion == 'se'">
+                                    <prompt bargein="false">
+                                        Computer Animation
+                                        Entrepreneurship and Entrepreneurial Management
+                                        Informatics Law
+                                        New Programming Technologies
+                                        Parallel Programming
+                                        Ethics, Informatics, and Information Society
+                                        Internship
+                                        Bachelor's Project
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+                    </if>
+                    <!--#####
+                    Informacion sobre las asignaturas de Telecomunicaciones #####-->
+                    <if cond="grado=='telecommunications engineering'">
+                        <!-- Ingenieria en Telecomunicaciones - first curso -->
+                        <if cond="curso=='first'">
+                            <if cond="cuatrimestre=='first'">
+                                <if cond="mencion=='No'">
+                                    <prompt bargein="false">
+                                        Mathematical Analysis
+                                        Circuit Analysis
+                                        Fundamentals of Informatics
+                                        Engineering, Business, and Society
+                                        Linear Algebra and Geometry
+                                    </prompt>
+                                </if>
+                            </if>
+
+                            <if cond="cuatrimestre=='second'">
+                                <if cond="mencion=='No'">
+                                    <prompt bargein="false">
+                                        Electronic Components and Circuits
+                                        Differential Equations and Numerical Calculus
+                                        Statistics and Optimization
+                                        Physical Fundamentals of Engineering
+                                        Linear Systems
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+                        <!-- Ingenieria en Telecomunicaciones - second curso -->
+                        <if cond="curso=='second'">
+                            <if cond="cuatrimestre=='first'">
+                                <if cond="mencion=='No'">
+                                    <prompt bargein="false">
+                                        Programming Fundamentals
+                                        Telematics Systems
+                                        Communication Theory
+                                        Wave Transmission
+                                    </prompt>
+                                </if>
+                            </if>
+
+                            <if cond="cuatrimestre=='second'">
+                                <if cond="mencion=='No'">
+                                    <prompt bargein="false">
+                                        Communications I
+                                        Analog Electronics
+                                        Digital Electronics
+                                        Communication Infrastructures and Networks
+                                        Digital Signals
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+                        <!-- Ingenieria en Telecomunicaciones - Tercer curso -->
+                        <if cond="curso=='third'">
+                            <if cond="cuatrimestre=='first'">
+                                <prompt bargein="false">
+                                    Communications II
+                                    Power Electronics
+                                    Digital Electronic Systems
+                                    Switching Systems
+                                    Data Transmission and Computer Networks
+                                </prompt>
+                            </if>
+
+                            <if cond="cuatrimestre=='second'">
+                                <if cond="mencion=='ts'">
+                                    <prompt bargein="false">
+                                        Antennas and Propagation
+                                        Optical Media and Components for Communications
+                                        Coding and Storage Systems
+                                        Radiocommunication Systems
+                                        Digital Signal Processing
+                                    </prompt>
+                                </if>
+                                <if cond="mencion=='es'">
+                                    <prompt bargein="false">
+                                        Radiofrequency Electronic Circuits
+                                        Electronic Circuit and Systems Design
+                                        Microwave Electronics
+                                        Electronic Instrumentation
+                                        Power Systems
+                                    </prompt>
+                                </if>
+                                <if cond="mencion=='telematics'">
+                                    <prompt bargein="false">
+                                        Networking Fundamentals
+                                        Networked Application Development
+                                        Network Management
+                                        Wireless and Mobility Networks
+                                        Communication Network Security
+                                    </prompt>
+                                </if>
+                            </if>
+                        </if>
+                        <!-- Ingenieria en Telecomunicaciones - fourth curso -->
+                        <if cond="curso=='fourth'">
+                            <if cond="cuatrimestre=='first'">
+                                <if cond="mencion=='ts'">
+                                    <prompt bargein="false">
+                                        Wireless Communications
+                                        Optical Communications
+                                        Digital Television and Radio
+                                        Fundamentals of Photonics
+                                        Telematics Laboratory
+                                        Printed Circuit Board Technology
+                                        Speech Technologies
+                                    </prompt>
+                                </if>
+                                <if cond="mencion=='es'">
+                                    <prompt bargein="false">
+                                        Integrated Circuits for Communications
+                                        Electronic Equipment
+                                        Control Systems
+                                        Fundamentals of Photonics
+                                        Telematics Laboratory
+                                        Printed Circuit Board Technology
+                                        Speech Technologies
+                                    </prompt>
+                                </if>
+                                <if cond="mencion=='telematics'">
+                                    <prompt bargein="false">
+                                        Network Design and Sizing
+                                        Multimedia Networks
+                                        Access and Corporate Networks
+                                        Fundamentals of Photonics
+                                        Telematics Laboratory
+                                        Printed Circuit Board Technology
+                                        Speech Technologies
+                                    </prompt>
+                                </if>
+                            </if>
+                            <if cond="cuatrimestre=='second'">
+                                <prompt bargein="false">
+                                    Specialized Architectures for Telecommunications
+                                    Mathematical Analysis Supplements
+                                    Applied Physics for Telecommunications
+                                    Digital Video Processing
+                                    Embedded and Real-Time Systems Programming
+                                    Bachelor's Thesis
+                                </prompt>
+                            </if>
+                        </if>
+                    </if>
+
+                    <goto next="#volver_a_empezar" />
+                    <else />
+                    <prompt> Of course, let's go back to the beginning.  </prompt>
+                    <clear namelist="plan_estudios" />
+                    <clear namelist="confirmar_datos" />
+                    <goto next="#plan_estudios" />
+                </if>
+            </filled>
+
+        </field>
+
+    </form>
+    <form id="volver_a_empezar">
+        <field name="volver_a_empezar_field">
+            <grammar src="en_mi_si_no.jsgf" />
+            <prompt>
+                Do you want to inquire about another study plan? Please answer 'yes' or 'no'.
+            </prompt>
+            <filled>
+                <if cond="volver_a_empezar_field == 'yes'">
+                    <prompt>Okay, let's go back to the beginning.</prompt>
+                    <clear namelist="plan_estudios volver_a_empezar" />
+                    <goto next="#plan_estudios" />
+                </if>
+                <else />
+                <prompt>Alright. Have a great day!</prompt>
+                <exit />
+            </filled>
+        </field>
+    </form>
+</vxml>
