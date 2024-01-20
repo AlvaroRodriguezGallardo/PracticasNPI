@@ -180,7 +180,7 @@ public class MainController : MonoBehaviour
 
             // Verifica si el pulgar está apuntando hacia la izquierda
             Vector3 thumbDirection = hand.Fingers[(int)Finger.FingerType.TYPE_THUMB].Bone(Bone.BoneType.TYPE_DISTAL).Direction;
-            bool isThumbPointingLeft = thumbDirection.x < -0.6f;
+            bool isThumbPointingLeft = thumbDirection.x < 0;
 
             // Verifica la transición rápida hacia la izquierda y luego hacia la derecha después de cerrar el puño
             if (isHandClosed && isThumbOpen && isThumbPointingLeft)
