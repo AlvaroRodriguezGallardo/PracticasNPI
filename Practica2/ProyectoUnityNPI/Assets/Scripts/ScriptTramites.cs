@@ -6,7 +6,7 @@ using UnityEngine.Events;
 using TMPro;
 using System.IO;
 
-public class GeneradorBotones : MonoBehaviour
+public class GeneradorBotonesPlan : MonoBehaviour
 {
     [System.Serializable]
     public struct ButtonStruct
@@ -19,10 +19,10 @@ public class GeneradorBotones : MonoBehaviour
     public GameObject botonPrefab;
     public Transform contenedorBotones;
 
-    private List<string> diasSemana = new List<string> { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" };
-    private List<string> tiposMenu = new List<string> { "Normal", "Vegetariano", "Celiaco" };
-    private int tipoMenuSeleccionado = 0;
-    private int diaSemanaSeleccionado = 0;
+    private List<string> Menciones = new List<string> { "CSI", "IC", "IS", "SI", "TI"};
+    private List<string> Cursos = new List<string> { "Primero", "Segundo", "Tercero", "Cuarto" };
+    private int mencionSeleccionada = 0;
+    private int cursoSeleccionado = 0;
     public GameObject menu;
 
     // Lista de objetos asociados a cada combinación de día y menú
@@ -38,7 +38,7 @@ public class GeneradorBotones : MonoBehaviour
     {
         float espacioEntreBotones = 250f;
 
-        for (int i = 0; i < diasSemana.Count; ++i)
+        for (int i = 0; i < Menciones.Count; ++i)
         {
             GameObject nuevoBoton = Instantiate(botonPrefab, Vector3.zero, Quaternion.identity, transform);
 
@@ -46,57 +46,57 @@ public class GeneradorBotones : MonoBehaviour
 
             nuevoBoton.GetComponent<RectTransform>().localScale = buttonScale;
 
-            Vector2 buttonPosition = new Vector2(espacioEntreBotones * i * 1.25f - 750f, -1200f);
+            Vector2 buttonPosition = new Vector2(espacioEntreBotones * i * 1.50f - 750f, -1000f);
             nuevoBoton.GetComponent<RectTransform>().anchoredPosition = buttonPosition;
 
             // Configurar el texto del botón
             TextMeshProUGUI buttonText = nuevoBoton.GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = diasSemana[i];
+            buttonText.text = Menciones[i];
     
             // Aumentar el tamaño de fuente aquí
-            buttonText.fontSize = 36;
+            buttonText.fontSize = 36; 
 
-            int diaIndex = i;
-            nuevoBoton.GetComponent<Button>().onClick.AddListener(() => BotonClicDiaSemana(diaIndex));
+            int mencionIndex = i;
+            nuevoBoton.GetComponent<Button>().onClick.AddListener(() => BotonClicMencion(mencionIndex));
         }
 
-        for (int i = 0; i < tiposMenu.Count; ++i)
+        for (int i = 0; i < Cursos.Count; ++i)
         {
             GameObject nuevoBoton = Instantiate(botonPrefab, Vector3.zero, Quaternion.identity, transform);
 
-            Vector2 buttonScale = new Vector3(1.3f, 2, 1);
+            Vector2 buttonScale = new Vector3(1.5f, 2, 1);
 
             nuevoBoton.GetComponent<RectTransform>().localScale = buttonScale;
 
-            Vector2 buttonPosition = new Vector2(espacioEntreBotones * i * 1.30f - 350f, 400f);
+            Vector2 buttonPosition = new Vector2(espacioEntreBotones * i * 1.50f - 550f, 700f);
             nuevoBoton.GetComponent<RectTransform>().anchoredPosition = buttonPosition;
 
             // Configurar el texto del botón
             TextMeshProUGUI buttonText = nuevoBoton.GetComponentInChildren<TextMeshProUGUI>();
-            buttonText.text = tiposMenu[i];
+            buttonText.text = Cursos[i];
     
             // Aumentar el tamaño de fuente aquí
-            buttonText.fontSize = 36;
+            buttonText.fontSize = 36; // Cambia 30 al tamaño de fuente que desees
 
-            int menuIndex = i;
-            nuevoBoton.GetComponent<Button>().onClick.AddListener(() => BotonClicTipoMenu(menuIndex));
+            int cursoIndex = i;
+            nuevoBoton.GetComponent<Button>().onClick.AddListener(() => BotonClicCurso(cursoIndex));
         }
     }
 
-    void BotonClicDiaSemana(int diaIndex)
+    void BotonClicMencion(int mencionIndex)
     {
-        Debug.Log("Se hizo clic en el botón del día: " + diasSemana[diaIndex]);
+        Debug.Log("Se hizo clic en el botón del día: " + Menciones[mencionIndex]);
 
-        diaSemanaSeleccionado = diaIndex;
+        mencionSeleccionada = mencionIndex;
 
         ActivarObjetoCorrespondiente();
     }
 
-    void BotonClicTipoMenu(int menuIndex)
+    void BotonClicCurso(int cursoIndex)
     {
-        Debug.Log("Se hizo clic en el botón del tipo de menú: " + tiposMenu[menuIndex]);
+        Debug.Log("Se hizo clic en el botón del tipo de menú: " + Cursos[cursoIndex]);
 
-        tipoMenuSeleccionado = menuIndex;
+        cursoSeleccionado = cursoIndex;
 
         ActivarObjetoCorrespondiente();
     }
@@ -104,7 +104,7 @@ public class GeneradorBotones : MonoBehaviour
     void ActivarObjetoCorrespondiente()
     {
         // Buscar el objeto asociado a la combinación de día y menú
-        string nombreObjeto = $"{diasSemana[diaSemanaSeleccionado]}_{tiposMenu[tipoMenuSeleccionado]}";
+        string nombreObjeto = $"{Menciones[mencionSeleccionada]}_{Cursos[cursoSeleccionado]}";
         GameObject objetoAsociado = objetosAsociados.Find(obj => obj.name == nombreObjeto);
 
         // Activar el objeto encontrado y desactivar los demás
@@ -118,11 +118,11 @@ public class GeneradorBotones : MonoBehaviour
     {
         // Asignar referencias a objetos asociados
         objetosAsociados = new List<GameObject>();
-        for (int i = 0; i < diasSemana.Count; ++i)
+        for (int i = 0; i < Menciones.Count; ++i)
         {
-            for (int j = 0; j < tiposMenu.Count; ++j)
+            for (int j = 0; j < Cursos.Count; ++j)
             {
-                string nombreObjeto = $"{diasSemana[i]}_{tiposMenu[j]}";
+                string nombreObjeto = $"{Menciones[i]}_{Cursos[j]}";
                 GameObject objeto = GameObject.Find(nombreObjeto);
 
                 if (objeto != null)
@@ -140,10 +140,10 @@ public class GeneradorBotones : MonoBehaviour
     }
 
     public void AccionGestoSiguiente(){
-        BotonClicDiaSemana((diaSemanaSeleccionado + 1)%6);
+        BotonClicMencion((mencionSeleccionada + 1)%5);
     }
 
     public void AccionGestoAnterior(){
-        BotonClicDiaSemana((diaSemanaSeleccionado + 5)%6);
+        BotonClicMencion((mencionSeleccionada + 4)%5);
     }
 }
