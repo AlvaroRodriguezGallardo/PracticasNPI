@@ -14441,6 +14441,7 @@ MonoBehaviour:
   Tutorial: {fileID: 1579059335}
   MainMenu: {fileID: 1608334603}
   OtrosMenus:
+  - {fileID: 940340120}
   - {fileID: 1232606108}
   - {fileID: 897927572}
   - {fileID: 1077623445}
@@ -14461,6 +14462,15 @@ MonoBehaviour:
   - {fileID: 1915312006}
   - {fileID: 289829413}
   - {fileID: 566567109}
+  - {fileID: 440777114}
+  - {fileID: 2003060071}
+  - {fileID: 366630705}
+  - {fileID: 908011757}
+  - {fileID: 1348040264}
+  - {fileID: 1699200939}
+  - {fileID: 700538476}
+  - {fileID: 1932145867}
+  - {fileID: 193420087}
 --- !u!4 &675988969
 Transform:
   m_ObjectHideFlags: 0
@@ -22839,8 +22849,6 @@ RectTransform:
   - {fileID: 1915312007}
   - {fileID: 289829414}
   - {fileID: 566567110}
-  - {fileID: 1252249968}
-  - {fileID: 1579059336}
   - {fileID: 440777115}
   - {fileID: 2003060072}
   - {fileID: 366630706}
@@ -22850,6 +22858,8 @@ RectTransform:
   - {fileID: 700538477}
   - {fileID: 1932145868}
   - {fileID: 193420088}
+  - {fileID: 1252249968}
+  - {fileID: 1579059336}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
